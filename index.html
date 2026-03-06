@@ -5,7 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="iVolt Power Solutions — Your trusted dealer in Voltage Regulators, Power Suppressors, and Electrical Safety Inspections in Nigeria.">
 <title>iVolt Power Solutions | Buy & Sell Power Equipment</title>
-<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,300&family=Orbitron:wght@400;600;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<!-- Non-blocking font load for instant render -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,300&family=Orbitron:wght@400;600;700;900&family=Share+Tech+Mono&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,300&family=Orbitron:wght@400;600;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet"></noscript>
 <style>
 :root {
   --cyan: #00e5ff;
@@ -30,7 +34,7 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'Exo 2', sans-serif;
+  font-family: 'Exo 2', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   overflow-x: hidden;
   cursor: default;
 }
@@ -548,11 +552,94 @@ footer {
 }
 
 /* ── SCROLL FADE IN ── */
+/* Content visible by default; JS adds transition after page loads */
 .reveal {
+  opacity: 1; transform: none;
+}
+.reveal.js-ready {
   opacity: 0; transform: translateY(24px);
   transition: opacity .7s ease, transform .7s ease;
 }
-.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal.js-ready.visible { opacity: 1; transform: translateY(0); }
+
+/* ── EXTRA RESPONSIVE FIXES ── */
+
+/* Prevent any element from causing horizontal scroll */
+*, *::before, *::after { max-width: 100%; }
+
+/* Hero fully responsive */
+@media (max-width: 480px) {
+  .hero {
+    padding: 90px 5% 60px;
+    min-height: auto;
+    align-items: flex-start;
+  }
+  .hero h1 { font-size: clamp(32px, 10vw, 52px); line-height: 1.1; }
+  .hero-sub { font-size: 14px; }
+  .hero-btns { flex-direction: column; gap: 12px; }
+  .btn-primary, .btn-secondary { width: 100%; text-align: center; padding: 16px 20px; }
+  .hero-stats { gap: 20px; margin-top: 36px; }
+  .stat-val { font-size: 22px; }
+}
+
+/* Products grid on small screens */
+@media (max-width: 480px) {
+  .products-grid { grid-template-columns: 1fr; }
+  .prod-card { padding: 24px 20px; }
+}
+
+/* Trade panels on small screens */
+@media (max-width: 480px) {
+  .trade-big { font-size: clamp(40px, 12vw, 64px); }
+  .trade-panel { padding: 32px 20px; }
+}
+
+/* Why grid on small screens */
+@media (max-width: 480px) {
+  .why-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 360px) {
+  .why-grid { grid-template-columns: 1fr; }
+}
+
+/* Inspection form on small screens */
+@media (max-width: 480px) {
+  .inspection-form { padding: 24px 18px; }
+  .inspection-inner { gap: 32px; }
+}
+
+/* Contact on small screens */
+@media (max-width: 480px) {
+  .contact-grid { gap: 32px; }
+  .social-row { flex-direction: column; }
+  .social-btn { justify-content: center; }
+}
+
+/* Section padding on very small screens */
+@media (max-width: 380px) {
+  section { padding: 56px 4%; }
+  .section-title { font-size: clamp(22px, 7vw, 32px); }
+}
+
+/* Nav logo on tiny screens */
+@media (max-width: 320px) {
+  .nav-logo { font-size: 13px; }
+}
+
+/* Footer bottom on small screens */
+@media (max-width: 480px) {
+  .footer-bottom { flex-direction: column; text-align: center; }
+}
+
+/* Touch-friendly tap targets */
+@media (hover: none) {
+  .btn-primary, .btn-secondary, .submit-btn, .social-btn, .nav-cta {
+    min-height: 48px;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .submit-btn { min-height: 52px; font-size: 13px; }
+}
+
 </style>
 </head>
 <body>
@@ -826,8 +913,8 @@ footer {
           <div>
             <div class="contact-item-label">Email</div>
             <div class="contact-item-val">
-              <a href="mailto:ivoltpowersolutions@outlook.com">ivoltpowersolutions@outlook.com</a><br>
-              <a href="mailto:ivoltpowersolutions@gmail.com">ivoltpowersolutions@gmail.com</a>
+              <a href="/cdn-cgi/l/email-protection#1c756a7370686c736b796e6f737069687573726f5c73696870737377327f7371"><span class="__cf_email__" data-cfemail="dbb2adb4b7afabb4acbea9a8b4b7aeafb2b4b5a89bb4aeafb7b4b4b0f5b8b4b6">[email&#160;protected]</span></a><br>
+              <a href="/cdn-cgi/l/email-protection#9df4ebf2f1e9edf2eaf8efeef2f1e8e9f4f2f3eeddfaf0fcf4f1b3fef2f0"><span class="__cf_email__" data-cfemail="6b021d04071f1b041c0e191804071e1f020405182b0c060a020745080406">[email&#160;protected]</span></a>
             </div>
           </div>
         </div>
@@ -844,7 +931,7 @@ footer {
           <div class="x-logo">𝕏</div>
           @TradesByBami
         </a>
-        <a href="mailto:ivoltpowersolutions@gmail.com" class="social-btn">📧 Email Us</a>
+        <a href="/cdn-cgi/l/email-protection#fa938c95968e8a958d9f888995968f8e93959489ba9d979b9396d4999597" class="social-btn">📧 Email Us</a>
         <a href="tel:+2349032156174" class="social-btn">📞 Call Us</a>
       </div>
     </div>
@@ -879,7 +966,7 @@ footer {
       <h5>Contact</h5>
       <ul>
         <li><a href="tel:+2349032156174">+234 903 215 6174</a></li>
-        <li><a href="mailto:ivoltpowersolutions@gmail.com">ivoltpowersolutions@gmail.com</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#caa3bca5a6bebaa5bdafb8b9a5a6bfbea3a5a4b98aada7aba3a6e4a9a5a7"><span class="__cf_email__" data-cfemail="4c253a2320383c233b293e3f232039382523223f0c2b212d2520622f2321">[email&#160;protected]</span></a></li>
         <li><a href="https://x.com/TradesByBami" target="_blank">𝕏 @TradesByBami</a></li>
       </ul>
     </div>
@@ -890,13 +977,13 @@ footer {
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // Mobile menu toggle
 function toggleMenu() {
   document.getElementById('mobileMenu').classList.toggle('open');
 }
 
-// Scroll reveal
+// Scroll reveal — mark elements only after DOM ready so content never hides before JS loads
 var reveals = document.querySelectorAll('.reveal');
 var observer = new IntersectionObserver(function(entries) {
   entries.forEach(function(e) {
@@ -905,39 +992,72 @@ var observer = new IntersectionObserver(function(entries) {
       observer.unobserve(e.target);
     }
   });
-}, { threshold: 0.12 });
-reveals.forEach(function(r) { observer.observe(r); });
+}, { threshold: 0.08 });
+
+// Small delay so first paint is always visible
+requestAnimationFrame(function() {
+  reveals.forEach(function(r) {
+    r.classList.add('js-ready');
+    observer.observe(r);
+  });
+});
 
 // Stagger children
 document.querySelectorAll('.products-grid, .why-grid').forEach(function(grid) {
   Array.from(grid.children).forEach(function(child, i) {
     child.style.transitionDelay = (i * 0.1) + 's';
     child.classList.add('reveal');
+    child.classList.add('js-ready');
     observer.observe(child);
   });
 });
 
 // Form submit handler
 function handleSubmit() {
-  var btn = document.querySelector('.submit-btn');
-  btn.textContent = '✅ Request Sent!';
-  btn.style.background = '#00ff88';
-  btn.style.cursor = 'default';
-  setTimeout(function() {
-    btn.textContent = '⚡ Request Inspection';
-    btn.style.background = '';
-    btn.style.cursor = '';
-  }, 3000);
-}
+  var inputs = document.querySelectorAll('.inspection-form input, .inspection-form select, .inspection-form textarea');
+  var firstName = inputs[0].value.trim();
+  var lastName  = inputs[1].value.trim();
+  var phone     = inputs[2].value.trim();
+  var email     = inputs[3].value.trim();
+  var address   = inputs[4].value.trim();
+  var premises  = inputs[5].value.trim();
+  var notes     = inputs[6].value.trim();
 
-// Close mobile menu on outside click
-document.addEventListener('click', function(e) {
-  var menu = document.getElementById('mobileMenu');
-  var ham = document.getElementById('ham');
-  if (menu.classList.contains('open') && !menu.contains(e.target) && !ham.contains(e.target)) {
-    menu.classList.remove('open');
+  if (!firstName || !phone || !address || !premises) {
+    alert('Please fill in at least: First Name, Phone, Address and Type of Premises.');
+    return;
   }
-});
-</script>
-</body>
-</html>
+
+  var message =
+    '🔌 *iVolt Power — Inspection Request*\n\n' +
+    '*Name:* ' + firstName + ' ' + lastName + '\n' +
+    '*Phone:* ' + phone + '\n' +
+    '*Email:* ' + (email || 'N/A') + '\n' +
+    '*Address:* ' + address + '\n' +
+    '*Premises:* ' + premises + '\n' +
+    '*Notes:* ' + (notes || 'None');
+
+  var waNumber = '2349032156174';
+  var waURL = 'https://wa.me/' + waNumber + '?text=' + encodeURIComponent(message);
+
+  var mailSubject = 'Inspection Request – ' + firstName + ' ' + lastName;
+  var mailBody =
+    'Name: ' + firstName + ' ' + lastName + '\n' +
+    'Phone: ' + phone + '\n' +
+    'Email: ' + (email || 'N/A') + '\n' +
+    'Address: ' + address + '\n' +
+    'Premises: ' + premises + '\n' +
+    'Notes: ' + (notes || 'None');
+  var mailURL = 'mailto:ivoltpowersolutions@gmail.com?subject=' + encodeURIComponent(mailSubject) + '&body=' + encodeURIComponent(mailBody);
+
+  // Open WhatsApp first
+  window.open(waURL, '_blank');
+
+  // Show confirmation with email fallback
+  setTimeout(function() {
+    var useMail = confirm(
+      '✅ WhatsApp opened!\n\nIf WhatsApp did not open or you prefer email, click OK to send via email instead.\n\nClick Cancel if WhatsApp worked fine.'
+    );
+    if (useMail) { window.location.href = mailURL; }
+  }, 1200);
+}
