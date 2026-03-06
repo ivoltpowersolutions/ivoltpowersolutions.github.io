@@ -680,6 +680,53 @@ footer {
 }
 .reveal.js-ready.visible { opacity: 1; transform: translateY(0); }
 
+/* ── PRICE LIST ── */
+.pricelist-section {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.pricelist-notice {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: rgba(255,196,0,0.07); border: 1px solid rgba(255,196,0,0.25);
+  border-radius: 8px; padding: 14px 18px; margin-bottom: 40px;
+  font-size: 12px; color: rgba(255,196,0,0.85); line-height: 1.7;
+}
+.pricelist-notice span { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+.pricelist-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+.ptab {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+  padding: 9px 20px; border-radius: 4px; cursor: pointer;
+  background: transparent; border: 1px solid var(--border);
+  color: var(--muted); transition: all .2s;
+}
+.ptab.active, .ptab:hover { background: var(--cyan); color: #000; border-color: var(--cyan); }
+.pricelist-table-wrap { overflow-x: auto; border-radius: 10px; border: 1px solid var(--border); }
+table.price-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+table.price-table thead tr { background: rgba(0,229,255,0.06); border-bottom: 1px solid var(--border); }
+table.price-table th {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px; letter-spacing: 3px; color: var(--cyan);
+  text-transform: uppercase; padding: 14px 18px; text-align: left; white-space: nowrap;
+}
+table.price-table td { padding: 13px 18px; border-bottom: 1px solid rgba(255,255,255,0.04); color: var(--text); vertical-align: middle; }
+table.price-table tbody tr:last-child td { border-bottom: none; }
+table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
+.price-new { color: var(--green); font-weight: 700; font-family: 'Orbitron', monospace; font-size: 12px; }
+.price-used { color: var(--gold); font-weight: 700; font-family: 'Orbitron', monospace; font-size: 12px; }
+.price-na { color: var(--muted); font-size: 11px; }
+.use-tag { font-size: 10px; padding: 3px 8px; border-radius: 3px; font-family: 'Share Tech Mono', monospace; letter-spacing: 1px; }
+.use-home { background: rgba(0,229,255,0.1); color: var(--cyan); }
+.use-office { background: rgba(255,196,0,0.1); color: var(--gold); }
+.use-industrial { background: rgba(255,60,0,0.1); color: #ff7060; }
+.ptable-panel { display: none; }
+.ptable-panel.active { display: block; }
+@media (max-width: 600px) {
+  table.price-table th, table.price-table td { padding: 10px 10px; font-size: 11px; }
+  .price-new, .price-used { font-size: 10px; }
+}
+
 /* ── EXTRA RESPONSIVE FIXES ── */
 
 /* Prevent any element from causing horizontal scroll */
@@ -769,6 +816,7 @@ footer {
     <li><a href="#products">Products</a></li>
     <li><a href="#trade">Buy &amp; Sell</a></li>
     <li><a href="#why">Why Us</a></li>
+    <li><a href="#pricelist">Price List</a></li>
     <li><a href="#inspection">Book Inspection</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="tel:+2349032156174" class="nav-cta">Call Now</a></li>
@@ -783,6 +831,7 @@ footer {
   <a href="#products" onclick="toggleMenu()">Products</a>
   <a href="#trade" onclick="toggleMenu()">Buy &amp; Sell</a>
   <a href="#why" onclick="toggleMenu()">Why Us</a>
+  <a href="#pricelist" onclick="toggleMenu()">Price List</a>
   <a href="#inspection" onclick="toggleMenu()">Book Inspection</a>
   <a href="#contact" onclick="toggleMenu()">Contact</a>
   <a href="tel:+2349032156174">📞 +234 903 215 6174</a>
@@ -932,6 +981,186 @@ footer {
       <div class="why-icon">📞</div>
       <h4>Always Reachable</h4>
       <p>Call, email, or DM us on X. We're always available to answer your questions.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRICE LIST -->
+<section id="pricelist" class="pricelist-section">
+  <div class="reveal">
+    <div class="section-tag">Market Rates</div>
+    <h2 class="section-title">Nigeria Price Guide</h2>
+    <p class="section-desc">Current market price ranges for Voltage Regulators and Power Suppressors across Nigeria. Use this as a guide when budgeting.</p>
+  </div>
+
+  <div class="pricelist-notice reveal">
+    <span>⚠️</span>
+    <div>Prices shown are <strong>estimated market ranges</strong> sourced from Nigerian dealers and online platforms (2025). Actual prices vary by brand, location, and availability. Contact us for our exact rates and availability — we aim to beat the market.</div>
+  </div>
+
+  <!-- TABS -->
+  <div class="pricelist-tabs reveal">
+    <button class="ptab active" onclick="switchTab('regulator')">🔌 Voltage Regulators</button>
+    <button class="ptab" onclick="switchTab('suppressor')">🛡️ Power Suppressors</button>
+  </div>
+
+  <!-- VOLTAGE REGULATORS TABLE -->
+  <div class="ptable-panel active reveal" id="tab-regulator">
+    <div class="pricelist-table-wrap">
+      <table class="price-table">
+        <thead>
+          <tr>
+            <th>Product / Brand</th>
+            <th>KVA Rating</th>
+            <th>Phase</th>
+            <th>Best Use</th>
+            <th>New (₦)</th>
+            <th>Tokunbo (₦)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Bluegate / Century AVR</td>
+            <td>1 KVA</td>
+            <td>Single</td>
+            <td><span class="use-tag use-home">Home</span></td>
+            <td><span class="price-new">₦12,000 – ₦18,000</span></td>
+            <td><span class="price-used">₦6,000 – ₦10,000</span></td>
+          </tr>
+          <tr>
+            <td>Binatone / Sumec Firman</td>
+            <td>1.5 – 2 KVA</td>
+            <td>Single</td>
+            <td><span class="use-tag use-home">Home</span></td>
+            <td><span class="price-new">₦18,000 – ₦28,000</span></td>
+            <td><span class="price-used">₦9,000 – ₦15,000</span></td>
+          </tr>
+          <tr>
+            <td>Haier Thermocool / A&E</td>
+            <td>3 KVA</td>
+            <td>Single</td>
+            <td><span class="use-tag use-home">Home</span></td>
+            <td><span class="price-new">₦30,000 – ₦45,000</span></td>
+            <td><span class="price-used">₦15,000 – ₦25,000</span></td>
+          </tr>
+          <tr>
+            <td>Bluegate / A&E Servo</td>
+            <td>5 KVA</td>
+            <td>Single</td>
+            <td><span class="use-tag use-office">Office</span></td>
+            <td><span class="price-new">₦50,000 – ₦75,000</span></td>
+            <td><span class="price-used">₦25,000 – ₦40,000</span></td>
+          </tr>
+          <tr>
+            <td>PRAG / Zinox Servo</td>
+            <td>10 KVA</td>
+            <td>Single</td>
+            <td><span class="use-tag use-office">Office</span></td>
+            <td><span class="price-new">₦120,000 – ₦185,000</span></td>
+            <td><span class="price-used">₦60,000 – ₦95,000</span></td>
+          </tr>
+          <tr>
+            <td>Bluegate / PRAG Servo</td>
+            <td>15 KVA</td>
+            <td>Single</td>
+            <td><span class="use-tag use-office">Office</span></td>
+            <td><span class="price-new">₦160,000 – ₦230,000</span></td>
+            <td><span class="price-used">₦80,000 – ₦120,000</span></td>
+          </tr>
+          <tr>
+            <td>Mikano / Apex Servo</td>
+            <td>20 KVA</td>
+            <td>Single / Three</td>
+            <td><span class="use-tag use-industrial">Industrial</span></td>
+            <td><span class="price-new">₦220,000 – ₦320,000</span></td>
+            <td><span class="price-used">₦110,000 – ₦170,000</span></td>
+          </tr>
+          <tr>
+            <td>Apex / Industrial Servo</td>
+            <td>30 KVA</td>
+            <td>Three</td>
+            <td><span class="use-tag use-industrial">Industrial</span></td>
+            <td><span class="price-new">₦380,000 – ₦520,000</span></td>
+            <td><span class="price-used">₦190,000 – ₦280,000</span></td>
+          </tr>
+          <tr>
+            <td>Heavy-Duty Industrial</td>
+            <td>50 KVA</td>
+            <td>Three</td>
+            <td><span class="use-tag use-industrial">Industrial</span></td>
+            <td><span class="price-new">₦650,000 – ₦950,000</span></td>
+            <td><span class="price-used">₦320,000 – ₦480,000</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- POWER SUPPRESSORS TABLE -->
+  <div class="ptable-panel reveal" id="tab-suppressor">
+    <div class="pricelist-table-wrap">
+      <table class="price-table">
+        <thead>
+          <tr>
+            <th>Product / Brand</th>
+            <th>Capacity</th>
+            <th>Ports</th>
+            <th>Best Use</th>
+            <th>New (₦)</th>
+            <th>Tokunbo (₦)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Basic Surge Protector Strip</td>
+            <td>4 – 6 Socket</td>
+            <td>4 – 6</td>
+            <td><span class="use-tag use-home">Home</span></td>
+            <td><span class="price-new">₦5,000 – ₦12,000</span></td>
+            <td><span class="price-na">—</span></td>
+          </tr>
+          <tr>
+            <td>Nexus / Mercury Surge Guard</td>
+            <td>1,000VA</td>
+            <td>6 – 8</td>
+            <td><span class="use-tag use-home">Home</span></td>
+            <td><span class="price-new">₦14,000 – ₦22,000</span></td>
+            <td><span class="price-used">₦7,000 – ₦12,000</span></td>
+          </tr>
+          <tr>
+            <td>APC / Eaton Line Conditioner</td>
+            <td>2 KVA</td>
+            <td>8+</td>
+            <td><span class="use-tag use-office">Office</span></td>
+            <td><span class="price-new">₦35,000 – ₦60,000</span></td>
+            <td><span class="price-used">₦18,000 – ₦30,000</span></td>
+          </tr>
+          <tr>
+            <td>APC / Eaton Power Conditioner</td>
+            <td>5 KVA</td>
+            <td>8+</td>
+            <td><span class="use-tag use-office">Office</span></td>
+            <td><span class="price-new">₦85,000 – ₦140,000</span></td>
+            <td><span class="price-used">₦40,000 – ₦70,000</span></td>
+          </tr>
+          <tr>
+            <td>Industrial Surge Suppressor</td>
+            <td>10 KVA</td>
+            <td>Panel-mount</td>
+            <td><span class="use-tag use-industrial">Industrial</span></td>
+            <td><span class="price-new">₦160,000 – ₦250,000</span></td>
+            <td><span class="price-used">₦80,000 – ₦130,000</span></td>
+          </tr>
+          <tr>
+            <td>Heavy-Duty Suppressor</td>
+            <td>20 – 30 KVA</td>
+            <td>Panel-mount</td>
+            <td><span class="use-tag use-industrial">Industrial</span></td>
+            <td><span class="price-new">₦300,000 – ₦500,000</span></td>
+            <td><span class="price-used">₦150,000 – ₦260,000</span></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </section>
@@ -1177,6 +1406,14 @@ footer {
 </div>
 
 <script>
+// Price list tab switcher
+function switchTab(id) {
+  document.querySelectorAll('.ptable-panel').forEach(function(p) { p.classList.remove('active'); });
+  document.querySelectorAll('.ptab').forEach(function(t) { t.classList.remove('active'); });
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+
 // Mobile menu toggle
 function toggleMenu() {
   document.getElementById('mobileMenu').classList.toggle('open');
