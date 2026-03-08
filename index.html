@@ -822,6 +822,208 @@ section { padding: 100px 5%; position: relative; z-index: 2; }
   font-size: 10px; color: #000; font-weight: 900;
 }
 
+/* ── ADVERTISE SECTION ── */
+.advertise-section {
+  background: var(--bg); padding: 80px 5%;
+  border-top: 1px solid var(--border);
+}
+.advertise-inner { max-width: 1100px; margin: 0 auto; }
+.advertise-header { text-align: center; margin-bottom: 48px; }
+.advertise-header .section-sub {
+  font-size: 14px; color: var(--muted); margin-top: 8px;
+}
+
+/* Main Ad Card */
+.advert-card-main {
+  position: relative; overflow: hidden;
+  background: linear-gradient(135deg, #0f1428 0%, #1a1545 50%, #0f1428 100%);
+  border: 1px solid rgba(167,139,250,0.3);
+  border-radius: 24px;
+  display: grid; grid-template-columns: 1fr 340px;
+  gap: 0; min-height: 380px;
+}
+.advert-card-glow {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse at 10% 50%, rgba(124,58,237,0.15) 0%, transparent 55%),
+              radial-gradient(ellipse at 90% 20%, rgba(37,99,235,0.1) 0%, transparent 50%);
+}
+.advert-card-left {
+  padding: 44px 44px 44px 44px;
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.advert-icon-wrap {
+  width: 56px; height: 56px; border-radius: 16px;
+  background: linear-gradient(135deg, #7c3aed, #3b82f6);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px; margin-bottom: 16px;
+  box-shadow: 0 6px 24px rgba(124,58,237,0.45);
+}
+.advert-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: rgba(167,139,250,0.12); border: 1px solid rgba(167,139,250,0.3);
+  border-radius: 20px; padding: 4px 12px;
+  font-size: 10px; font-weight: 700; letter-spacing: 2px;
+  color: #a78bfa; text-transform: uppercase; margin-bottom: 14px;
+  width: fit-content;
+}
+.advert-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(20px, 3vw, 28px); font-weight: 900;
+  color: #fff; line-height: 1.25; margin-bottom: 14px;
+}
+.advert-title span { color: #c4b5fd; }
+.advert-desc {
+  font-size: 14px; color: rgba(255,255,255,0.55);
+  line-height: 1.8; margin-bottom: 20px; max-width: 480px;
+}
+.advert-features {
+  list-style: none; margin-bottom: 28px; display: flex; flex-direction: column; gap: 8px;
+}
+.advert-features li {
+  font-size: 13px; color: rgba(255,255,255,0.7);
+  display: flex; align-items: center; gap: 8px;
+}
+.advert-features li::before { content: none; }
+.advert-contact-row {
+  display: flex; flex-wrap: wrap; gap: 12px; align-items: center;
+}
+.advert-btn-call {
+  background: linear-gradient(135deg, #7c3aed, #4f46e5);
+  color: #fff; border: none; border-radius: 10px;
+  padding: 13px 22px; font-size: 13px; font-weight: 700;
+  text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+  box-shadow: 0 4px 18px rgba(124,58,237,0.45);
+  transition: transform .2s, box-shadow .2s; white-space: nowrap;
+}
+.advert-btn-call:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(124,58,237,0.65); }
+.advert-btn-email {
+  background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.75);
+  border: 1px solid rgba(255,255,255,0.18); border-radius: 10px;
+  padding: 13px 20px; font-size: 13px; font-weight: 600;
+  text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+  transition: background .2s, color .2s; white-space: nowrap;
+}
+.advert-btn-email:hover { background: rgba(255,255,255,0.12); color: #fff; }
+
+/* Right side mockup */
+.advert-card-right {
+  position: relative; z-index: 1;
+  background: rgba(0,0,0,0.2);
+  border-left: 1px solid rgba(167,139,250,0.15);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; padding: 32px 24px;
+  gap: 16px;
+}
+.advert-mockup {
+  width: 100%; max-width: 260px;
+  background: #111827; border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.1);
+  overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+.mockup-bar {
+  background: #1f2937; padding: 10px 14px;
+  display: flex; gap: 6px; align-items: center;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.mockup-bar span {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+}
+.mockup-bar span:nth-child(1) { background: #ef4444; }
+.mockup-bar span:nth-child(2) { background: #f59e0b; }
+.mockup-bar span:nth-child(3) { background: #10b981; }
+.mockup-body { padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+.mockup-line {
+  height: 8px; border-radius: 4px;
+  background: rgba(255,255,255,0.1);
+}
+.mockup-line.w80 { width: 80%; }
+.mockup-line.w60 { width: 60%; }
+.mockup-line.w90 { width: 90%; }
+.mockup-line.w50 { width: 50%; }
+.mockup-block {
+  height: 60px; border-radius: 8px;
+  background: linear-gradient(135deg, rgba(124,58,237,0.3), rgba(37,99,235,0.2));
+  border: 1px solid rgba(124,58,237,0.2);
+}
+.mockup-btn-row { display: flex; gap: 8px; margin-top: 4px; }
+.mockup-btn {
+  height: 28px; border-radius: 6px; flex: 1;
+  background: linear-gradient(135deg, #7c3aed, #4f46e5);
+}
+.mockup-btn.outline {
+  background: transparent; border: 1px solid rgba(255,255,255,0.15);
+}
+.advert-sponsored-tag {
+  font-size: 9px; font-weight: 700; letter-spacing: 2px;
+  color: rgba(255,255,255,0.2); text-transform: uppercase;
+}
+
+@media (max-width: 860px) {
+  .advert-card-main { grid-template-columns: 1fr; }
+  .advert-card-right { display: none; }
+  .advert-card-left { padding: 32px 24px; }
+  .advert-btn-call, .advert-btn-email { flex: 1; justify-content: center; }
+}
+
+/* Tabs */
+.advert-tabs {
+  display: flex; gap: 10px; margin-bottom: 28px; flex-wrap: wrap;
+}
+.advert-tab {
+  padding: 10px 20px; border-radius: 30px; font-size: 13px; font-weight: 700;
+  border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.5); cursor: pointer; transition: all .25s;
+  font-family: 'Inter', sans-serif; letter-spacing: 0.2px;
+}
+.advert-tab.active {
+  background: linear-gradient(135deg,#7c3aed,#4f46e5);
+  border-color: transparent; color: #fff;
+  box-shadow: 0 4px 14px rgba(124,58,237,0.4);
+}
+.advert-tab:hover:not(.active) { background: rgba(255,255,255,0.08); color: #fff; }
+
+/* Feature icon */
+.af-icon { font-size: 15px; flex-shrink: 0; }
+.advert-features li { display: flex; align-items: flex-start; gap: 10px; }
+
+/* Stats row */
+.advert-stats-row {
+  display: flex; gap: 0; margin: 20px 0 24px;
+  background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px; overflow: hidden;
+}
+.advert-stat {
+  flex: 1; padding: 14px 10px; text-align: center;
+  border-right: 1px solid rgba(255,255,255,0.07);
+  display: flex; flex-direction: column; gap: 3px;
+}
+.advert-stat:last-child { border-right: none; }
+.as-num { font-family:'Montserrat',sans-serif; font-size: 18px; font-weight: 900; color:#fff; }
+.as-label { font-size: 10px; color: var(--muted); letter-spacing: 0.5px; text-transform: uppercase; }
+
+/* WhatsApp button */
+.advert-wa-row { margin-top: 10px; }
+.advert-btn-wa {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(37,211,102,0.12); border: 1px solid rgba(37,211,102,0.35);
+  color: #25d366; border-radius: 10px; padding: 11px 20px;
+  font-size: 13px; font-weight: 700; text-decoration: none;
+  transition: background .2s, color .2s;
+}
+.advert-btn-wa:hover { background: rgba(37,211,102,0.22); color: #fff; }
+
+/* Right side tags */
+.advert-right-tags {
+  display: flex; flex-wrap: wrap; gap: 6px; justify-content: center;
+}
+.advert-rtag {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(167,139,250,0.25);
+  border-radius: 20px; padding: 4px 10px;
+  font-size: 11px; font-weight: 600; color: #a78bfa;
+}
+
 /* ── FOOTER ── */
 footer {
   background: var(--bg2);
@@ -1211,6 +1413,7 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
     <li><a href="#pricelist">Price List</a></li>
     <li><a href="#news">News</a></li>
     <li><a href="#inspection">Book Inspection</a></li>
+    <li><a href="#advertise">Advertise</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="tel:+2349032156174" class="nav-cta">Call Now</a></li>
   </ul>
@@ -1226,6 +1429,7 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
   <a href="#why" onclick="toggleMenu()">Why Us</a>
   <a href="#pricelist" onclick="toggleMenu()">Price List</a>
   <a href="#inspection" onclick="toggleMenu()">Book Inspection</a>
+  <a href="#advertise" onclick="toggleMenu()">Advertise</a>
   <a href="#contact" onclick="toggleMenu()">Contact</a>
   <a href="tel:+2349032156174">&#128222; +234 903 215 6174</a>
 
@@ -1821,6 +2025,133 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
   <button class="news-load-more" onclick="loadMoreNews()">Load More Articles</button>
 </section>
 
+<!-- ADVERTISE SECTION -->
+<section class="advertise-section" id="advertise">
+  <div class="advertise-inner">
+
+    <!-- Section Header -->
+    <div class="advertise-header">
+      <div class="section-tag">Sponsored</div>
+      <h2 class="section-title">Featured <span style="color:var(--cyan)">Advertisement</span></h2>
+      <p class="section-sub">Serving Nigerian &amp; international businesses with world-class web solutions</p>
+    </div>
+
+    <!-- Audience Tabs -->
+    <div class="advert-tabs">
+      <button class="advert-tab active" onclick="switchAdTab('ng', this)">&#127475;&#127468; For Nigerian Businesses</button>
+      <button class="advert-tab" onclick="switchAdTab('intl', this)">&#127758; For International Businesses</button>
+    </div>
+
+    <!-- Nigeria Card -->
+    <div class="advert-card-main" id="adCard-ng">
+      <div class="advert-card-glow"></div>
+      <div class="advert-card-left">
+        <div class="advert-icon-wrap">&#128187;</div>
+        <div class="advert-badge">&#10024; Nigerian Businesses</div>
+        <h3 class="advert-title">Grow Your Business <span>Online in Nigeria</span></h3>
+        <p class="advert-desc">We build fast, professional websites for Nigerian SMEs, traders, shops, and professionals. Get found on Google, attract more customers, and compete with the big brands — all at affordable Naira pricing.</p>
+        <ul class="advert-features">
+          <li><span class="af-icon">&#127475;&#127468;</span> Nigeria-based team that understands your market</li>
+          <li><span class="af-icon">&#9989;</span> Naira-friendly pricing — no hidden charges</li>
+          <li><span class="af-icon">&#128241;</span> Mobile-first design for Nigeria's mobile users</li>
+          <li><span class="af-icon">&#128269;</span> Google SEO so locals can find your business</li>
+          <li><span class="af-icon">&#9889;</span> Fast loading even on slower connections</li>
+          <li><span class="af-icon">&#128293;</span> WhatsApp &amp; social media integration</li>
+        </ul>
+        <div class="advert-stats-row">
+          <div class="advert-stat"><span class="as-num">50+</span><span class="as-label">Sites Built</span></div>
+          <div class="advert-stat"><span class="as-num">24hr</span><span class="as-label">Turnaround</span></div>
+          <div class="advert-stat"><span class="as-num">100%</span><span class="as-label">Mobile-Ready</span></div>
+        </div>
+        <div class="advert-contact-row">
+          <a href="tel:+2349032156174" class="advert-btn-call">&#128222; Call +234 903 215 6174</a>
+          <a href="mailto:30xtechresearch@gmail.com" class="advert-btn-email">&#9993; Email Us</a>
+        </div>
+        <div class="advert-wa-row">
+          <a href="https://wa.me/2349032156174?text=Hi%2C%20I%20need%20a%20professional%20website%20for%20my%20business" target="_blank" class="advert-btn-wa">&#128172; Chat on WhatsApp</a>
+        </div>
+      </div>
+      <div class="advert-card-right">
+        <div class="advert-mockup">
+          <div class="mockup-bar"><span></span><span></span><span></span></div>
+          <div class="mockup-body">
+            <div class="mockup-line w80"></div>
+            <div class="mockup-line w60"></div>
+            <div class="mockup-block"></div>
+            <div class="mockup-line w90"></div>
+            <div class="mockup-line w50"></div>
+            <div class="mockup-btn-row">
+              <div class="mockup-btn"></div>
+              <div class="mockup-btn outline"></div>
+            </div>
+          </div>
+        </div>
+        <div class="advert-right-tags">
+          <span class="advert-rtag">&#127475;&#127468; Lagos</span>
+          <span class="advert-rtag">&#127475;&#127468; Abuja</span>
+          <span class="advert-rtag">&#127475;&#127468; PH</span>
+          <span class="advert-rtag">Nationwide</span>
+        </div>
+        <div class="advert-sponsored-tag">Advertisement</div>
+      </div>
+    </div>
+
+    <!-- International Card -->
+    <div class="advert-card-main advert-card-intl" id="adCard-intl" style="display:none;">
+      <div class="advert-card-glow" style="background:radial-gradient(ellipse at 10% 50%, rgba(16,185,129,0.15) 0%, transparent 55%), radial-gradient(ellipse at 90% 20%, rgba(37,99,235,0.12) 0%, transparent 50%);"></div>
+      <div class="advert-card-left">
+        <div class="advert-icon-wrap" style="background:linear-gradient(135deg,#059669,#2563eb);">&#127758;</div>
+        <div class="advert-badge" style="background:rgba(16,185,129,0.12);border-color:rgba(16,185,129,0.3);color:#6ee7b7;">&#127758; International Clients</div>
+        <h3 class="advert-title">World-Class Web Design <span style="color:#6ee7b7;">for Global Businesses</span></h3>
+        <p class="advert-desc">Whether you're in the UK, US, Canada, Europe or beyond — we deliver high-quality, conversion-focused websites at competitive rates. Remote-first, deadline-driven, and fluent in international standards.</p>
+        <ul class="advert-features">
+          <li><span class="af-icon">&#127758;</span> Serving clients in UK, US, Canada &amp; Europe</li>
+          <li><span class="af-icon">&#9989;</span> USD / GBP / EUR pricing available</li>
+          <li><span class="af-icon">&#128736;</span> Full-stack: design, dev, hosting &amp; maintenance</li>
+          <li><span class="af-icon">&#128269;</span> International SEO &amp; performance optimisation</li>
+          <li><span class="af-icon">&#128274;</span> SSL, GDPR compliance &amp; accessibility-ready</li>
+          <li><span class="af-icon">&#128197;</span> Flexible timelines with milestone delivery</li>
+        </ul>
+        <div class="advert-stats-row">
+          <div class="advert-stat"><span class="as-num">10+</span><span class="as-label">Countries</span></div>
+          <div class="advert-stat"><span class="as-num">5&#9733;</span><span class="as-label">Rated</span></div>
+          <div class="advert-stat"><span class="as-num">GDPR</span><span class="as-label">Compliant</span></div>
+        </div>
+        <div class="advert-contact-row">
+          <a href="mailto:30xtechresearch@gmail.com" class="advert-btn-call" style="background:linear-gradient(135deg,#059669,#2563eb);box-shadow:0 4px 18px rgba(5,150,105,0.4);">&#9993; 30xtechresearch@gmail.com</a>
+        </div>
+        <div class="advert-wa-row">
+          <a href="https://wa.me/2349032156174?text=Hi%2C%20I%20am%20an%20international%20client%20and%20need%20a%20website" target="_blank" class="advert-btn-wa" style="background:rgba(16,185,129,0.15);border-color:rgba(16,185,129,0.4);color:#6ee7b7;">&#128172; WhatsApp Enquiry</a>
+        </div>
+      </div>
+      <div class="advert-card-right" style="border-left-color:rgba(16,185,129,0.15);">
+        <div class="advert-mockup">
+          <div class="mockup-bar"><span></span><span></span><span></span></div>
+          <div class="mockup-body">
+            <div class="mockup-line w80"></div>
+            <div class="mockup-line w60"></div>
+            <div class="mockup-block" style="background:linear-gradient(135deg,rgba(5,150,105,0.3),rgba(37,99,235,0.2));border-color:rgba(5,150,105,0.2);"></div>
+            <div class="mockup-line w90"></div>
+            <div class="mockup-line w50"></div>
+            <div class="mockup-btn-row">
+              <div class="mockup-btn" style="background:linear-gradient(135deg,#059669,#2563eb);"></div>
+              <div class="mockup-btn outline"></div>
+            </div>
+          </div>
+        </div>
+        <div class="advert-right-tags">
+          <span class="advert-rtag" style="border-color:rgba(16,185,129,0.3);color:#6ee7b7;">&#127468;&#127463; UK</span>
+          <span class="advert-rtag" style="border-color:rgba(16,185,129,0.3);color:#6ee7b7;">&#127482;&#127480; US</span>
+          <span class="advert-rtag" style="border-color:rgba(16,185,129,0.3);color:#6ee7b7;">&#127464;&#127462; CA</span>
+          <span class="advert-rtag" style="border-color:rgba(16,185,129,0.3);color:#6ee7b7;">&#127466;&#127482; EU</span>
+        </div>
+        <div class="advert-sponsored-tag">Advertisement</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
@@ -1995,6 +2326,14 @@ function switchTab(id) {
 // Mobile menu toggle
 function toggleMenu() {
   document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+// Ad section tab switcher
+function switchAdTab(tab, btn) {
+  document.getElementById('adCard-ng').style.display   = tab === 'ng'   ? 'grid' : 'none';
+  document.getElementById('adCard-intl').style.display = tab === 'intl' ? 'grid' : 'none';
+  document.querySelectorAll('.advert-tab').forEach(function(t){ t.classList.remove('active'); });
+  btn.classList.add('active');
 }
 
 // Top ad popup
