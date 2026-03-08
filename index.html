@@ -1134,6 +1134,24 @@ section { padding: 100px 5%; position: relative; z-index: 2; }
   .advert-btn-call, .advert-btn-email { flex: 1; justify-content: center; }
 }
 
+/* Website button */
+.advert-btn-website {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(167,139,250,0.1); border: 1px solid rgba(167,139,250,0.35);
+  color: #c4b5fd; border-radius: 10px; padding: 11px 20px;
+  font-size: 13px; font-weight: 700; text-decoration: none;
+  transition: background .2s, color .2s;
+}
+.advert-btn-website:hover { background: rgba(167,139,250,0.22); color: #fff; }
+.menu-ad-website {
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  margin-top: 10px; padding: 10px;
+  background: rgba(167,139,250,0.08); border: 1px solid rgba(167,139,250,0.25);
+  border-radius: 8px; color: #c4b5fd; font-size: 12px; font-weight: 700;
+  text-decoration: none; transition: background .2s, color .2s;
+}
+.menu-ad-website:hover { background: rgba(167,139,250,0.18); color: #fff; }
+
 /* Tabs */
 .advert-tabs {
   display: flex; gap: 10px; margin-bottom: 28px; flex-wrap: wrap;
@@ -1564,6 +1582,7 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
     <div class="ad-top-btns">
       <a href="tel:+2349032156174" class="ad-top-call">&#128222; Call Now</a>
       <a href="mailto:Thirtyxtechresearch@gmail.com" class="ad-top-email">&#9993; Email Us</a>
+      <a href="https://30xtechresearch.github.io" target="_blank" class="ad-top-email" style="border-color:rgba(167,139,250,0.4);color:#c4b5fd;">&#127758; Website</a>
       <button class="ad-top-close" onclick="closeAdPopup()" title="Close">&#215;</button>
     </div>
     <span class="ad-top-adlabel">Ad</span>
@@ -1610,6 +1629,7 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
       <a href="tel:+2349032156174" class="menu-ad-call">&#128222; Call Now</a>
       <a href="mailto:Thirtyxtechresearch@gmail.com" class="menu-ad-email">&#9993; Email</a>
     </div>
+    <a href="https://30xtechresearch.github.io" target="_blank" class="menu-ad-website">&#127758; Visit Website</a>
   </div>
 </div>
 
@@ -2343,7 +2363,6 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
         </div>
         <div class="advert-contact-row">
           <a href="tel:+2349032156174" class="advert-btn-call">&#128222; Call +234 903 215 6174</a>
-          <a href="mailto:Thirtyxtechresearch@gmail.com" class="advert-btn-email">&#9993; Email Us</a>
         </div>
         <div class="advert-wa-row">
           <a href="https://wa.me/2349032156174?text=Hi%2C%20I%20need%20a%20professional%20website%20for%20my%20business" target="_blank" class="advert-btn-wa">&#128172; Chat on WhatsApp</a>
@@ -2394,9 +2413,6 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
           <div class="advert-stat"><span class="as-num">10+</span><span class="as-label">Countries</span></div>
           <div class="advert-stat"><span class="as-num">5&#9733;</span><span class="as-label">Rated</span></div>
           <div class="advert-stat"><span class="as-num">GDPR</span><span class="as-label">Compliant</span></div>
-        </div>
-        <div class="advert-contact-row">
-          <a href="mailto:Thirtyxtechresearch@gmail.com" class="advert-btn-call" style="background:linear-gradient(135deg,#059669,#2563eb);box-shadow:0 4px 18px rgba(5,150,105,0.4);">&#9993; Thirtyxtechresearch@gmail.com</a>
         </div>
         <div class="advert-wa-row">
           <a href="https://wa.me/2349032156174?text=Hi%2C%20I%20am%20an%20international%20client%20and%20need%20a%20website" target="_blank" class="advert-btn-wa" style="background:rgba(16,185,129,0.15);border-color:rgba(16,185,129,0.4);color:#6ee7b7;">&#128172; WhatsApp Enquiry</a>
@@ -3079,6 +3095,7 @@ function voltaRespond(userText) {
 
   // Default fallback
   return 'Thanks for your message! For the most accurate answer, please reach our team directly:<br><br>' +
+    '📱 <strong>WhatsApp: +234 903 215 6174</strong><br>' +
     '📧 ivoltpowersolutions@gmail.com<br><br>' +
     'Or try asking about: <em>pricing, AVR sizing, brands, surge suppressors, inspections, ordering, or delivery.</em>';
 }
@@ -3088,16 +3105,13 @@ function sendChat() {
   var text = input.value.trim();
   if (!text) return;
   input.value = '';
-
   if (!hasChattedBefore) {
     hasChattedBefore = true;
     document.getElementById('quickBtns').style.display = 'none';
     document.getElementById('chatBackBar').style.display = 'block';
   }
-
   addMsg('user', text);
   showTyping();
-
   var delay = 600 + Math.floor(Math.random() * 600);
   setTimeout(function() {
     removeTyping();
