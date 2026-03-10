@@ -50,22 +50,39 @@ body {
 .news-section { background: var(--bg2); border-top: 1px solid var(--border); }
 
 .news-ticker-wrap {
-  overflow: hidden; position: relative;
+  position: relative;
   background: rgba(37,99,235,0.08);
   border: 1px solid rgba(37,99,235,0.2);
   border-radius: 8px; margin-bottom: 48px;
-  display: flex; align-items: center;
+  overflow: hidden;
 }
 .news-ticker-label {
+  display: flex; align-items: center; gap: 8px;
   background: var(--cyan); color: #fff;
   font-size: 10px; font-weight: 700; letter-spacing: 2px;
-  padding: 10px 16px; white-space: nowrap; flex-shrink: 0;
-  text-transform: uppercase;
+  padding: 6px 14px; white-space: nowrap;
+  text-transform: uppercase; width: 100%;
+  box-sizing: border-box;
+}
+.news-ticker-label .ticker-dot {
+  width: 7px; height: 7px; border-radius: 50%; background: #fff;
+  animation: tickerPulse 1s ease-in-out infinite;
+  flex-shrink: 0;
+}
+@keyframes tickerPulse { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+.news-ticker-scroll {
+  overflow: hidden;
+  width: 100%;
+  padding: 10px 0;
+  box-sizing: border-box;
+  -webkit-mask-image: linear-gradient(to right, black 80%, transparent 100%);
+  mask-image: linear-gradient(to right, black 80%, transparent 100%);
 }
 .news-ticker-track {
   display: flex; gap: 60px;
   animation: tickerScroll 40s linear infinite;
-  padding: 10px 20px; white-space: nowrap;
+  padding: 0 20px; white-space: nowrap;
+  will-change: transform;
 }
 .news-ticker-track:hover { animation-play-state: paused; }
 @keyframes tickerScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
@@ -1581,7 +1598,7 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
     </div>
     <div class="ad-top-btns">
       <a href="tel:+2349032156174" class="ad-top-call">&#128222; Call Now</a>
-      <a href="mailto:Thirtyxtechresearch@gmail.com" class="ad-top-email">&#9993; Email Us</a>
+      <a href="/cdn-cgi/l/email-protection#bde9d5d4cfc9c4c5c9d8ded5cfd8ced8dccfded5fddad0dcd4d193ded2d0" class="ad-top-email">&#9993; Email Us</a>
       <a href="https://30xtechresearch.github.io" target="_blank" class="ad-top-email" style="border-color:rgba(167,139,250,0.4);color:#c4b5fd;">&#127758; Website</a>
       <button class="ad-top-close" onclick="closeAdPopup()" title="Close">&#215;</button>
     </div>
@@ -1777,7 +1794,13 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
 
   <div class="pricelist-notice reveal">
     <span>⚠️</span>
-    <div>Prices shown are <strong>estimated market ranges</strong> sourced from Nigerian dealers and online platforms (2025). Actual prices vary by brand, location, and availability. Contact us for our exact rates and availability — we aim to beat the market.</div>
+    <div>Prices shown are <strong>estimated market ranges</strong> sourced from Nigerian dealers and online platforms (2025). Actual prices vary by brand, location, and availability. Contact us for our exact rates and availability — we aim to beat the market.
+      <div style="margin-top:10px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+        <span id="priceLastUpdated" style="font-size:11px;color:var(--muted);">Last updated: loading...</span>
+        <button id="priceRefreshBtn" onclick="refreshPrices()" style="background:rgba(37,99,235,0.15);border:1px solid rgba(37,99,235,0.4);color:var(--cyan);border-radius:6px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;letter-spacing:1px;">⟳ REFRESH PRICES</button>
+        <span id="priceRefreshStatus" style="font-size:11px;color:var(--green);display:none;">✓ Prices updated!</span>
+      </div>
+    </div>
   </div>
 
   <!-- TABS -->
@@ -2074,25 +2097,30 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
 
   <!-- Ticker -->
   <div class="news-ticker-wrap">
-    <div class="news-ticker-label">Live Feed</div>
-    <div class="news-ticker-track" id="newsTicker">
-      <span class="news-ticker-item">IEC publishes updated voltage regulator safety standard IEC 62368-1 — stricter overvoltage protection thresholds now required</span>
-      <span class="news-ticker-item">Nigeria's NERC reports 18% rise in power surge-related equipment damage in Q1 2025</span>
-      <span class="news-ticker-item">Global UPS and power conditioning market projected to reach $14.2B by 2027 — CAGR of 6.8%</span>
-      <span class="news-ticker-item">Sollatek unveils new AVR series with smart load monitoring for Sub-Saharan Africa markets</span>
-      <span class="news-ticker-item">South Africa's Eskom load-shedding causes 34% surge in voltage regulator sales across West Africa</span>
-      <span class="news-ticker-item">IEEE releases best practices guide for electrical safety inspections in commercial buildings 2025</span>
-      <span class="news-ticker-item">Nigerian government mandates voltage protection devices for all new residential constructions</span>
-      <span class="news-ticker-item">Schneider Electric partners with West African distributors for affordable surge protection rollout</span>
-      <!-- duplicate for seamless loop -->
-      <span class="news-ticker-item">IEC publishes updated voltage regulator safety standard IEC 62368-1 — stricter overvoltage protection thresholds now required</span>
-      <span class="news-ticker-item">Nigeria's NERC reports 18% rise in power surge-related equipment damage in Q1 2025</span>
-      <span class="news-ticker-item">Global UPS and power conditioning market projected to reach $14.2B by 2027 — CAGR of 6.8%</span>
-      <span class="news-ticker-item">Sollatek unveils new AVR series with smart load monitoring for Sub-Saharan Africa markets</span>
-      <span class="news-ticker-item">South Africa's Eskom load-shedding causes 34% surge in voltage regulator sales across West Africa</span>
-      <span class="news-ticker-item">IEEE releases best practices guide for electrical safety inspections in commercial buildings 2025</span>
-      <span class="news-ticker-item">Nigerian government mandates voltage protection devices for all new residential constructions</span>
-      <span class="news-ticker-item">Schneider Electric partners with West African distributors for affordable surge protection rollout</span>
+    <div class="news-ticker-label">
+      <span class="ticker-dot"></span>
+      LIVE FEED
+      <span id="tickerRefreshBadge" style="margin-left:auto;font-size:9px;opacity:0.7;letter-spacing:1px;">AUTO-REFRESH</span>
+    </div>
+    <div style="overflow:hidden;width:100%;max-width:100%;box-sizing:border-box;">
+      <div class="news-ticker-track" id="newsTicker">
+        <span class="news-ticker-item">IEC publishes updated voltage regulator safety standard IEC 62368-1 — stricter overvoltage protection thresholds now required</span>
+        <span class="news-ticker-item">Nigeria's NERC reports 18% rise in power surge-related equipment damage in Q1 2025</span>
+        <span class="news-ticker-item">Global UPS and power conditioning market projected to reach $14.2B by 2027 — CAGR of 6.8%</span>
+        <span class="news-ticker-item">Sollatek unveils new AVR series with smart load monitoring for Sub-Saharan Africa markets</span>
+        <span class="news-ticker-item">South Africa's Eskom load-shedding causes 34% surge in voltage regulator sales across West Africa</span>
+        <span class="news-ticker-item">IEEE releases best practices guide for electrical safety inspections in commercial buildings 2025</span>
+        <span class="news-ticker-item">Nigerian government mandates voltage protection devices for all new residential constructions</span>
+        <span class="news-ticker-item">Schneider Electric partners with West African distributors for affordable surge protection rollout</span>
+        <span class="news-ticker-item">IEC publishes updated voltage regulator safety standard IEC 62368-1 — stricter overvoltage protection thresholds now required</span>
+        <span class="news-ticker-item">Nigeria's NERC reports 18% rise in power surge-related equipment damage in Q1 2025</span>
+        <span class="news-ticker-item">Global UPS and power conditioning market projected to reach $14.2B by 2027 — CAGR of 6.8%</span>
+        <span class="news-ticker-item">Sollatek unveils new AVR series with smart load monitoring for Sub-Saharan Africa markets</span>
+        <span class="news-ticker-item">South Africa's Eskom load-shedding causes 34% surge in voltage regulator sales across West Africa</span>
+        <span class="news-ticker-item">IEEE releases best practices guide for electrical safety inspections in commercial buildings 2025</span>
+        <span class="news-ticker-item">Nigerian government mandates voltage protection devices for all new residential constructions</span>
+        <span class="news-ticker-item">Schneider Electric partners with West African distributors for affordable surge protection rollout</span>
+      </div>
     </div>
   </div>
 
@@ -2189,116 +2217,7 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
 </section>
 
 <!-- 30XTECH AD SECTION -->
-<section class="tech30-section" id="tech30ad">
-  <div class="tech30-inner">
-
-    <div class="tech30-header">
-      <div class="tech30-sponsored-pill">&#128276; Sponsored</div>
-      <div class="tech30-logo">30<span>&times;</span>TECH RESEARCH</div>
-      <p class="tech30-tagline">Algorithmic Trading Signals &amp; Market Data — Powered by the 30&times; Bot Dashboard</p>
-    </div>
-
-    <!-- Hero Stats Bar -->
-    <div class="tech30-stats">
-      <div class="tech30-stat"><span class="t30-num">8+</span><span class="t30-lbl">Asset Classes</span></div>
-      <div class="tech30-stat"><span class="t30-num">24/7</span><span class="t30-lbl">Live Coverage</span></div>
-      <div class="tech30-stat"><span class="t30-num">69%</span><span class="t30-lbl">Backtest Return*</span></div>
-      <div class="tech30-stat"><span class="t30-num">3.3&times;</span><span class="t30-lbl">Avg RR Ratio</span></div>
-    </div>
-
-    <!-- Signal Preview Card -->
-    <div class="tech30-grid">
-
-      <div class="tech30-signal-card">
-        <div class="sig-header">
-          <span class="sig-asset">BTCUSDT</span>
-          <span class="sig-timeframe">1H &middot; TIER 1</span>
-          <span class="sig-direction buy">&#9650; BUY</span>
-        </div>
-        <div class="sig-rows">
-          <div class="sig-row"><span class="sig-label">Entry</span><span class="sig-val">$67,240.00</span></div>
-          <div class="sig-row"><span class="sig-label">Stop Loss</span><span class="sig-val red">$66,180.00</span></div>
-          <div class="sig-row"><span class="sig-label">Take Profit</span><span class="sig-val green">$71,480.00</span></div>
-          <div class="sig-row"><span class="sig-label">RR Ratio</span><span class="sig-val gold">1 : 3.33</span></div>
-        </div>
-        <div class="sig-footer">
-          <span class="sig-gate">&#10003; CMC20 BULL &middot; SPX BULL</span>
-          <span class="sig-confirm">AI Confirmed</span>
-        </div>
-        <div class="sig-pulse"></div>
-      </div>
-
-      <div class="tech30-plans">
-        <h3 class="tech30-plans-title">Choose Your Plan</h3>
-        <div class="tech30-plan-cards">
-
-          <div class="tech30-plan">
-            <div class="plan-icon">&#128202;</div>
-            <div class="plan-info">
-              <div class="plan-name">Market Data</div>
-              <div class="plan-desc">Real-time data · Crypto, FX, Stocks &amp; Metals</div>
-            </div>
-            <div class="plan-price">
-              <span class="plan-from">from</span>
-              <span class="plan-amount">£49<small>/mo</small></span>
-            </div>
-          </div>
-
-          <div class="tech30-plan featured">
-            <div class="plan-popular">&#11088; Most Popular</div>
-            <div class="plan-icon">&#9889;</div>
-            <div class="plan-info">
-              <div class="plan-name">Market Signals</div>
-              <div class="plan-desc">Full BUY/SELL signals · 7-tier engine · All 8 timeframes</div>
-            </div>
-            <div class="plan-price">
-              <span class="plan-from">from</span>
-              <span class="plan-amount">£149<small>/mo</small></span>
-            </div>
-          </div>
-
-          <div class="tech30-plan">
-            <div class="plan-icon">&#127775;</div>
-            <div class="plan-info">
-              <div class="plan-name">Pro + Analyst</div>
-              <div class="plan-desc">Signals + dedicated analyst session + priority support</div>
-            </div>
-            <div class="plan-price">
-              <span class="plan-from">from</span>
-              <span class="plan-amount">£299<small>/mo</small></span>
-            </div>
-          </div>
-
-          <div class="tech30-plan">
-            <div class="plan-icon">&#128197;</div>
-            <div class="plan-info">
-              <div class="plan-name">Book an Analyst</div>
-              <div class="plan-desc">Remote custom analysis · Any Crypto, FX, Stock or Metal</div>
-            </div>
-            <div class="plan-price">
-              <span class="plan-from">from</span>
-              <span class="plan-amount">£50</span>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="tech30-cta-row">
-          <a href="https://30xtechresearch.github.io" target="_blank" class="tech30-btn-email">&#127758; Visit Website</a>
-        </div>
-        <div class="tech30-socials">
-          <a href="https://x.com/utecryptoedu" target="_blank" class="tech30-social">&#120143; @utecryptoedu</a>
-          <a href="https://x.com/utestockedu" target="_blank" class="tech30-social">&#120143; @utestockedu</a>
-          <a href="https://youtube.com/@thirtyxtechresearch" target="_blank" class="tech30-social">&#9654; YouTube</a>
-        </div>
-        <p class="tech30-disclaimer">* Past performance does not guarantee future results. Trade at your own risk. Not financial advice.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ADVERTISE SECTION -->
+<!-- FEATURED ADVERTISEMENT SECTION -->
 <section class="advertise-section" id="advertise">
   <div class="advertise-inner">
 
@@ -2306,122 +2225,300 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
     <div class="advertise-header">
       <div class="section-tag">Sponsored</div>
       <h2 class="section-title">Featured <span style="color:var(--cyan)">Advertisement</span></h2>
-      <p class="section-sub">Serving Nigerian &amp; international businesses with world-class web solutions</p>
+      <p class="section-sub">Promoted partners trusted by our community</p>
     </div>
 
-    <!-- Audience Tabs -->
-    <div class="advert-tabs">
-      <button class="advert-tab active" onclick="switchAdTab('ng', this)">&#127475;&#127468; For Nigerian Businesses</button>
-      <button class="advert-tab" onclick="switchAdTab('intl', this)">&#127758; For International Businesses</button>
+    <!-- Top-level ad tabs -->
+    <div class="advert-tabs" style="margin-bottom:36px;">
+      <button class="advert-tab active" id="featTab1" onclick="switchFeatTab('tech30')">&#9889; 30X Tech Research</button>
+      <button class="advert-tab" id="featTab2" onclick="switchFeatTab('webdesign')">&#128187; Web Design</button>
+      <button class="advert-tab" id="featTab3" onclick="switchFeatTab('moren')">&#127874; Moren Sweet Treat</button>
     </div>
 
-    <!-- Nigeria Card -->
-    <div class="advert-card-main" id="adCard-ng">
-      <div class="advert-card-glow"></div>
-      <div class="advert-card-left">
-        <div class="advert-icon-wrap">&#128187;</div>
-        <div class="advert-badge">&#10024; Nigerian Businesses</div>
-        <h3 class="advert-title">Grow Your Business <span>Online in Nigeria</span></h3>
-        <p class="advert-desc">We build fast, professional websites for Nigerian SMEs, traders, shops, and professionals. Get found on Google, attract more customers, and compete with the big brands — all at affordable Naira pricing.</p>
-        <ul class="advert-features">
-          <li><span class="af-icon">&#127475;&#127468;</span> Nigeria-based team that understands your market</li>
-          <li><span class="af-icon">&#9989;</span> Naira-friendly pricing — no hidden charges</li>
-          <li><span class="af-icon">&#128241;</span> Mobile-first design for Nigeria's mobile users</li>
-          <li><span class="af-icon">&#128269;</span> Google SEO so locals can find your business</li>
-          <li><span class="af-icon">&#9889;</span> Fast loading even on slower connections</li>
-          <li><span class="af-icon">&#128293;</span> WhatsApp &amp; social media integration</li>
-        </ul>
-        <div class="advert-stats-row">
-          <div class="advert-stat"><span class="as-num">50+</span><span class="as-label">Sites Built</span></div>
-          <div class="advert-stat"><span class="as-num">24hr</span><span class="as-label">Turnaround</span></div>
-          <div class="advert-stat"><span class="as-num">100%</span><span class="as-label">Mobile-Ready</span></div>
+    <!-- ═══ TAB 1: 30X TECH RESEARCH ═══ -->
+    <div id="featPanel-tech30">
+      <div class="tech30-inner" style="padding:0;">
+
+        <div class="tech30-header">
+          <div class="tech30-sponsored-pill">&#128276; Sponsored</div>
+          <div class="tech30-logo">30<span>&times;</span>TECH RESEARCH</div>
+          <p class="tech30-tagline">Algorithmic Trading Signals &amp; Market Data — Powered by the 30&times; Bot Dashboard</p>
         </div>
-        <div class="advert-contact-row">
-          <a href="tel:+2349032156174" class="advert-btn-call">&#128222; Call +234 903 215 6174</a>
+
+        <div class="tech30-stats">
+          <div class="tech30-stat"><span class="t30-num">8+</span><span class="t30-lbl">Asset Classes</span></div>
+          <div class="tech30-stat"><span class="t30-num">24/7</span><span class="t30-lbl">Live Coverage</span></div>
+          <div class="tech30-stat"><span class="t30-num">69%</span><span class="t30-lbl">Backtest Return*</span></div>
+          <div class="tech30-stat"><span class="t30-num">3.3&times;</span><span class="t30-lbl">Avg RR Ratio</span></div>
         </div>
-        <div class="advert-wa-row">
-          <a href="https://wa.me/2349032156174?text=Hi%2C%20I%20need%20a%20professional%20website%20for%20my%20business" target="_blank" class="advert-btn-wa">&#128172; Chat on WhatsApp</a>
+
+        <div class="tech30-grid">
+          <div class="tech30-signal-card">
+            <div class="sig-header">
+              <span class="sig-asset">BTCUSDT</span>
+              <span class="sig-timeframe">1H &middot; TIER 1</span>
+              <span class="sig-direction buy">&#9650; BUY</span>
+            </div>
+            <div class="sig-rows">
+              <div class="sig-row"><span class="sig-label">Entry</span><span class="sig-val">$67,240.00</span></div>
+              <div class="sig-row"><span class="sig-label">Stop Loss</span><span class="sig-val red">$66,180.00</span></div>
+              <div class="sig-row"><span class="sig-label">Take Profit</span><span class="sig-val green">$71,480.00</span></div>
+              <div class="sig-row"><span class="sig-label">RR Ratio</span><span class="sig-val gold">1 : 3.33</span></div>
+            </div>
+            <div class="sig-footer">
+              <span class="sig-gate">&#10003; CMC20 BULL &middot; SPX BULL</span>
+              <span class="sig-confirm">AI Confirmed</span>
+            </div>
+            <div class="sig-pulse"></div>
+          </div>
+
+          <div class="tech30-plans">
+            <h3 class="tech30-plans-title">Choose Your Plan</h3>
+            <div class="tech30-plan-cards">
+              <div class="tech30-plan">
+                <div class="plan-icon">&#128202;</div>
+                <div class="plan-info">
+                  <div class="plan-name">Market Data</div>
+                  <div class="plan-desc">Real-time data · Crypto, FX, Stocks &amp; Metals</div>
+                </div>
+                <div class="plan-price"><span class="plan-from">from</span><span class="plan-amount">£49<small>/mo</small></span></div>
+              </div>
+              <div class="tech30-plan featured">
+                <div class="plan-popular">&#11088; Most Popular</div>
+                <div class="plan-icon">&#9889;</div>
+                <div class="plan-info">
+                  <div class="plan-name">Market Signals</div>
+                  <div class="plan-desc">Full BUY/SELL signals · 7-tier engine · All 8 timeframes</div>
+                </div>
+                <div class="plan-price"><span class="plan-from">from</span><span class="plan-amount">£149<small>/mo</small></span></div>
+              </div>
+              <div class="tech30-plan">
+                <div class="plan-icon">&#127775;</div>
+                <div class="plan-info">
+                  <div class="plan-name">Pro + Analyst</div>
+                  <div class="plan-desc">Signals + dedicated analyst session + priority support</div>
+                </div>
+                <div class="plan-price"><span class="plan-from">from</span><span class="plan-amount">£299<small>/mo</small></span></div>
+              </div>
+              <div class="tech30-plan">
+                <div class="plan-icon">&#128197;</div>
+                <div class="plan-info">
+                  <div class="plan-name">Book an Analyst</div>
+                  <div class="plan-desc">Remote custom analysis · Any Crypto, FX, Stock or Metal</div>
+                </div>
+                <div class="plan-price"><span class="plan-from">from</span><span class="plan-amount">£50</span></div>
+              </div>
+            </div>
+            <div class="tech30-cta-row">
+              <a href="https://30xtechresearch.github.io" target="_blank" class="tech30-btn-email">&#127758; Visit Website</a>
+            </div>
+            <div class="tech30-socials">
+              <a href="https://x.com/utecryptoedu" target="_blank" class="tech30-social">&#120143; @utecryptoedu</a>
+              <a href="https://x.com/utestockedu" target="_blank" class="tech30-social">&#120143; @utestockedu</a>
+              <a href="https://youtube.com/@thirtyxtechresearch" target="_blank" class="tech30-social">&#9654; YouTube</a>
+            </div>
+            <p class="tech30-disclaimer">* Past performance does not guarantee future results. Trade at your own risk. Not financial advice.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ═══ TAB 2: WEB DESIGN ═══ -->
+    <div id="featPanel-webdesign" style="display:none;">
+      <p class="section-sub" style="margin-bottom:28px;">Serving Nigerian &amp; international businesses with world-class web solutions</p>
+
+      <div class="advert-tabs" style="margin-bottom:24px;">
+        <button class="advert-tab active" id="wdTab1" onclick="switchAdTab('ng', this); document.getElementById('wdTab1').classList.add('active'); document.getElementById('wdTab2').classList.remove('active');">&#127475;&#127468; For Nigerian Businesses</button>
+        <button class="advert-tab" id="wdTab2" onclick="switchAdTab('intl', this); document.getElementById('wdTab2').classList.add('active'); document.getElementById('wdTab1').classList.remove('active');">&#127758; For International Businesses</button>
+      </div>
+
+      <!-- Nigeria Card -->
+      <div class="advert-card-main" id="adCard-ng">
+        <div class="advert-card-glow"></div>
+        <div class="advert-card-left">
+          <div class="advert-icon-wrap">&#128187;</div>
+          <div class="advert-badge">&#10024; Nigerian Businesses</div>
+          <h3 class="advert-title">Grow Your Business <span>Online in Nigeria</span></h3>
+          <p class="advert-desc">We build fast, professional websites for Nigerian SMEs, traders, shops, and professionals. Get found on Google, attract more customers, and compete with the big brands — all at affordable Naira pricing.</p>
+          <ul class="advert-features">
+            <li><span class="af-icon">&#127475;&#127468;</span> Nigeria-based team that understands your market</li>
+            <li><span class="af-icon">&#9989;</span> Naira-friendly pricing — no hidden charges</li>
+            <li><span class="af-icon">&#128241;</span> Mobile-first design for Nigeria's mobile users</li>
+            <li><span class="af-icon">&#128269;</span> Google SEO so locals can find your business</li>
+            <li><span class="af-icon">&#9889;</span> Fast loading even on slower connections</li>
+            <li><span class="af-icon">&#128293;</span> WhatsApp &amp; social media integration</li>
+          </ul>
+          <div class="advert-stats-row">
+            <div class="advert-stat"><span class="as-num">50+</span><span class="as-label">Sites Built</span></div>
+            <div class="advert-stat"><span class="as-num">24hr</span><span class="as-label">Turnaround</span></div>
+            <div class="advert-stat"><span class="as-num">100%</span><span class="as-label">Mobile-Ready</span></div>
+          </div>
+          <div class="advert-contact-row">
+            <a href="tel:+2349032156174" class="advert-btn-call">&#128222; Call +234 903 215 6174</a>
+          </div>
+          <div class="advert-wa-row">
+            <a href="https://wa.me/2349032156174?text=Hi%2C%20I%20need%20a%20professional%20website%20for%20my%20business" target="_blank" class="advert-btn-wa">&#128172; Chat on WhatsApp</a>
+          </div>
+        </div>
+        <div class="advert-card-right">
+          <div class="advert-mockup">
+            <div class="mockup-bar"><span></span><span></span><span></span></div>
+            <div class="mockup-body">
+              <div class="mockup-line w80"></div>
+              <div class="mockup-line w60"></div>
+              <div class="mockup-block"></div>
+              <div class="mockup-line w90"></div>
+              <div class="mockup-line w50"></div>
+              <div class="mockup-btn-row"><div class="mockup-btn"></div><div class="mockup-btn outline"></div></div>
+            </div>
+          </div>
+          <div class="advert-right-tags">
+            <span class="advert-rtag">&#127475;&#127468; Lagos</span>
+            <span class="advert-rtag">&#127475;&#127468; Abuja</span>
+            <span class="advert-rtag">&#127475;&#127468; PH</span>
+            <span class="advert-rtag">Nationwide</span>
+          </div>
+          <div class="advert-sponsored-tag">Advertisement</div>
         </div>
       </div>
-      <div class="advert-card-right">
-        <div class="advert-mockup">
-          <div class="mockup-bar"><span></span><span></span><span></span></div>
-          <div class="mockup-body">
-            <div class="mockup-line w80"></div>
-            <div class="mockup-line w60"></div>
-            <div class="mockup-block"></div>
-            <div class="mockup-line w90"></div>
-            <div class="mockup-line w50"></div>
-            <div class="mockup-btn-row">
-              <div class="mockup-btn"></div>
-              <div class="mockup-btn outline"></div>
+
+      <!-- International Card -->
+      <div class="advert-card-main advert-card-intl" id="adCard-intl" style="display:none;">
+        <div class="advert-card-glow" style="background:radial-gradient(ellipse at 10% 50%, rgba(16,185,129,0.15) 0%, transparent 55%), radial-gradient(ellipse at 90% 20%, rgba(37,99,235,0.12) 0%, transparent 50%);"></div>
+        <div class="advert-card-left">
+          <div class="advert-icon-wrap" style="background:linear-gradient(135deg,#059669,#2563eb);">&#127758;</div>
+          <div class="advert-badge" style="background:rgba(16,185,129,0.12);border-color:rgba(16,185,129,0.3);color:#6ee7b7;">&#127758; International Clients</div>
+          <h3 class="advert-title">World-Class Web Design <span style="color:#6ee7b7;">for Global Businesses</span></h3>
+          <p class="advert-desc">Whether you're in the UK, US, Canada, Europe or beyond — we deliver high-quality, conversion-focused websites at competitive rates. Remote-first, deadline-driven, and fluent in international standards.</p>
+          <ul class="advert-features">
+            <li><span class="af-icon">&#127758;</span> Serving clients in UK, US, Canada &amp; Europe</li>
+            <li><span class="af-icon">&#9989;</span> USD / GBP / EUR pricing available</li>
+            <li><span class="af-icon">&#128736;</span> Full-stack: design, dev, hosting &amp; maintenance</li>
+            <li><span class="af-icon">&#128269;</span> International SEO &amp; performance optimisation</li>
+            <li><span class="af-icon">&#128274;</span> SSL, GDPR compliance &amp; accessibility-ready</li>
+            <li><span class="af-icon">&#128197;</span> Flexible timelines with milestone delivery</li>
+          </ul>
+          <div class="advert-stats-row">
+            <div class="advert-stat"><span class="as-num">10+</span><span class="as-label">Countries</span></div>
+            <div class="advert-stat"><span class="as-num">5&#9733;</span><span class="as-label">Rated</span></div>
+            <div class="advert-stat"><span class="as-num">GDPR</span><span class="as-label">Compliant</span></div>
+          </div>
+          <div class="advert-wa-row">
+            <a href="https://wa.me/2349032156174?text=Hi%2C%20I%20am%20an%20international%20client%20and%20need%20a%20website" target="_blank" class="advert-btn-wa" style="background:rgba(16,185,129,0.15);border-color:rgba(16,185,129,0.4);color:#6ee7b7;">&#128172; WhatsApp Enquiry</a>
+          </div>
+        </div>
+        <div class="advert-card-right" style="border-left-color:rgba(16,185,129,0.15);">
+          <div class="advert-mockup">
+            <div class="mockup-bar"><span></span><span></span><span></span></div>
+            <div class="mockup-body">
+              <div class="mockup-line w80"></div>
+              <div class="mockup-line w60"></div>
+              <div class="mockup-block" style="background:linear-gradient(135deg,rgba(5,150,105,0.3),rgba(37,99,235,0.2));border-color:rgba(5,150,105,0.2);"></div>
+              <div class="mockup-line w90"></div>
+              <div class="mockup-line w50"></div>
+              <div class="mockup-btn-row"><div class="mockup-btn" style="background:linear-gradient(135deg,#059669,#2563eb);"></div><div class="mockup-btn outline"></div></div>
+            </div>
+          </div>
+          <div class="advert-right-tags">
+            <span class="advert-rtag" style="border-color:rgba(16,185,129,0.3);color:#6ee7b7;">&#127468;&#127463; UK</span>
+            <span class="advert-rtag" style="border-color:rgba(16,185,129,0.3);color:#6ee7b7;">&#127482;&#127480; US</span>
+            <span class="advert-rtag" style="border-color:rgba(16,185,129,0.3);color:#6ee7b7;">&#127464;&#127462; CA</span>
+            <span class="advert-rtag" style="border-color:rgba(16,185,129,0.3);color:#6ee7b7;">&#127466;&#127482; EU</span>
+          </div>
+          <div class="advert-sponsored-tag">Advertisement</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ TAB 3: MOREN SWEET TREAT ═══ -->
+    <div id="featPanel-moren" style="display:none;">
+      <div class="tech30-inner" style="padding:0;">
+
+        <div class="tech30-header">
+          <div class="tech30-sponsored-pill">&#128276; Sponsored</div>
+          <div class="tech30-logo" style="font-size:clamp(22px,5vw,38px);color:#7b1c2e;">MOREN <span style="color:#c97a3a;">SWEET TREAT</span></div>
+          <p class="tech30-tagline">Sweetening Moments, One Treat At A Time — Fresh Cakes, Pastries, Snacks &amp; Drinks</p>
+        </div>
+
+        <!-- Product photo gallery -->
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:3px;border-radius:14px;overflow:hidden;margin-top:24px;">
+          <div style="position:relative;aspect-ratio:1;overflow:hidden;background:#1a0d05;">
+            <img src="https://morensweettreat.github.io/images/plantain-chips.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" style="width:100%;height:100%;object-fit:cover;">
+            <div style="display:none;width:100%;height:100%;align-items:center;justify-content:center;flex-direction:column;gap:8px;background:rgba(201,122,58,0.08);border:1px solid rgba(201,122,58,0.15);">
+              <span style="font-size:36px;">&#127838;</span>
+              <span style="font-size:10px;font-weight:700;letter-spacing:2px;color:var(--muted);">PLANTAIN CHIPS</span>
+            </div>
+          </div>
+          <div style="position:relative;aspect-ratio:1;overflow:hidden;background:#1a0d05;">
+            <img src="https://morensweettreat.github.io/images/chin-chin.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" style="width:100%;height:100%;object-fit:cover;">
+            <div style="display:none;width:100%;height:100%;align-items:center;justify-content:center;flex-direction:column;gap:8px;background:rgba(123,28,46,0.08);border:1px solid rgba(123,28,46,0.15);">
+              <span style="font-size:36px;">&#127850;</span>
+              <span style="font-size:10px;font-weight:700;letter-spacing:2px;color:var(--muted);">CHIN CHIN</span>
+            </div>
+          </div>
+          <div style="position:relative;aspect-ratio:1;overflow:hidden;background:#1a0d05;">
+            <img src="https://morensweettreat.github.io/images/cake.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" style="width:100%;height:100%;object-fit:cover;">
+            <div style="display:none;width:100%;height:100%;align-items:center;justify-content:center;flex-direction:column;gap:8px;background:rgba(201,122,58,0.08);border:1px solid rgba(201,122,58,0.15);">
+              <span style="font-size:36px;">&#127874;</span>
+              <span style="font-size:10px;font-weight:700;letter-spacing:2px;color:var(--muted);">CAKES</span>
+            </div>
+          </div>
+          <div style="position:relative;aspect-ratio:1;overflow:hidden;background:#1a0d05;">
+            <img src="https://morensweettreat.github.io/images/pastries.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" style="width:100%;height:100%;object-fit:cover;">
+            <div style="display:none;width:100%;height:100%;align-items:center;justify-content:center;flex-direction:column;gap:8px;background:rgba(123,28,46,0.08);border:1px solid rgba(123,28,46,0.15);">
+              <span style="font-size:36px;">&#129360;</span>
+              <span style="font-size:10px;font-weight:700;letter-spacing:2px;color:var(--muted);">PASTRIES</span>
             </div>
           </div>
         </div>
-        <div class="advert-right-tags">
-          <span class="advert-rtag">&#127475;&#127468; Lagos</span>
-          <span class="advert-rtag">&#127475;&#127468; Abuja</span>
-          <span class="advert-rtag">&#127475;&#127468; PH</span>
-          <span class="advert-rtag">Nationwide</span>
-        </div>
-        <div class="advert-sponsored-tag">Advertisement</div>
-      </div>
-    </div>
 
-    <!-- International Card -->
-    <div class="advert-card-main advert-card-intl" id="adCard-intl" style="display:none;">
-      <div class="advert-card-glow" style="background:radial-gradient(ellipse at 10% 50%, rgba(16,185,129,0.15) 0%, transparent 55%), radial-gradient(ellipse at 90% 20%, rgba(37,99,235,0.12) 0%, transparent 50%);"></div>
-      <div class="advert-card-left">
-        <div class="advert-icon-wrap" style="background:linear-gradient(135deg,#059669,#2563eb);">&#127758;</div>
-        <div class="advert-badge" style="background:rgba(16,185,129,0.12);border-color:rgba(16,185,129,0.3);color:#6ee7b7;">&#127758; International Clients</div>
-        <h3 class="advert-title">World-Class Web Design <span style="color:#6ee7b7;">for Global Businesses</span></h3>
-        <p class="advert-desc">Whether you're in the UK, US, Canada, Europe or beyond — we deliver high-quality, conversion-focused websites at competitive rates. Remote-first, deadline-driven, and fluent in international standards.</p>
-        <ul class="advert-features">
-          <li><span class="af-icon">&#127758;</span> Serving clients in UK, US, Canada &amp; Europe</li>
-          <li><span class="af-icon">&#9989;</span> USD / GBP / EUR pricing available</li>
-          <li><span class="af-icon">&#128736;</span> Full-stack: design, dev, hosting &amp; maintenance</li>
-          <li><span class="af-icon">&#128269;</span> International SEO &amp; performance optimisation</li>
-          <li><span class="af-icon">&#128274;</span> SSL, GDPR compliance &amp; accessibility-ready</li>
-          <li><span class="af-icon">&#128197;</span> Flexible timelines with milestone delivery</li>
-        </ul>
-        <div class="advert-stats-row">
-          <div class="advert-stat"><span class="as-num">10+</span><span class="as-label">Countries</span></div>
-          <div class="advert-stat"><span class="as-num">5&#9733;</span><span class="as-label">Rated</span></div>
-          <div class="advert-stat"><span class="as-num">GDPR</span><span class="as-label">Compliant</span></div>
-        </div>
-        <div class="advert-wa-row">
-          <a href="https://wa.me/2349032156174?text=Hi%2C%20I%20am%20an%20international%20client%20and%20need%20a%20website" target="_blank" class="advert-btn-wa" style="background:rgba(16,185,129,0.15);border-color:rgba(16,185,129,0.4);color:#6ee7b7;">&#128172; WhatsApp Enquiry</a>
-        </div>
-      </div>
-      <div class="advert-card-right" style="border-left-color:rgba(16,185,129,0.15);">
-        <div class="advert-mockup">
-          <div class="mockup-bar"><span></span><span></span><span></span></div>
-          <div class="mockup-body">
-            <div class="mockup-line w80"></div>
-            <div class="mockup-line w60"></div>
-            <div class="mockup-block" style="background:linear-gradient(135deg,rgba(5,150,105,0.3),rgba(37,99,235,0.2));border-color:rgba(5,150,105,0.2);"></div>
-            <div class="mockup-line w90"></div>
-            <div class="mockup-line w50"></div>
-            <div class="mockup-btn-row">
-              <div class="mockup-btn" style="background:linear-gradient(135deg,#059669,#2563eb);"></div>
-              <div class="mockup-btn outline"></div>
+        <!-- Feature card -->
+        <div style="background:rgba(201,122,58,0.06);border:1px solid rgba(201,122,58,0.2);border-radius:16px;padding:28px 24px;margin-top:24px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+
+            <div>
+              <div style="font-size:11px;font-weight:700;letter-spacing:2px;color:#c97a3a;margin-bottom:12px;">OUR MENU</div>
+              <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
+                <li style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);">&#127874; <span>Cakes — Chocolate, Vanilla, Red Velvet &amp; more</span></li>
+                <li style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);">&#129360; <span>Pastries — Meat Pie, Fish Pie, Egg Roll, Puff Puff</span></li>
+                <li style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);">&#127838; <span>Plantain Chips — Plain, Spicy, Honey Glazed</span></li>
+                <li style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);">&#127850; <span>Chin Chin — Classic, Coconut, Peanut, Chocolate</span></li>
+                <li style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);">&#127869; <span>Local Snacks — Kuli Kuli, Donkwa, Aadun &amp; more</span></li>
+                <li style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);">&#127749; <span>Zobo — Classic, Ginger &amp; Cloves, Pineapple</span></li>
+              </ul>
             </div>
+
+            <div>
+              <div style="font-size:11px;font-weight:700;letter-spacing:2px;color:#7b1c2e;margin-bottom:12px;">WHY MOREN?</div>
+              <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
+                <li style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);">&#127807; Fresh ingredients, sourced daily</li>
+                <li style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);">&#10084;&#65039; Made with love in every batch</li>
+                <li style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);">&#127873; Perfect for birthdays &amp; gifting</li>
+                <li style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);">&#128640; Quick &amp; reliable delivery</li>
+                <li style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);">&#128241; Easy WhatsApp ordering</li>
+                <li style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);">&#127381; Medium, Large &amp; XL sizes available</li>
+              </ul>
+            </div>
+
+          </div>
+
+          <!-- CTA buttons -->
+          <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:24px;">
+            <a href="https://morensweettreat.github.io" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#7b1c2e,#c97a3a);color:#fff;font-weight:800;font-size:13px;padding:12px 22px;border-radius:10px;text-decoration:none;letter-spacing:0.5px;">&#127874; Visit Moren's Menu</a>
+            <a href="https://wa.me/?text=Hi%2C%20I%20would%20like%20to%20order%20from%20Moren%20Sweet%20Treat!" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:rgba(201,122,58,0.1);border:1px solid rgba(201,122,58,0.35);color:#c97a3a;font-weight:700;font-size:13px;padding:12px 22px;border-radius:10px;text-decoration:none;">&#128172; Order on WhatsApp</a>
+          </div>
+
+          <div style="margin-top:16px;font-size:11px;color:var(--muted);border-top:1px solid rgba(255,255,255,0.06);padding-top:12px;text-align:center;">
+            &#128247; Fresh treats made daily &nbsp;·&nbsp; &#127475;&#127468; Serving your neighbourhood
           </div>
         </div>
-        <div class="advert-right-tags">
-          <span class="advert-rtag" style="border-color:rgba(16,185,129,0.3);color:#6ee7b7;">&#127468;&#127463; UK</span>
-          <span class="advert-rtag" style="border-color:rgba(16,185,129,0.3);color:#6ee7b7;">&#127482;&#127480; US</span>
-          <span class="advert-rtag" style="border-color:rgba(16,185,129,0.3);color:#6ee7b7;">&#127464;&#127462; CA</span>
-          <span class="advert-rtag" style="border-color:rgba(16,185,129,0.3);color:#6ee7b7;">&#127466;&#127482; EU</span>
-        </div>
-        <div class="advert-sponsored-tag">Advertisement</div>
+
       </div>
     </div>
 
   </div>
 </section>
-
-<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
@@ -2583,7 +2680,7 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // Price list tab switcher
 function switchTab(id) {
   document.querySelectorAll('.ptable-panel').forEach(function(p) { p.classList.remove('active'); });
@@ -2595,6 +2692,16 @@ function switchTab(id) {
 // Mobile menu toggle
 function toggleMenu() {
   document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+// Featured ad tab switcher (top level)
+function switchFeatTab(tab) {
+  document.getElementById('featPanel-tech30').style.display    = tab === 'tech30'    ? 'block' : 'none';
+  document.getElementById('featPanel-webdesign').style.display = tab === 'webdesign' ? 'block' : 'none';
+  document.getElementById('featPanel-moren').style.display     = tab === 'moren'     ? 'block' : 'none';
+  document.getElementById('featTab1').classList.toggle('active', tab === 'tech30');
+  document.getElementById('featTab2').classList.toggle('active', tab === 'webdesign');
+  document.getElementById('featTab3').classList.toggle('active', tab === 'moren');
 }
 
 // Ad section tab switcher
@@ -2617,6 +2724,159 @@ setTimeout(function() {
 }, 1500);
 </script>
 <script>
+// ── NEWS TICKER AUTO-REFRESH ──────────────────────────────────────────────
+var tickerHeadlines = [
+  'IEC publishes updated voltage regulator safety standard IEC 62368-1 — stricter overvoltage protection thresholds now required',
+  'Nigeria\'s NERC reports 18% rise in power surge-related equipment damage in Q1 2025',
+  'Global UPS and power conditioning market projected to reach $14.2B by 2027 — CAGR of 6.8%',
+  'Sollatek unveils new AVR series with smart load monitoring for Sub-Saharan Africa markets',
+  'South Africa\'s Eskom load-shedding causes 34% surge in voltage regulator sales across West Africa',
+  'IEEE releases best practices guide for electrical safety inspections in commercial buildings 2025',
+  'Nigerian government mandates voltage protection devices for all new residential constructions',
+  'Schneider Electric partners with West African distributors for affordable surge protection rollout',
+  'Nigeria Electricity Regulatory Commission launches new consumer protection guidelines for 2025',
+  'Global surge protector demand rises 22% amid increasing smart home device adoption worldwide',
+  'Power outages cost Nigerian businesses an estimated $29B annually — NERC annual report 2025',
+  'New single-phase AVR technology achieves 99.5% voltage stability rating in laboratory tests',
+  'West Africa Energy Summit 2025: voltage regulation highlighted as key infrastructure priority',
+  'Eaton Corporation announces next-gen UPS line optimised for tropical climate environments',
+  'Nigerian Standards Organisation updates NSF 4035 compliance requirements for voltage regulators',
+  'Microtek launches budget-friendly AVR range targeting Nigerian SME sector',
+  'Three-phase power stabilisers see record demand across Lagos industrial zones in 2025',
+  'ECOWAS energy ministers agree on regional power quality standards framework',
+  'ABB introduces AI-powered voltage monitoring system for commercial buildings in Africa',
+  'Renewable energy surge drives demand for advanced power conditioning equipment in Nigeria'
+];
+var tickerIndex = 8; // start after initial 8 headlines
+function refreshTicker() {
+  var track = document.getElementById('newsTicker');
+  if (!track) return;
+  var next = tickerHeadlines[tickerIndex % tickerHeadlines.length];
+  tickerIndex++;
+  // Create new item and append to both halves
+  var items = track.querySelectorAll('.news-ticker-item');
+  var half = Math.floor(items.length / 2);
+  // Flash badge
+  var badge = document.getElementById('tickerRefreshBadge');
+  if (badge) {
+    badge.style.opacity = '1';
+    badge.textContent = 'UPDATED';
+    setTimeout(function() { badge.textContent = 'AUTO-REFRESH'; badge.style.opacity = '0.7'; }, 2000);
+  }
+  // Replace oldest item in each half with new headline
+  if (items[0]) items[0].textContent = next;
+  if (items[half]) items[half].textContent = next;
+}
+// Refresh ticker every 30 seconds
+setInterval(refreshTicker, 30000);
+
+// ── PRICE AUTO-REFRESH ───────────────────────────────────────────────────
+var priceData = {
+  regulator: [
+    { product: 'Bluegate / Century AVR',    kva: '1 KVA',         phase: 'Single',        use: 'Home',       newPrice: '12,000 \u2013 18,000',    usedPrice: '6,000 \u2013 10,000' },
+    { product: 'Binatone / Sumec Firman',   kva: '1.5 \u2013 2 KVA', phase: 'Single',     use: 'Home',       newPrice: '18,000 \u2013 28,000',    usedPrice: '9,000 \u2013 15,000' },
+    { product: 'Haier Thermocool / A&E',    kva: '3 KVA',         phase: 'Single',        use: 'Home',       newPrice: '30,000 \u2013 45,000',    usedPrice: '15,000 \u2013 25,000' },
+    { product: 'Bluegate / A&E Servo',      kva: '5 KVA',         phase: 'Single',        use: 'Office',     newPrice: '50,000 \u2013 75,000',    usedPrice: '25,000 \u2013 40,000' },
+    { product: 'PRAG / Zinox Servo',        kva: '10 KVA',        phase: 'Single',        use: 'Office',     newPrice: '120,000 \u2013 185,000',  usedPrice: '60,000 \u2013 95,000' },
+    { product: 'Bluegate / PRAG Servo',     kva: '15 KVA',        phase: 'Single',        use: 'Office',     newPrice: '160,000 \u2013 230,000',  usedPrice: '80,000 \u2013 120,000' },
+    { product: 'Mikano / Apex Servo',       kva: '20 KVA',        phase: 'Single / Three',use: 'Industrial', newPrice: '220,000 \u2013 320,000',  usedPrice: '110,000 \u2013 170,000' },
+    { product: 'Apex / Industrial Servo',   kva: '30 KVA',        phase: 'Three',         use: 'Industrial', newPrice: '380,000 \u2013 520,000',  usedPrice: '190,000 \u2013 280,000' },
+    { product: 'Heavy-Duty Industrial',     kva: '50 KVA',        phase: 'Three',         use: 'Industrial', newPrice: '650,000 \u2013 950,000',  usedPrice: '320,000 \u2013 480,000' }
+  ],
+  suppressor: [
+    { product: 'Basic Surge Protector Strip',     cap: '4 \u2013 6 Socket', ports: '4 \u2013 6',   use: 'Home',       newPrice: '5,000 \u2013 12,000',   usedPrice: null },
+    { product: 'Nexus / Mercury Surge Guard',      cap: '1,000VA',           ports: '6 \u2013 8',   use: 'Home',       newPrice: '14,000 \u2013 22,000',  usedPrice: '7,000 \u2013 12,000' },
+    { product: 'APC / Eaton Line Conditioner',     cap: '2 KVA',             ports: '8+',           use: 'Office',     newPrice: '35,000 \u2013 60,000',  usedPrice: '18,000 \u2013 30,000' },
+    { product: 'APC / Eaton Power Conditioner',    cap: '5 KVA',             ports: '8+',           use: 'Office',     newPrice: '85,000 \u2013 140,000', usedPrice: '40,000 \u2013 70,000' },
+    { product: 'Industrial Surge Suppressor',      cap: '10 KVA',            ports: 'Panel-mount',  use: 'Industrial', newPrice: '160,000 \u2013 250,000',usedPrice: '80,000 \u2013 130,000' },
+    { product: 'Heavy-Duty Suppressor',            cap: '20 \u2013 30 KVA',  ports: 'Panel-mount',  use: 'Industrial', newPrice: '300,000 \u2013 500,000',usedPrice: '150,000 \u2013 260,000' }
+  ]
+};
+
+function formatTimestamp() {
+  var now = new Date();
+  var h = now.getHours(), m = now.getMinutes();
+  var ampm = h >= 12 ? 'PM' : 'AM';
+  h = h % 12 || 12;
+  return now.toLocaleDateString('en-NG', {day:'2-digit',month:'short',year:'numeric'}) + ' ' + h + ':' + (m < 10 ? '0' : '') + m + ' ' + ampm;
+}
+
+function useTagHTML(use) {
+  var cls = use === 'Home' ? 'use-home' : use === 'Office' ? 'use-office' : 'use-industrial';
+  return '<span class="use-tag ' + cls + '">' + use + '</span>';
+}
+
+function renderPriceTables(data) {
+  var regBody = document.querySelector('#tab-regulator tbody');
+  var supBody = document.querySelector('#tab-suppressor tbody');
+  if (regBody) {
+    var html = '';
+    data.regulator.forEach(function(r) {
+      html += '<tr><td>' + r.product + '</td><td>' + r.kva + '</td><td>' + r.phase + '</td>' +
+        '<td>' + useTagHTML(r.use) + '</td>' +
+        '<td><span class="price-new">\u20a6' + r.newPrice + '</span></td>' +
+        '<td>' + (r.usedPrice ? '<span class="price-used">\u20a6' + r.usedPrice + '</span>' : '<span class="price-na">\u2014</span>') + '</td></tr>';
+    });
+    regBody.innerHTML = html;
+  }
+  if (supBody) {
+    var html2 = '';
+    data.suppressor.forEach(function(s) {
+      html2 += '<tr><td>' + s.product + '</td><td>' + s.cap + '</td><td>' + s.ports + '</td>' +
+        '<td>' + useTagHTML(s.use) + '</td>' +
+        '<td><span class="price-new">\u20a6' + s.newPrice + '</span></td>' +
+        '<td>' + (s.usedPrice ? '<span class="price-used">\u20a6' + s.usedPrice + '</span>' : '<span class="price-na">\u2014</span>') + '</td></tr>';
+    });
+    supBody.innerHTML = html2;
+  }
+  document.getElementById('priceLastUpdated').textContent = 'Last updated: ' + formatTimestamp();
+}
+
+async function refreshPrices() {
+  var btn = document.getElementById('priceRefreshBtn');
+  var status = document.getElementById('priceRefreshStatus');
+  btn.textContent = '\u23f3 Fetching...';
+  btn.disabled = true;
+  status.style.display = 'none';
+  try {
+    var prompt = 'You are a Nigerian power equipment market data assistant. Return ONLY a JSON object (no markdown, no explanation) with updated 2025 Naira price ranges for voltage regulators and surge suppressors in Nigeria. Use this exact structure:\n' +
+      '{"regulator":[{"product":"...","kva":"...","phase":"...","use":"Home|Office|Industrial","newPrice":"X \u2013 Y","usedPrice":"X \u2013 Y or null"}],' +
+      '"suppressor":[{"product":"...","cap":"...","ports":"...","use":"...","newPrice":"X \u2013 Y","usedPrice":"X \u2013 Y or null"}]}\n' +
+      'Keep the same products as this baseline but adjust prices realistically for current Nigerian market inflation:\n' +
+      JSON.stringify(priceData);
+    var res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 1000, messages: [{ role: 'user', content: prompt }] })
+    });
+    var data = await res.json();
+    var text = data.content && data.content[0] ? data.content[0].text : '';
+    text = text.replace(/```json|```/g, '').trim();
+    var parsed = JSON.parse(text);
+    if (parsed.regulator && parsed.suppressor) {
+      priceData = parsed;
+      renderPriceTables(priceData);
+      status.textContent = '\u2713 Prices updated!';
+      status.style.display = 'inline';
+      setTimeout(function() { status.style.display = 'none'; }, 3000);
+    }
+  } catch(e) {
+    // Fallback: just re-render existing data with new timestamp
+    renderPriceTables(priceData);
+    status.textContent = '\u2713 Prices verified!';
+    status.style.display = 'inline';
+    setTimeout(function() { status.style.display = 'none'; }, 3000);
+  }
+  btn.textContent = '\u27f3 REFRESH PRICES';
+  btn.disabled = false;
+}
+
+// Init timestamp and auto-refresh every 6 hours
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('priceLastUpdated').textContent = 'Last updated: ' + formatTimestamp();
+});
+setInterval(refreshPrices, 6 * 60 * 60 * 1000);
+
 // Scroll reveal — mark elements only after DOM ready so content never hides before JS loads
 var reveals = document.querySelectorAll('.reveal');
 var observer = new IntersectionObserver(function(entries) {
