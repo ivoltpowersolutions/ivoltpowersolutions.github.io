@@ -785,6 +785,145 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
 .ad-top-btns { display: flex; align-items: center; gap: 8px; position: relative; z-index: 1; flex-shrink: 0; }
 .ad-top-call { background: linear-gradient(135deg,#7c3aed,#4f46e5); color: #fff; border: none; border-radius: 8px; padding: 9px 18px; font-size: 12px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: transform .2s; white-space: nowrap; }
 .ad-top-close { position: relative; z-index: 1; flex-shrink: 0; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.5); border-radius: 50%; width: 30px; height: 30px; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+
+/* ══ IMPORT & EXPORT SECTION ══ */
+.impex-section { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+/* Hero banner */
+.impex-hero {
+  background: linear-gradient(135deg, rgba(6,36,72,0.7) 0%, rgba(37,99,235,0.1) 50%, rgba(245,158,11,0.06) 100%);
+  border: 1px solid rgba(37,99,235,0.2); border-radius: 14px;
+  padding: 44px 40px; margin-bottom: 48px; position: relative; overflow: hidden;
+}
+.impex-hero::before {
+  content: ''; position: absolute; top: -60px; right: -60px;
+  width: 260px; height: 260px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(245,158,11,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.impex-hero-inner { display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: center; }
+.impex-hero-tag { font-size: 10px; letter-spacing: 4px; color: var(--cyan); text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+.impex-hero-tag::before { content: ''; display: block; width: 22px; height: 1px; background: var(--cyan); }
+.impex-hero h3 { font-family: 'Montserrat', sans-serif; font-size: clamp(20px,3vw,30px); font-weight: 900; color: #fff; line-height: 1.2; margin-bottom: 12px; }
+.impex-hero h3 span { color: var(--gold); }
+.impex-hero-desc { font-size: 14px; color: var(--muted); line-height: 1.75; max-width: 520px; margin-bottom: 24px; }
+.impex-hero-stats { display: flex; gap: 32px; flex-wrap: wrap; }
+.impex-stat-val { font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: 900; color: var(--gold); }
+.impex-stat-lbl { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-top: 2px; }
+.impex-hero-ctas { display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
+.impex-btn-tg {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--tg); color: #fff; padding: 12px 22px; border-radius: 6px;
+  font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 2px;
+  text-decoration: none; text-transform: uppercase; white-space: nowrap;
+  transition: transform .2s, box-shadow .2s;
+  box-shadow: 0 4px 16px rgba(34,158,217,0.35);
+}
+.impex-btn-tg:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(34,158,217,0.5); }
+.impex-btn-bot {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent; color: var(--cyan); padding: 11px 22px; border-radius: 6px;
+  font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 2px;
+  text-decoration: none; text-transform: uppercase; white-space: nowrap;
+  border: 1px solid rgba(37,99,235,0.4);
+  transition: background .2s, border-color .2s;
+}
+.impex-btn-bot:hover { background: var(--cyan-dim); border-color: var(--cyan); }
+
+/* Direction tabs */
+.impex-tabs { display: flex; gap: 8px; margin-bottom: 28px; flex-wrap: wrap; }
+.impex-tab {
+  font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+  padding: 9px 22px; border-radius: 4px; cursor: pointer;
+  background: transparent; border: 1px solid var(--border); color: var(--muted); transition: all .2s;
+}
+.impex-tab.active-import, .impex-tab:hover { background: var(--cyan); color: #000; border-color: var(--cyan); font-weight: 700; }
+.impex-tab.active-export { background: var(--gold); color: #000; border-color: var(--gold); font-weight: 700; }
+.impex-panel { display: none; }
+.impex-panel.active { display: block; }
+
+/* Items grid */
+.impex-items-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-bottom: 40px; }
+.impex-item-card {
+  background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+  padding: 22px 20px; position: relative; overflow: hidden;
+  transition: transform .3s, border-color .3s, box-shadow .3s;
+}
+.impex-item-card:hover { transform: translateY(-3px); border-color: rgba(37,99,235,0.35); box-shadow: 0 10px 28px rgba(0,0,0,0.25); }
+.impex-item-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--cyan), #1d4ed8); }
+.impex-item-card.gold-top::before { background: linear-gradient(90deg, var(--gold), #d97706); }
+.impex-item-card.green-top::before { background: linear-gradient(90deg, var(--green), #0d9488); }
+.impex-item-icon { font-size: 28px; margin-bottom: 12px; display: block; }
+.impex-item-name { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 800; color: #fff; margin-bottom: 4px; }
+.impex-item-hs { font-size: 10px; color: var(--muted); letter-spacing: 1px; margin-bottom: 8px; }
+.impex-item-desc { font-size: 12px; color: var(--muted); line-height: 1.65; margin-bottom: 14px; }
+.impex-item-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.impex-item-tag {
+  font-size: 9px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+  padding: 3px 9px; border-radius: 10px;
+}
+.itag-avail   { background: rgba(16,185,129,0.12); color: #34d399; }
+.itag-demand  { background: rgba(37,99,235,0.12);  color: #60a5fa; }
+.itag-export  { background: rgba(245,158,11,0.12); color: #fbbf24; }
+.itag-used    { background: rgba(255,255,255,0.06); color: var(--muted); }
+.impex-item-bot {
+  display: flex; align-items: center; gap: 6px;
+  background: rgba(37,99,235,0.1); border: 1px solid rgba(37,99,235,0.2);
+  border-radius: 6px; padding: 8px 12px; font-size: 11px; color: var(--cyan);
+  font-family: 'Montserrat', sans-serif; font-weight: 700; letter-spacing: 1px;
+  cursor: pointer; transition: background .2s; width: 100%; justify-content: center;
+  text-transform: uppercase;
+}
+.impex-item-bot:hover { background: rgba(37,99,235,0.2); }
+
+/* How it works */
+.impex-how { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 40px; }
+.impex-step {
+  background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+  padding: 24px 20px; text-align: center; position: relative;
+}
+.impex-step-num {
+  font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 900;
+  letter-spacing: 2px; color: var(--cyan); text-transform: uppercase; margin-bottom: 10px;
+}
+.impex-step-icon { font-size: 28px; margin-bottom: 10px; }
+.impex-step h4 { font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 800; color: #fff; letter-spacing: 0.5px; margin-bottom: 6px; }
+.impex-step p { font-size: 11px; color: var(--muted); line-height: 1.65; }
+
+/* Countries */
+.impex-countries { margin-bottom: 40px; }
+.impex-countries-title { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+.impex-country-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+.impex-pill {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+  border-radius: 20px; padding: 7px 16px; font-size: 12px; color: var(--text);
+  transition: border-color .2s, color .2s;
+}
+.impex-pill:hover { border-color: rgba(37,99,235,0.4); color: #fff; }
+
+/* Bot calculator callout */
+.impex-bot-cta {
+  background: linear-gradient(135deg, rgba(37,99,235,0.08) 0%, rgba(245,158,11,0.06) 100%);
+  border: 1px solid rgba(37,99,235,0.2); border-radius: 12px;
+  padding: 32px 36px; display: flex; align-items: center; gap: 28px; flex-wrap: wrap;
+}
+.impex-bot-cta-icon { font-size: 44px; flex-shrink: 0; }
+.impex-bot-cta h4 { font-family: 'Montserrat', sans-serif; font-size: 17px; font-weight: 900; color: #fff; margin-bottom: 6px; }
+.impex-bot-cta p { font-size: 13px; color: var(--muted); line-height: 1.65; max-width: 480px; }
+.impex-bot-cta-btns { margin-left: auto; display: flex; flex-direction: column; gap: 8px; }
+
+@media (max-width: 760px) {
+  .impex-hero-inner { grid-template-columns: 1fr; }
+  .impex-hero-ctas { align-items: flex-start; flex-direction: row; flex-wrap: wrap; }
+  .impex-bot-cta { flex-direction: column; }
+  .impex-bot-cta-btns { margin-left: 0; flex-direction: row; flex-wrap: wrap; }
+}
+@media (max-width: 480px) {
+  .impex-hero { padding: 28px 20px; }
+  .impex-hero-stats { gap: 20px; }
+}
+
 </style>
 </head>
 <body>
@@ -804,8 +943,9 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
     <li><a href="#inspection">Book Inspection</a></li>
     <li><a href="#advertise">Advertise</a></li>
     <li><a href="#contact">Contact</a></li>
-    <!-- ★ NEW: Import & Export Telegram channel -->
-    <li><a href="https://t.me/ivoltpowersolutions" target="_blank" rel="noopener" class="nav-tg">📦 Import &amp; Export</a></li>
+    <li><a href="#impex">📦 Import &amp; Export</a></li>
+    <!-- ★ Telegram channel -->
+    <li><a href="https://t.me/ivoltpowersolutions" target="_blank" rel="noopener" class="nav-tg" style="color:var(--tg);">✈️ TG Channel</a></li>
     <li><a href="tel:+2349032156174" class="nav-cta">Call Now</a></li>
   </ul>
   <div class="hamburger" id="ham" onclick="toggleMenu()">
@@ -822,8 +962,8 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
   <a href="#inspection" onclick="toggleMenu()">Book Inspection</a>
   <a href="#advertise" onclick="toggleMenu()">Advertise</a>
   <a href="#contact" onclick="toggleMenu()">Contact</a>
-  <!-- ★ NEW: Import & Export Telegram channel -->
-  <a href="https://t.me/ivoltpowersolutions" target="_blank" rel="noopener" class="mobile-tg" onclick="toggleMenu()">📦 Import &amp; Export Channel</a>
+  <a href="#impex" onclick="toggleMenu()">📦 Import &amp; Export</a>
+  <a href="https://t.me/ivoltpowersolutions" target="_blank" rel="noopener" class="mobile-tg" onclick="toggleMenu()">✈️ Telegram Channel</a>
 </div>
 
 <!-- HERO -->
@@ -906,6 +1046,248 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
       <h3>Buy Quality Equipment</h3>
       <p>Looking for a reliable Voltage Regulator or Surge Protector? We have new and tested used units available at competitive prices — ready for delivery.</p>
       <a href="#products">Browse Stock →</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- IMPORT & EXPORT -->
+<section id="impex" class="impex-section">
+  <div class="reveal">
+    <div class="section-tag">Global Trade</div>
+    <h2 class="section-title">Import &amp; Export</h2>
+    <p class="section-desc">We source, supply and ship power protection equipment internationally. Import quality units into Nigeria or export surplus stock to buyers worldwide — with real-time cost calculations.</p>
+  </div>
+
+  <!-- Hero Banner -->
+  <div class="impex-hero reveal">
+    <div class="impex-hero-inner">
+      <div>
+        <div class="impex-hero-tag">Powered by Live Market Data</div>
+        <h3>Live Import &amp; Export<br><span>Cost Calculator</span></h3>
+        <p class="impex-hero-desc">Our Telegram bot calculates real-time landed costs, import duties, freight, VAT, and profit margins for power equipment trade routes — updated live from commodity and FX markets every time you run a calculation.</p>
+        <div class="impex-hero-stats">
+          <div><div class="impex-stat-val">19+</div><div class="impex-stat-lbl">Tradeable Items</div></div>
+          <div><div class="impex-stat-val">7</div><div class="impex-stat-lbl">Trade Routes</div></div>
+          <div><div class="impex-stat-val">Live</div><div class="impex-stat-lbl">FX &amp; Duties</div></div>
+        </div>
+      </div>
+      <div class="impex-hero-ctas">
+        <a href="https://t.me/ivoltpowersolutions" target="_blank" rel="noopener" class="impex-btn-tg">✈️ Join TG Channel</a>
+        <a href="https://t.me/ivoltbot" target="_blank" rel="noopener" class="impex-btn-bot">⚡ Open Trade Bot</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Direction Tabs -->
+  <div class="impex-tabs reveal">
+    <button class="impex-tab active-import" id="impexTabImport" onclick="switchImpex('import')">📥 Import to Nigeria</button>
+    <button class="impex-tab" id="impexTabExport" onclick="switchImpex('export')">📤 Export from Nigeria</button>
+    <button class="impex-tab" id="impexTabHow" onclick="switchImpex('how')">🔧 How It Works</button>
+  </div>
+
+  <!-- IMPORT PANEL -->
+  <div class="impex-panel active reveal" id="impexPanelImport">
+    <p style="font-size:13px;color:var(--muted);margin-bottom:24px;line-height:1.7;">We source voltage regulators, surge protectors, and power conditioning equipment from China, UK, UAE, and Europe — and import them directly into Nigeria. All import duties and clearance are handled.</p>
+
+    <div class="impex-items-grid">
+      <div class="impex-item-card">
+        <span class="impex-item-icon">⚡</span>
+        <div class="impex-item-name">Servo Voltage Stabilizers</div>
+        <div class="impex-item-hs">HS CODE: 8504.40</div>
+        <div class="impex-item-desc">Single and three-phase servo motor stabilizers — 5kVA to 200kVA. Sourced from manufacturers in China and Europe with full compliance documentation.</div>
+        <div class="impex-item-tags">
+          <span class="impex-item-tag itag-avail">In Stock</span>
+          <span class="impex-item-tag itag-demand">High Demand</span>
+        </div>
+        <button class="impex-item-bot" onclick="openImpexOrder('import','Servo Voltage Stabilizer')">⚡ Get Import Quote</button>
+      </div>
+      <div class="impex-item-card gold-top">
+        <span class="impex-item-icon">🛡️</span>
+        <div class="impex-item-name">Surge Suppressor Units</div>
+        <div class="impex-item-hs">HS CODE: 8535.40</div>
+        <div class="impex-item-desc">Type 1, Type 2, and Type 1+2 combined SPDs for residential, commercial, and industrial installations. Meets IEC 61643-11 standards.</div>
+        <div class="impex-item-tags">
+          <span class="impex-item-tag itag-avail">Available</span>
+          <span class="impex-item-tag itag-demand">Growing</span>
+        </div>
+        <button class="impex-item-bot" onclick="openImpexOrder('import','Surge Suppressor')">⚡ Get Import Quote</button>
+      </div>
+      <div class="impex-item-card green-top">
+        <span class="impex-item-icon">🔋</span>
+        <div class="impex-item-name">Inverters &amp; Battery Systems</div>
+        <div class="impex-item-hs">HS CODE: 8504.40</div>
+        <div class="impex-item-desc">Solar inverters, hybrid inverters, and lithium battery packs. Suitable for residential backup and commercial off-grid installations across Nigeria.</div>
+        <div class="impex-item-tags">
+          <span class="impex-item-tag itag-avail">Available</span>
+          <span class="impex-item-tag itag-demand">High Demand</span>
+        </div>
+        <button class="impex-item-bot" onclick="openImpexOrder('import','Inverter & Battery System')">⚡ Get Import Quote</button>
+      </div>
+      <div class="impex-item-card">
+        <span class="impex-item-icon">🔌</span>
+        <div class="impex-item-name">Power Cables &amp; Conductors</div>
+        <div class="impex-item-hs">HS CODE: 8544.60</div>
+        <div class="impex-item-desc">Copper and aluminium armoured cables, flexible cords, and wiring accessories. Bulk import pricing available for contractors and distributors.</div>
+        <div class="impex-item-tags">
+          <span class="impex-item-tag itag-avail">Bulk Available</span>
+          <span class="impex-item-tag itag-demand">Steady</span>
+        </div>
+        <button class="impex-item-bot" onclick="openImpexOrder('import','Power Cables')">⚡ Get Import Quote</button>
+      </div>
+      <div class="impex-item-card gold-top">
+        <span class="impex-item-icon">☀️</span>
+        <div class="impex-item-name">Solar PV Panels</div>
+        <div class="impex-item-hs">HS CODE: 8541.43</div>
+        <div class="impex-item-desc">Monocrystalline and polycrystalline solar panels from verified manufacturers. Certifications: IEC 61215, IEC 61730. Available from 100W to 600W per panel.</div>
+        <div class="impex-item-tags">
+          <span class="impex-item-tag itag-avail">Order Basis</span>
+          <span class="impex-item-tag itag-demand">High Demand</span>
+        </div>
+        <button class="impex-item-bot" onclick="openImpexOrder('import','Solar PV Panels')">⚡ Get Import Quote</button>
+      </div>
+      <div class="impex-item-card green-top">
+        <span class="impex-item-icon">🏭</span>
+        <div class="impex-item-name">Isolation Transformers</div>
+        <div class="impex-item-hs">HS CODE: 8504.21</div>
+        <div class="impex-item-desc">Medical grade and industrial isolation transformers. 1kVA to 50kVA, single and three phase. Used in hospitals, labs, and sensitive electronic environments.</div>
+        <div class="impex-item-tags">
+          <span class="impex-item-tag itag-avail">Order Basis</span>
+          <span class="impex-item-tag itag-demand">Specialist</span>
+        </div>
+        <button class="impex-item-bot" onclick="openImpexOrder('import','Isolation Transformer')">⚡ Get Import Quote</button>
+      </div>
+    </div>
+
+    <!-- Source countries -->
+    <div class="impex-countries reveal">
+      <div class="impex-countries-title">We source from</div>
+      <div class="impex-country-pills">
+        <span class="impex-pill">🇨🇳 China</span>
+        <span class="impex-pill">🇬🇧 United Kingdom</span>
+        <span class="impex-pill">🇦🇪 UAE / Dubai</span>
+        <span class="impex-pill">🇩🇪 Germany</span>
+        <span class="impex-pill">🇮🇳 India</span>
+        <span class="impex-pill">🇸🇬 Singapore</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPORT PANEL -->
+  <div class="impex-panel reveal" id="impexPanelExport">
+    <p style="font-size:13px;color:var(--muted);margin-bottom:24px;line-height:1.7;">We connect Nigerian sellers and surplus equipment owners with international buyers. Whether you have used units, scrap copper, or bulk stock — we can help you find the right buyer and handle the export documentation.</p>
+
+    <div class="impex-items-grid">
+      <div class="impex-item-card gold-top">
+        <span class="impex-item-icon">🔶</span>
+        <div class="impex-item-name">Scrap Copper</div>
+        <div class="impex-item-hs">HS CODE: 7404.00</div>
+        <div class="impex-item-desc">Bare bright copper, copper wire scrap, and mixed copper from regulated sources. Priced live against COMEX copper futures. Minimum quantity: 500kg.</div>
+        <div class="impex-item-tags">
+          <span class="impex-item-tag itag-export">Export Ready</span>
+          <span class="impex-item-tag itag-demand">High Value</span>
+        </div>
+        <button class="impex-item-bot" onclick="openImpexOrder('export','Scrap Copper')">📤 Get Export Quote</button>
+      </div>
+      <div class="impex-item-card">
+        <span class="impex-item-icon">🪙</span>
+        <div class="impex-item-name">Aluminium Scrap</div>
+        <div class="impex-item-hs">HS CODE: 7602.00</div>
+        <div class="impex-item-desc">Aluminium wire, busbars, and extrusion scrap. Priced live against LME aluminium. Ideal for regular export to UK, EU, and Asian buyers.</div>
+        <div class="impex-item-tags">
+          <span class="impex-item-tag itag-export">Export Ready</span>
+          <span class="impex-item-tag itag-demand">Steady</span>
+        </div>
+        <button class="impex-item-bot" onclick="openImpexOrder('export','Aluminium Scrap')">📤 Get Export Quote</button>
+      </div>
+      <div class="impex-item-card green-top">
+        <span class="impex-item-icon">⚡</span>
+        <div class="impex-item-name">Used Voltage Regulators</div>
+        <div class="impex-item-hs">HS CODE: 8504.40</div>
+        <div class="impex-item-desc">Tested, working used AVRs from Nigeria. Popular in West African markets — Ghana, Côte d'Ivoire, Cameroon, and Senegal. All units professionally tested before export.</div>
+        <div class="impex-item-tags">
+          <span class="impex-item-tag itag-export">Export Ready</span>
+          <span class="impex-item-tag itag-used">Used / Tokunbo</span>
+        </div>
+        <button class="impex-item-bot" onclick="openImpexOrder('export','Used Voltage Regulators')">📤 Get Export Quote</button>
+      </div>
+      <div class="impex-item-card gold-top">
+        <span class="impex-item-icon">🛡️</span>
+        <div class="impex-item-name">Surplus Power Equipment</div>
+        <div class="impex-item-hs">HS CODE: 8504</div>
+        <div class="impex-item-desc">Surplus or decommissioned UPS units, surge protectors, transformers, and switchgear from factories, offices, or telecoms companies looking to clear stock.</div>
+        <div class="impex-item-tags">
+          <span class="impex-item-tag itag-export">Consignment</span>
+          <span class="impex-item-tag itag-used">Any Condition</span>
+        </div>
+        <button class="impex-item-bot" onclick="openImpexOrder('export','Surplus Power Equipment')">📤 Get Export Quote</button>
+      </div>
+    </div>
+
+    <!-- Destination countries -->
+    <div class="impex-countries reveal">
+      <div class="impex-countries-title">We ship to</div>
+      <div class="impex-country-pills">
+        <span class="impex-pill">🇬🇧 United Kingdom</span>
+        <span class="impex-pill">🇩🇪 Germany</span>
+        <span class="impex-pill">🇨🇳 China</span>
+        <span class="impex-pill">🇬🇭 Ghana</span>
+        <span class="impex-pill">🇿🇦 South Africa</span>
+        <span class="impex-pill">🇸🇳 Senegal</span>
+        <span class="impex-pill">🇨🇮 Côte d'Ivoire</span>
+        <span class="impex-pill">🇦🇪 UAE</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS PANEL -->
+  <div class="impex-panel reveal" id="impexPanelHow">
+    <p style="font-size:13px;color:var(--muted);margin-bottom:28px;line-height:1.7;">Our import and export process is straightforward. We handle documentation, freight, and customs — you just tell us what you need.</p>
+
+    <div class="impex-how">
+      <div class="impex-step">
+        <div class="impex-step-num">Step 01</div>
+        <div class="impex-step-icon">💬</div>
+        <h4>Tell Us What You Need</h4>
+        <p>Contact us on WhatsApp or join our Telegram channel. Tell us the product, quantity, route, and your timeline.</p>
+      </div>
+      <div class="impex-step">
+        <div class="impex-step-num">Step 02</div>
+        <div class="impex-step-icon">📊</div>
+        <h4>Get a Live Cost Quote</h4>
+        <p>We calculate your full landed cost — goods, freight, insurance, import duty, VAT, and port handling — using real-time market data via our trade bot.</p>
+      </div>
+      <div class="impex-step">
+        <div class="impex-step-num">Step 03</div>
+        <div class="impex-step-icon">📋</div>
+        <h4>Documentation &amp; Compliance</h4>
+        <p>We prepare or assist with: commercial invoice, packing list, certificate of origin, Form M, SON/NAFDAC compliance, and HS code classification.</p>
+      </div>
+      <div class="impex-step">
+        <div class="impex-step-num">Step 04</div>
+        <div class="impex-step-icon">🚢</div>
+        <h4>Freight &amp; Shipping</h4>
+        <p>We arrange sea freight (20/40ft containers), air freight, or courier depending on quantity and urgency. Full tracking provided.</p>
+      </div>
+      <div class="impex-step">
+        <div class="impex-step-num">Step 05</div>
+        <div class="impex-step-icon">🏁</div>
+        <h4>Clearance &amp; Delivery</h4>
+        <p>Customs clearance at Apapa/Tincan or Murtala airport. Last-mile delivery to your location anywhere in Nigeria or delivery to buyer's port abroad.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bot Calculator CTA -->
+  <div class="impex-bot-cta reveal">
+    <div class="impex-bot-cta-icon">🤖</div>
+    <div>
+      <h4>Calculate Real-Time Import / Export Costs in Telegram</h4>
+      <p>Our free Telegram bot calculates live landed costs, import duties, freight estimates, and profit margins for every tradeable item — updated in real-time from commodity and FX markets. Run <strong>/trade import</strong> or <strong>/trade export</strong> for an instant quote.</p>
+    </div>
+    <div class="impex-bot-cta-btns">
+      <a href="https://t.me/ivoltbot" target="_blank" rel="noopener" class="impex-btn-tg">⚡ Open Trade Bot</a>
+      <a href="https://t.me/ivoltpowersolutions" target="_blank" rel="noopener" class="impex-btn-bot">✈️ Join Channel</a>
     </div>
   </div>
 </section>
@@ -1291,19 +1673,20 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
       <ul>
         <li><a href="#products">Products</a></li>
         <li><a href="#trade">Buy &amp; Sell</a></li>
+        <li><a href="#impex">Import &amp; Export</a></li>
         <li><a href="#why">Why Us</a></li>
         <li><a href="#inspection">Book Inspection</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h5>Contact</h5>
+      <h5>Contact &amp; Trade</h5>
       <ul>
         <li><a href="tel:+2349032156174">+234 903 215 6174</a></li>
         <li><a href="https://wa.me/2349032156174" target="_blank">💬 WhatsApp Us</a></li>
         <li><a href="https://x.com/TradesByBami" target="_blank">𝕏 @TradesByBami</a></li>
-        <!-- ★ NEW: Telegram footer link -->
-        <li><a href="https://t.me/ivoltpowersolutions" target="_blank" rel="noopener" class="tg-footer">✈️ Telegram Channel</a></li>
+        <li><a href="https://t.me/ivoltpowersolutions" target="_blank" rel="noopener" class="tg-footer">✈️ Import &amp; Export Channel</a></li>
+        <li><a href="https://t.me/ivoltbot" target="_blank" rel="noopener" class="tg-footer">⚡ Trade Calculator Bot</a></li>
       </ul>
     </div>
   </div>
@@ -1531,6 +1914,23 @@ function handleSubmit() {
   if(missing){var errEl=document.getElementById('inspectionFormError');if(!errEl){errEl=document.createElement('p');errEl.id='inspectionFormError';errEl.style.cssText='color:#f87171;font-size:12px;margin:8px 0 0;text-align:center;';document.querySelector('.submit-btn').before(errEl);}errEl.textContent='Please fill in all required fields (highlighted in red).';return;}
   var msg='iVolt Power - Inspection Request\n\nName: '+inputs[0].value.trim()+' '+inputs[1].value.trim()+'\nPhone: '+inputs[2].value.trim()+'\nEmail: '+(inputs[3].value.trim()||'N/A')+'\nAddress: '+inputs[4].value.trim()+'\nPremises: '+inputs[5].value.trim()+'\nNotes: '+(inputs[6].value.trim()||'None');
   window.location.href='https://wa.me/2349032156174?text='+encodeURIComponent(msg);
+}
+
+
+// ── IMPORT & EXPORT SECTION ──
+function switchImpex(tab) {
+  ['import','export','how'].forEach(function(t){
+    document.getElementById('impexPanel' + t.charAt(0).toUpperCase() + t.slice(1)).classList.remove('active');
+    var btn = document.getElementById('impexTab' + t.charAt(0).toUpperCase() + t.slice(1));
+    if(btn){ btn.classList.remove('active-import','active-export'); }
+  });
+  document.getElementById('impexPanel' + tab.charAt(0).toUpperCase() + tab.slice(1)).classList.add('active');
+  var activeBtn = document.getElementById('impexTab' + tab.charAt(0).toUpperCase() + tab.slice(1));
+  if(activeBtn){ activeBtn.classList.add(tab === 'export' ? 'active-export' : 'active-import'); }
+}
+function openImpexOrder(dir, product) {
+  var msg = 'Hi iVolt! I'm interested in: ' + (dir === 'import' ? 'Importing' : 'Exporting') + ' — ' + product + '\n\nPlease send me a quote.';
+  window.open('https://wa.me/2349032156174?text=' + encodeURIComponent(msg), '_blank');
 }
 
 // ── NEWS LOAD MORE ──
