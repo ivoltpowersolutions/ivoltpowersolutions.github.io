@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="iVolt Power Bot — Complete command reference for free users and premium subscribers.">
+<title>iVolt Bot — Command Reference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Montserrat:wght@400;600;700;800;900&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet"></noscript>
+<style>
+:root {
+  --cyan: #2563eb;
+  --cyan-dim: rgba(37,99,235,0.15);
+  --gold: #f59e0b;
+  --gold-dim: rgba(245,158,11,0.12);
+  --green: #10b981;
+  --green-dim: rgba(16,185,129,0.12);
+  --red: #dc2626;
+  --orange: #ea580c;
+  --purple: #7c3aed;
+  --purple-dim: rgba(124,58,237,0.12);
+  --bg: #0a0d14;
+  --bg2: #0f1321;
+  --card: rgba(255,255,255,0.04);
+  --border: rgba(255,255,255,0.10);
+  --text: rgba(255,255,255,0.88);
+  --muted: rgba(255,255,255,0.48);
+  --tg: #229ED9;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar { width:4px; }
+::-webkit-scrollbar-track { background:var(--bg); }
+::-webkit-scrollbar-thumb { background:var(--cyan); border-radius:2px; }
+
+/* ══ HEX BG ══ */
+body::before {
+  content:''; position:fixed; inset:0; z-index:0; pointer-events:none; opacity:0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='52'%3E%3Cpath d='M30 2l28 16v16L30 50 2 34V18z' fill='none' stroke='%232563eb' stroke-width='0.8'/%3E%3C/svg%3E");
+  background-size:60px 52px;
+}
+
+/* ══ NAV ══ */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 5%; height:64px;
+  background:rgba(10,13,20,0.92); backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo {
+  font-family:'Montserrat',sans-serif; font-size:16px; font-weight:900;
+  color:#fff; text-decoration:none; letter-spacing:2px;
+}
+.nav-logo span { color:var(--cyan); }
+.nav-links { display:flex; align-items:center; gap:24px; list-style:none; }
+.nav-links a { font-size:12px; color:var(--muted); text-decoration:none; transition:color .2s; letter-spacing:0.5px; }
+.nav-links a:hover { color:#fff; }
+.nav-cta {
+  background:var(--cyan); color:#000 !important; padding:8px 20px;
+  border-radius:5px; font-family:'Montserrat',sans-serif;
+  font-size:10px !important; font-weight:700 !important; letter-spacing:2px;
+  text-transform:uppercase; transition:transform .2s,box-shadow .2s !important;
+}
+.nav-cta:hover { transform:translateY(-1px); box-shadow:0 4px 14px rgba(37,99,235,.4); }
+.hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; }
+.hamburger span { display:block; width:22px; height:2px; background:var(--text); border-radius:2px; transition:all .3s; }
+
+/* ══ HERO ══ */
+.hero {
+  min-height:100vh; display:flex; align-items:center; justify-content:center;
+  padding:120px 5% 80px; position:relative; overflow:hidden; text-align:center;
+}
+.hero-glow1 { position:absolute; width:700px; height:700px; top:-150px; left:-200px; border-radius:50%; background:radial-gradient(circle,rgba(37,99,235,0.07) 0%,transparent 65%); pointer-events:none; }
+.hero-glow2 { position:absolute; width:500px; height:500px; bottom:-80px; right:-120px; border-radius:50%; background:radial-gradient(circle,rgba(245,158,11,0.06) 0%,transparent 65%); pointer-events:none; }
+.scanline { position:absolute; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,rgba(37,99,235,0.4),transparent); animation:scanMove 8s linear infinite; pointer-events:none; z-index:1; }
+@keyframes scanMove { from{top:64px;opacity:1} to{top:100vh;opacity:0} }
+.hero-content { position:relative; z-index:2; animation:fadeUp .8s ease both; max-width:760px; margin:0 auto; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+.hero-eyebrow {
+  font-size:11px; letter-spacing:5px; color:var(--cyan); text-transform:uppercase;
+  margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:12px;
+}
+.hero-eyebrow::before,.hero-eyebrow::after { content:''; display:block; width:32px; height:1px; background:var(--cyan); }
+.hero h1 {
+  font-family:'Montserrat',sans-serif; font-size:clamp(36px,6vw,72px);
+  font-weight:900; line-height:1.05; color:#fff; margin-bottom:16px;
+}
+.hero h1 .accent { color:var(--cyan); }
+.hero h1 .accent2 { color:var(--gold); }
+.hero-sub { font-size:16px; font-weight:300; color:var(--muted); line-height:1.7; margin-bottom:40px; max-width:520px; margin-left:auto; margin-right:auto; }
+.hero-badges { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:48px; }
+.badge {
+  display:inline-flex; align-items:center; gap:7px;
+  font-size:11px; font-weight:600; letter-spacing:1px;
+  padding:7px 16px; border-radius:20px; text-transform:uppercase;
+}
+.badge-free { background:var(--cyan-dim); color:var(--cyan); border:1px solid rgba(37,99,235,0.3); }
+.badge-premium { background:var(--gold-dim); color:var(--gold); border:1px solid rgba(245,158,11,0.3); }
+.badge-admin { background:var(--purple-dim); color:#a78bfa; border:1px solid rgba(124,58,237,0.3); }
+.badge-dot { width:6px; height:6px; border-radius:50%; background:currentColor; animation:blink 2s ease infinite; }
+@keyframes blink { 0%,100%{opacity:1}50%{opacity:.4} }
+.hero-tg-btn {
+  display:inline-flex; align-items:center; gap:10px;
+  background:var(--tg); color:#fff; padding:14px 32px; border-radius:6px;
+  font-family:'Montserrat',sans-serif; font-size:11px; font-weight:700; letter-spacing:2px;
+  text-decoration:none; text-transform:uppercase; transition:transform .2s,box-shadow .2s;
+  box-shadow:0 4px 18px rgba(34,158,217,0.35);
+}
+.hero-tg-btn:hover { transform:translateY(-2px); box-shadow:0 6px 28px rgba(34,158,217,0.5); }
+
+/* ══ FILTER BAR ══ */
+.filter-section { position:sticky; top:64px; z-index:50; background:rgba(10,13,20,0.95); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); padding:16px 5%; }
+.filter-inner { max-width:1100px; margin:0 auto; display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+.filter-label { font-size:9px; letter-spacing:3px; text-transform:uppercase; color:var(--muted); margin-right:4px; }
+.ftab {
+  font-family:'Inter',sans-serif; font-size:10px; letter-spacing:1.5px; text-transform:uppercase;
+  padding:7px 18px; border-radius:4px; cursor:pointer;
+  background:transparent; border:1px solid var(--border); color:var(--muted);
+  transition:all .2s; white-space:nowrap;
+}
+.ftab.active, .ftab:hover { background:var(--cyan); color:#000; border-color:var(--cyan); font-weight:700; }
+.ftab.active-gold { background:var(--gold); color:#000; border-color:var(--gold); }
+.ftab.active-gold:hover { background:var(--gold); color:#000; border-color:var(--gold); }
+.search-wrap { margin-left:auto; position:relative; }
+.search-input {
+  background:rgba(255,255,255,0.05); border:1px solid var(--border);
+  border-radius:6px; padding:8px 14px 8px 34px; color:#fff;
+  font-family:'Inter',sans-serif; font-size:12px; outline:none;
+  transition:border-color .2s; width:200px;
+}
+.search-input::placeholder { color:var(--muted); }
+.search-input:focus { border-color:rgba(37,99,235,0.5); width:240px; }
+.search-icon { position:absolute; left:10px; top:50%; transform:translateY(-50%); font-size:13px; pointer-events:none; }
+
+/* ══ MAIN CONTENT ══ */
+main { max-width:1100px; margin:0 auto; padding:60px 5% 120px; position:relative; z-index:2; }
+.section-tag {
+  font-size:10px; letter-spacing:5px; color:var(--cyan); text-transform:uppercase;
+  margin-bottom:14px; display:flex; align-items:center; gap:12px;
+}
+.section-tag::before { content:''; display:block; width:30px; height:1px; background:var(--cyan); }
+.section-title {
+  font-family:'Montserrat',sans-serif; font-size:clamp(24px,4vw,36px); font-weight:900;
+  color:#fff; line-height:1.15; margin-bottom:10px;
+}
+.section-desc { font-size:14px; color:var(--muted); line-height:1.8; margin-bottom:40px; }
+
+/* ══ NOTICE BANNER ══ */
+.notice {
+  display:flex; align-items:flex-start; gap:12px;
+  background:rgba(245,158,11,0.06); border:1px solid rgba(245,158,11,0.25);
+  border-radius:8px; padding:14px 18px; margin-bottom:40px;
+  font-size:12px; color:rgba(245,158,11,0.9); line-height:1.7;
+}
+.notice-icon { font-size:18px; flex-shrink:0; margin-top:1px; }
+.notice a { color:var(--gold); text-decoration:underline; }
+
+/* ══ TIER HEADER ══ */
+.tier-header {
+  display:flex; align-items:center; gap:16px;
+  margin-bottom:24px; padding-bottom:20px; border-bottom:1px solid var(--border);
+}
+.tier-icon {
+  width:48px; height:48px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0;
+}
+.tier-icon.free { background:var(--cyan-dim); border:1px solid rgba(37,99,235,0.3); }
+.tier-icon.premium { background:var(--gold-dim); border:1px solid rgba(245,158,11,0.3); }
+.tier-icon.admin { background:var(--purple-dim); border:1px solid rgba(124,58,237,0.3); }
+.tier-title { font-family:'Montserrat',sans-serif; font-size:20px; font-weight:900; color:#fff; }
+.tier-subtitle { font-size:12px; color:var(--muted); margin-top:3px; }
+.tier-badge {
+  margin-left:auto; font-size:9px; font-weight:700; letter-spacing:2px;
+  text-transform:uppercase; padding:5px 14px; border-radius:20px;
+}
+.tb-free { background:var(--cyan-dim); color:var(--cyan); border:1px solid rgba(37,99,235,0.3); }
+.tb-premium { background:var(--gold-dim); color:var(--gold); border:1px solid rgba(245,158,11,0.3); }
+.tb-admin { background:var(--purple-dim); color:#a78bfa; border:1px solid rgba(124,58,237,0.3); }
+
+/* ══ COMMAND GROUPS ══ */
+.cmd-group { margin-bottom:48px; }
+.cmd-group-label {
+  font-size:9px; letter-spacing:4px; text-transform:uppercase; color:var(--muted);
+  margin-bottom:16px; padding-left:2px; display:flex; align-items:center; gap:10px;
+}
+.cmd-group-label::after { content:''; flex:1; height:1px; background:rgba(255,255,255,0.06); }
+.cmd-cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:14px; }
+
+/* ══ COMMAND CARD ══ */
+.cmd-card {
+  background:var(--card); border:1px solid var(--border); border-radius:12px;
+  padding:22px 22px 18px; position:relative; overflow:hidden;
+  transition:transform .3s, border-color .3s, box-shadow .3s;
+  cursor:default;
+}
+.cmd-card:hover { transform:translateY(-3px); box-shadow:0 12px 32px rgba(0,0,0,0.3); }
+.cmd-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; }
+.cmd-card.tier-free::before { background:linear-gradient(90deg,#2563eb,#1d4ed8); }
+.cmd-card.tier-free:hover { border-color:rgba(37,99,235,0.4); }
+.cmd-card.tier-premium::before { background:linear-gradient(90deg,#f59e0b,#d97706); }
+.cmd-card.tier-premium:hover { border-color:rgba(245,158,11,0.4); }
+.cmd-card.tier-admin::before { background:linear-gradient(90deg,#7c3aed,#4f46e5); }
+.cmd-card.tier-admin:hover { border-color:rgba(124,58,237,0.4); }
+
+.cmd-top { display:flex; align-items:flex-start; gap:12px; margin-bottom:10px; }
+.cmd-emoji { font-size:22px; flex-shrink:0; margin-top:1px; }
+.cmd-main { flex:1; min-width:0; }
+.cmd-name {
+  font-family:'Montserrat',sans-serif; font-size:15px; font-weight:800;
+  color:#fff; letter-spacing:0.5px; margin-bottom:3px; word-break:break-all;
+}
+.cmd-name code {
+  font-family:'Montserrat',sans-serif; font-size:13px;
+  background:rgba(37,99,235,0.12); border:1px solid rgba(37,99,235,0.2);
+  border-radius:4px; padding:2px 8px; color:var(--cyan);
+}
+.cmd-card.tier-premium .cmd-name code { background:rgba(245,158,11,0.1); border-color:rgba(245,158,11,0.2); color:var(--gold); }
+.cmd-card.tier-admin .cmd-name code { background:rgba(124,58,237,0.1); border-color:rgba(124,58,237,0.2); color:#a78bfa; }
+.cmd-desc { font-size:12px; color:var(--muted); line-height:1.65; margin-bottom:12px; }
+
+.cmd-usage {
+  background:rgba(0,0,0,0.25); border:1px solid rgba(255,255,255,0.07);
+  border-radius:6px; padding:9px 12px; font-size:11px;
+  font-family:'Courier New',Courier,monospace; color:rgba(255,255,255,0.55);
+  line-height:1.6; word-break:break-all; margin-bottom:10px;
+}
+.cmd-usage .param { color:var(--gold); }
+.cmd-usage .optional { color:var(--muted); }
+
+.cmd-tags { display:flex; flex-wrap:wrap; gap:6px; }
+.cmd-tag {
+  font-size:9px; font-weight:600; letter-spacing:1px; text-transform:uppercase;
+  padding:3px 9px; border-radius:10px;
+}
+.tag-market { background:rgba(37,99,235,0.12); color:#60a5fa; }
+.tag-equipment { background:rgba(16,185,129,0.12); color:#34d399; }
+.tag-trade { background:rgba(245,158,11,0.12); color:#fbbf24; }
+.tag-project { background:rgba(139,92,246,0.12); color:#a78bfa; }
+.tag-oil { background:rgba(234,88,12,0.12); color:#fb923c; }
+.tag-analysis { background:rgba(220,38,38,0.12); color:#f87171; }
+.tag-alerts { background:rgba(245,158,11,0.15); color:var(--gold); }
+.tag-schematic { background:rgba(8,145,178,0.12); color:#22d3ee; }
+.tag-admin { background:rgba(124,58,237,0.12); color:#a78bfa; }
+.tag-info { background:rgba(255,255,255,0.06); color:var(--muted); }
+.tag-new { background:rgba(16,185,129,0.2); color:#34d399; border:1px solid rgba(16,185,129,0.3); }
+.tag-live { background:rgba(220,38,38,0.15); color:#f87171; border:1px solid rgba(220,38,38,0.25); animation:livePulse 2s ease infinite; }
+@keyframes livePulse { 0%,100%{opacity:1}50%{opacity:.6} }
+
+.cmd-copy {
+  position:absolute; top:14px; right:14px;
+  background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1);
+  color:var(--muted); border-radius:5px; padding:4px 8px;
+  font-size:10px; cursor:pointer; transition:all .2s; font-family:'Inter',sans-serif;
+}
+.cmd-copy:hover { background:var(--cyan-dim); color:var(--cyan); border-color:rgba(37,99,235,0.3); }
+.cmd-copy.copied { background:rgba(16,185,129,0.15); color:var(--green); border-color:rgba(16,185,129,0.3); }
+
+/* ══ TIER DIVIDER ══ */
+.tier-section { margin-bottom:80px; }
+.tier-lock {
+  background:linear-gradient(135deg,rgba(245,158,11,0.05),rgba(124,58,237,0.05));
+  border:1px solid rgba(245,158,11,0.2); border-radius:12px;
+  padding:28px 32px; margin-bottom:32px; display:flex; align-items:center; gap:20px;
+}
+.tier-lock-icon { font-size:32px; flex-shrink:0; }
+.tier-lock h3 { font-family:'Montserrat',sans-serif; font-size:16px; font-weight:800; color:#fff; margin-bottom:6px; }
+.tier-lock p { font-size:12px; color:var(--muted); line-height:1.6; }
+.tier-lock-btn {
+  margin-left:auto; flex-shrink:0;
+  background:var(--gold); color:#000; border:none; border-radius:6px;
+  font-family:'Montserrat',sans-serif; font-size:10px; font-weight:700; letter-spacing:2px;
+  padding:11px 24px; cursor:pointer; text-transform:uppercase;
+  text-decoration:none; display:inline-block; white-space:nowrap;
+  transition:transform .2s, box-shadow .2s;
+}
+.tier-lock-btn:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(245,158,11,0.35); }
+
+/* ══ LIMIT BAR ══ */
+.limit-card {
+  background:var(--card); border:1px solid var(--border); border-radius:10px;
+  padding:20px 22px; margin-bottom:40px; display:flex; align-items:center; gap:20px; flex-wrap:wrap;
+}
+.limit-stat { text-align:center; }
+.limit-val { font-family:'Montserrat',sans-serif; font-size:26px; font-weight:900; }
+.limit-val.cyan { color:var(--cyan); }
+.limit-val.gold { color:var(--gold); }
+.limit-val.green { color:var(--green); }
+.limit-lbl { font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-top:2px; }
+.limit-sep { width:1px; height:40px; background:var(--border); }
+
+/* ══ COMPARE TABLE ══ */
+.compare-wrap { overflow-x:auto; border-radius:10px; border:1px solid var(--border); margin-bottom:80px; }
+table.compare { width:100%; border-collapse:collapse; font-size:13px; min-width:500px; }
+table.compare thead tr { background:rgba(37,99,235,0.06); border-bottom:1px solid var(--border); }
+table.compare th {
+  font-family:'Inter',sans-serif; font-size:9px; letter-spacing:3px;
+  color:var(--cyan); text-transform:uppercase; padding:16px 20px; text-align:left;
+}
+table.compare th.gold { color:var(--gold); }
+table.compare th.purple { color:#a78bfa; }
+table.compare td { padding:13px 20px; border-bottom:1px solid rgba(255,255,255,0.04); color:var(--text); vertical-align:middle; }
+table.compare tbody tr:last-child td { border-bottom:none; }
+table.compare tbody tr:hover td { background:rgba(255,255,255,0.02); }
+table.compare td:first-child { color:#fff; font-weight:500; }
+.chk { color:var(--green); font-size:16px; }
+.cross { color:rgba(255,255,255,0.2); font-size:16px; }
+.lim { color:var(--gold); font-size:12px; font-weight:600; }
+
+/* ══ CTA SECTION ══ */
+.cta-section {
+  background:linear-gradient(135deg,rgba(37,99,235,0.08),rgba(245,158,11,0.06));
+  border:1px solid rgba(37,99,235,0.2); border-radius:16px;
+  padding:60px 5%; text-align:center; margin-bottom:80px;
+}
+.cta-section h2 { font-family:'Montserrat',sans-serif; font-size:clamp(24px,4vw,36px); font-weight:900; color:#fff; margin-bottom:12px; }
+.cta-section p { font-size:14px; color:var(--muted); line-height:1.8; margin-bottom:32px; max-width:480px; margin-left:auto; margin-right:auto; }
+.cta-btns { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+.cta-btn-tg {
+  background:var(--tg); color:#fff; padding:13px 28px; border-radius:6px;
+  font-family:'Montserrat',sans-serif; font-size:10px; font-weight:700; letter-spacing:2px;
+  text-decoration:none; text-transform:uppercase; transition:transform .2s, box-shadow .2s;
+}
+.cta-btn-tg:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(34,158,217,.4); }
+.cta-btn-sub {
+  background:var(--gold); color:#000; padding:13px 28px; border-radius:6px;
+  font-family:'Montserrat',sans-serif; font-size:10px; font-weight:700; letter-spacing:2px;
+  text-decoration:none; text-transform:uppercase; transition:transform .2s, box-shadow .2s;
+}
+.cta-btn-sub:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(245,158,11,.4); }
+
+/* ══ FOOTER ══ */
+footer { background:var(--bg2); border-top:1px solid var(--border); padding:40px 5% 60px; }
+.footer-inner { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:2fr 1fr 1fr; gap:40px; margin-bottom:36px; }
+.footer-brand .logo { font-family:'Montserrat',sans-serif; font-size:16px; font-weight:900; color:#fff; text-decoration:none; display:block; margin-bottom:12px; letter-spacing:2px; }
+.footer-brand .logo span { color:var(--cyan); }
+.footer-brand p { font-size:12px; color:var(--muted); line-height:1.8; max-width:260px; }
+.footer-col h5 { font-size:9px; letter-spacing:3px; color:var(--cyan); text-transform:uppercase; margin-bottom:14px; }
+.footer-col ul { list-style:none; }
+.footer-col li { margin-bottom:9px; }
+.footer-col a { font-size:12px; color:var(--muted); text-decoration:none; transition:color .2s; }
+.footer-col a:hover { color:#fff; }
+.footer-bottom { max-width:1100px; margin:0 auto; border-top:1px solid var(--border); padding-top:20px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; }
+.footer-bottom p { font-size:10px; color:var(--muted); letter-spacing:1px; }
+.footer-bottom .dot { color:var(--cyan); margin:0 6px; }
+
+/* ══ MOBILE MENU ══ */
+.mobile-menu { display:none; position:fixed; inset:0; z-index:99; background:rgba(7,9,15,0.98); padding:100px 40px 40px; flex-direction:column; gap:24px; overflow-y:auto; }
+.mobile-menu.open { display:flex; }
+.mobile-menu a { font-family:'Montserrat',sans-serif; font-size:16px; font-weight:700; color:#fff; text-decoration:none; letter-spacing:2px; border-bottom:1px solid var(--border); padding-bottom:16px; }
+.mobile-menu a:hover { color:var(--cyan); }
+
+/* ══ RESPONSIVE ══ */
+@media (max-width:900px) {
+  .footer-inner { grid-template-columns:1fr 1fr; }
+}
+@media (max-width:640px) {
+  .nav-links { display:none; }
+  .hamburger { display:flex; }
+  .footer-inner { grid-template-columns:1fr; }
+  .cmd-cards { grid-template-columns:1fr; }
+  .tier-lock { flex-direction:column; text-align:center; }
+  .tier-lock-btn { margin-left:0; }
+  .limit-card { justify-content:center; }
+  .limit-sep { width:40px; height:1px; }
+  .search-wrap { width:100%; }
+  .search-input { width:100%; }
+  .search-input:focus { width:100%; }
+}
+@media (max-width:480px) {
+  .hero { padding:100px 5% 60px; }
+  .hero h1 { font-size:clamp(32px,10vw,48px); }
+  .cta-btns { flex-direction:column; }
+  .cta-btn-tg,.cta-btn-sub { text-align:center; }
+  table.compare th, table.compare td { padding:10px 12px; font-size:11px; }
+}
+
+/* ══ REVEAL ══ */
+.reveal { opacity:1; transform:none; }
+.reveal.js-ready { opacity:0; transform:translateY(20px); transition:opacity .6s ease,transform .6s ease; }
+.reveal.js-ready.visible { opacity:1; transform:translateY(0); }
+
+/* ══ HIDDEN / SHOW FILTER ══ */
+.cmd-card.hidden { display:none; }
+.cmd-group.all-hidden { display:none; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="https://ivoltpowersolutions.github.io" class="nav-logo">i<span>Volt</span> Power</a>
+  <ul class="nav-links">
+    <li><a href="#free">Free Commands</a></li>
+    <li><a href="#premium">Premium</a></li>
+    <li><a href="#compare">Compare Plans</a></li>
+    <li><a href="https://t.me/ivoltbot" target="_blank" rel="noopener" class="nav-cta">Open Bot ⚡</a></li>
+  </ul>
+  <div class="hamburger" id="ham" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#free" onclick="toggleMenu()">Free Commands</a>
+  <a href="#premium" onclick="toggleMenu()">Premium Commands</a>
+  <a href="#compare" onclick="toggleMenu()">Compare Plans</a>
+  <a href="https://t.me/ivoltbot" target="_blank" rel="noopener" onclick="toggleMenu()">⚡ Open Bot</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="scanline"></div>
+  <div class="hero-glow1"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Telegram Bot Reference</div>
+    <h1><span class="accent">iVolt</span> Bot<br><span class="accent2">Command</span> Guide</h1>
+    <p class="hero-sub">Every command, every sub-command, every parameter — for free users and premium subscribers. Live market data, equipment pricing, schematics, trade calculator and more.</p>
+    <div class="hero-badges">
+      <span class="badge badge-free"><span class="badge-dot"></span> 10 free queries/day</span>
+      <span class="badge badge-premium"><span class="badge-dot"></span> Premium — unlimited</span>
+      <span class="badge badge-admin">Admin tools included</span>
+    </div>
+    <a href="https://t.me/ivoltbot" target="_blank" rel="noopener" class="hero-tg-btn">
+      ✈️ Open Bot on Telegram
+    </a>
+  </div>
+</section>
+
+<!-- FILTER BAR -->
+<div class="filter-section" id="filterBar">
+  <div class="filter-inner">
+    <span class="filter-label">Filter</span>
+    <button class="ftab active" onclick="filterCmds('all',this)">All</button>
+    <button class="ftab" onclick="filterCmds('free',this)">🟢 Free</button>
+    <button class="ftab active-gold" onclick="filterCmds('premium',this)">⭐ Premium</button>
+    <button class="ftab" onclick="filterCmds('market',this)">📈 Market</button>
+    <button class="ftab" onclick="filterCmds('equipment',this)">⚡ Equipment</button>
+    <button class="ftab" onclick="filterCmds('trade',this)">🌍 Trade</button>
+    <button class="ftab" onclick="filterCmds('project',this)">🧮 Project</button>
+    <button class="ftab" onclick="filterCmds('schematic',this)">📐 Schematic</button>
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input class="search-input" type="text" id="searchInput" placeholder="Search commands…" oninput="searchCmds(this.value)">
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- NOTICE -->
+  <div class="notice reveal">
+    <span class="notice-icon">⚡</span>
+    <div>All prices, FX rates, commodity data, and equipment costs shown by the bot are fetched <strong>live from market sources</strong> every time you run a command. No stale data. Subscribe to remove daily limits and unlock premium commands. Use <strong>/subscribe</strong> in the bot to upgrade.</div>
+  </div>
+
+  <!-- LIMIT CARD -->
+  <div class="limit-card reveal">
+    <div class="limit-stat"><div class="limit-val cyan">10</div><div class="limit-lbl">Free queries / day</div></div>
+    <div class="limit-sep"></div>
+    <div class="limit-stat"><div class="limit-val gold">∞</div><div class="limit-lbl">Premium queries</div></div>
+    <div class="limit-sep"></div>
+    <div class="limit-stat"><div class="limit-val green">19</div><div class="limit-lbl">Public commands</div></div>
+    <div class="limit-sep"></div>
+    <div class="limit-stat"><div class="limit-val" style="color:#a78bfa">14</div><div class="limit-lbl">Admin commands</div></div>
+  </div>
+
+
+  <!-- ══════════ FREE TIER ══════════ -->
+  <div class="tier-section" id="free">
+    <div class="tier-header reveal">
+      <div class="tier-icon free">🟢</div>
+      <div>
+        <div class="tier-title">Free Commands</div>
+        <div class="tier-subtitle">Available to all users · 10 queries per day · No subscription required</div>
+      </div>
+      <span class="tier-badge tb-free">Free Tier</span>
+    </div>
+
+    <!-- CORE / NAVIGATION -->
+    <div class="cmd-group reveal">
+      <div class="cmd-group-label">Core &amp; Navigation</div>
+      <div class="cmd-cards">
+
+        <div class="cmd-card tier-free" data-tier="free" data-tags="info">
+          <button class="cmd-copy" onclick="copyCmd('/start',this)">Copy</button>
+          <div class="cmd-top">
+            <span class="cmd-emoji">👋</span>
+            <div class="cmd-main">
+              <div class="cmd-name"><code>/start</code></div>
+              <div class="cmd-desc">Welcome message, bot overview, your account status, and daily query count.</div>
+            </div>
+          </div>
+          <div class="cmd-usage">/start</div>
+          <div class="cmd-tags"><span class="cmd-tag tag-info">Info</span></div>
+        </div>
+
+        <div class="cmd-card tier-free" data-tier="free" data-tags="info">
+          <button class="cmd-copy" onclick="copyCmd('/help',this)">Copy</button>
+          <div class="cmd-top">
+            <span class="cmd-emoji">📋</span>
+            <div class="cmd-main">
+              <div class="cmd-name"><code>/help</code></div>
+              <div class="cmd-desc">Full command reference with usage examples for every available command.</div>
+            </div>
+          </div>
+          <div class="cmd-usage">/help</div>
+          <div class="cmd-tags"><span class="cmd-tag tag-info">Info</span></div>
+        </div>
+
+        <div class="cmd-card tier-free" data-tier="free" data-tags="info">
+          <button class="cmd-copy" onclick="copyCmd('/dict',this)">Copy</button>
+          <div class="cmd-top">
+            <span class="cmd-emoji">📖</span>
+            <div class="cmd-main">
+              <div class="cmd-name"><code>/dict</code></div>
+              <div class="cmd-desc">Dynamic real-time dictionary. Look up every item, ticker symbol, equipment spec, region, tariff band, and trade slug — all searchable.</div>
+            </div>
+          </div>
+          <div class="cmd-usage">/dict<br>/dict <span class="param">[section]</span><br>/dict <span class="param">[search term]</span></div>
+          <div class="cmd-tags">
+            <span class="cmd-tag tag-info">Info</span>
+            <span class="cmd-tag tag-new">New</span>
+          </div>
+        </div>
+
+        <div class="cmd-card tier-free" data-tier="free" data-tags="info">
+          <button class="cmd-copy" onclick="copyCmd('/status',this)">Copy</button>
+          <div class="cmd-top">
+            <span class="cmd-emoji">📊</span>
+            <div class="cmd-main">
+              <div class="cmd-name"><code>/status</code></div>
+              <div class="cmd-desc">Your account status — plan tier, queries used today, subscription expiry date, and access summary.</div>
+            </div>
+          </div>
+          <div class="cmd-usage">/status</div>
+          <div class="cmd-tags"><span class="cmd-tag tag-info">Info</span></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- MARKET DATA -->
+    <div class="cmd-group reveal">
+      <div class="cmd-group-label">Live Market Data</div>
+      <div class="cmd-cards">
+
+        <div class="cmd-card tier-free" data-tier="free" data-tags="market">
+          <button class="cmd-copy" onclick="copyCmd('/report',this)">Copy</button>
+          <div class="cmd-top">
+            <span class="cmd-emoji">📰</span>
+            <div class="cmd-main">
+              <div class="cmd-name"><code>/report</code></div>
+              <div class="cmd-desc">Full live market report — USD/NGN FX rate from CBN &amp; parallel market, commodity prices (copper, oil, steel, aluminium), and power sector stocks.</div>
+            </div>
+          </div>
+          <div class="cmd-usage">/report</div>
+          <div class="cmd-tags">
+            <span class="cmd-tag tag-market">Market</span>
+            <span class="cmd-tag tag-live">Live</span>
+          </div>
+        </div>
+
+        <div class="cmd-card tier-free" data-tier="free" data-tags="market analysis">
+          <button class="cmd-copy" onclick="copyCmd('/analysis',this)">Copy</button>
+          <div class="cmd-top">
+            <span class="cmd-emoji">📈</span>
+            <div class="cmd-main">
+              <div class="cmd-name"><code>/analysis</code></div>
+              <div class="cmd-desc">Technical analysis on USD/NGN — EMA 15/30, RSI, MACD, Bollinger Bands. Trend direction and buy/sell signal based on real stored price history.</div>
+            </div>
+          </div>
+          <div class="cmd-usage">/analysis</div>
+          <div class="cmd-tags">
+            <span class="cmd-tag tag-analysis">Analysis</span>
+            <span class="cmd-tag tag-market">Market</span>
+            <span class="cmd-tag tag-live">Live</span>
+          </div>
+        </div>
+
+        <div class="cmd-card tier-free" data-tier="free" data-tags="market">
+          <button class="cmd-copy" onclick="copyCmd('/global',this)">Copy</button>
+          <div class="cmd-top">
+            <span class="cmd-emoji">🌍</span>
+            <div class="cmd-main">
+              <div class="cmd-name"><code>/global</code></div>
+              <div class="cmd-desc">Global power sector overview — stocks across USA, UK, China, Europe, India, UAE. Regional FX rates, logistics costs, and procurement recommendations.</div>
+            </div>
+          </div>
+          <div class="cmd-usage">/global</div>
+          <div class="cmd-tags">
+            <span class="cmd-tag tag-market">Market</span>
+            <span class="cmd-tag tag-live">Live</span>
+          </div>
+        </div>
+
+        <div class="cmd-card tier-free" data-tier="free" data-tags="market">
+          <button class="cmd-copy" onclick="copyCmd('/stocks',this)">Copy</button>
+          <div class="cmd-top">
+            <span class="cmd-emoji">📉</span>
+            <div class="cmd-main">
+              <div class="cmd-name"><code>/stocks</code></div>
+              <div class="cmd-desc">Power sector stocks by region — Eaton, ABB, Rockwell Automation, Schneider Electric and more. Shows live price, change %, and market trend.</div>
+            </div>
+          </div>
+          <div class="cmd-usage">/stocks<br>/stocks <span class="param">[region]</span><br><span class="optional"># region: USA, UK, China, Europe, India, UAE</span></div>
+          <div class="cmd-tags">
+            <span class="cmd-tag tag-market">Market</span>
+            <span class="cmd-tag tag-live">Live</span>
+          </div>
+        </div>
+
+        <div class="cmd-card tier-free" data-tier="free" data-tags="market analysis">
+          <button class="cmd-copy" onclick="copyCmd('/cycle',this)">Copy</button>
+          <div class="cmd-top">
+            <span class="cmd-emoji">🔄</span>
+            <div class="cmd-main">
+              <div class="cmd-name"><code>/cycle</code></div>
+              <div class="cmd-desc">Market cycle detection — accumulation, expansion, distribution, or contraction phase. RSI-derived forecast and inventory strategy recommendation.</div>
+            </div>
+          </div>
+          <div class="cmd-usage">/cycle</div>
+          <div class="cmd-tags">
+            <span class="cmd-tag tag-analysis">Analysis</span>
+            <span class="cmd-tag tag-market">Market</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- EQUIPMENT -->
+    <div class="cmd-group reveal">
+      <div class="cmd-group-label">Equipment &amp; Pricing</div>
+      <div class="cmd-cards">
+
+        <div class="cmd-card tier-free" data-tier="free" data-tags="equipment">
+          <button class="cmd-copy" onclick="copyCmd('/price',this)">Copy</button>
+          <div class="cmd-top">
+            <span class="cmd-emoji">⚡</span>
+            <div class="cmd-main">
+              <div class="cmd-name"><code>/price</code></div>
+              <div class="cmd-desc">Real-time equipment prices — all stabilizers, surge protectors, power conditioners, and transformers. Prices derived from live Yahoo Finance proxies × commodity ratios.</div>
+            </div>
+          </div>
+          <div class="cmd-usage">/price<br>/price <span class="param">stabilizers</span><br>/price <span class="param">surge</span><br>/price <span class="param">conditioning</span><br>/price <span class="param">transformers</span><br>/price <span class="param">all</span></div>
+          <div class="cmd-tags">
+            <span class="cmd-tag tag-equipment">Equipment</span>
+            <span class="cmd-tag tag-live">Live</span>
+          </div>
+        </div>
+
+        <div class="cmd-card tier-free" data-tier="free" data-tags="equipment oil">
+          <button class="cmd-copy" onclick="copyCmd('/oil',this)">Copy</button>
+          <div class="cmd-top">
+            <span class="cmd-emoji">🛢️</span>
+            <div class="cmd-main">
+              <div class="cmd-name"><code>/oil</code></div>
+              <div class="cmd-desc">Transformer oil database — 7 oil types priced live from crude oil, soybean, canola, and chemical markets. Compare, search, and get recommendations by application.</div>
+            </div>
+          </div>
+          <div class="cmd-usage">/oil<br>/oil <span class="param">list</span><br>/oil <span class="param">prices</span><br>/oil <span class="param">compare [type1] [type2]</span><br>/oil <span class="param">search [query]</span><br>/oil <span class="param">recommend [application]</span><br>/oil <span class="param">stats</span><br>/oil <span class="param">[oil type name]</span></div>
+          <div class="cmd-tags">
+            <span class="cmd-tag tag-oil">Oil</span>
+            <span class="cmd-tag tag-equipment">Equipment</span>
+            <span class="cmd-tag tag-live">Live</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PROJECT & SCHEMATIC -->
+    <div class="cmd-group reveal">
+      <div class="cmd-group-label">Project Calculator &amp; Schematics</div>
+      <div class="cmd-cards">
+
+        <div class="cmd-card tier-free" data-tier="free" data-tags="project equipment">
+          <button class="cmd-copy" onclick="copyCmd('/project',this)">Copy</button>
+          <div class="cmd-top">
+            <span class="cmd-emoji">🧮</span>
+            <div class="cmd-main">
+              <div class="cmd-name"><code>/project</code></div>
+              <div class="cmd-desc">Full project cost calculator — live equipment selection, workmanship (oil-indexed transport, FX-indexed labour), taxes, logistics, risk contingency, and ROI using NERC tariff bands. Everything dynamic.</div>
+            </div>
+          </div>
+          <div class="cmd-usage">/project watts=<span class="param">25000</span> load=<span class="param">industrial</span><br>/project kva=<span class="param">50</span> region=<span class="param">Nigeria</span><br><span class="optional">Optional: risk=[low|medium|high|critical]</span><br><span class="optional">         urgency=[standard|urgent|emergency]</span><br><span class="optional">         distance=[km]  complexity=[simple|standard|complex]</span></div>
+          <div class="cmd-tags">
+            <span class="cmd-tag tag-project">Project</span>
+            <span class="cmd-tag tag-equipment">Equipment</span>
+            <span class="cmd-tag tag-live">Live</span>
+          </div>
+        </div>
+
+        <div class="cmd-card tier-free" data-tier="free" data-tags="schematic equipment">
+          <button class="cmd-copy" onclick="copyCmd('/schematic',this)">Copy</button>
+          <div class="cmd-top">
+            <span class="cmd-emoji">📐</span>
+            <div class="cmd-main">
+              <div class="cmd-name"><code>/schematic</code></div>
+              <div class="cmd-desc">Dynamic wiring diagrams with live specs — wire gauge, breaker size, conduit, installation steps, and cost breakdown all derived from the live equipment database.</div>
+            </div>
+          </div>
+          <div class="cmd-usage">/schematic regulator <span class="param">10</span> <span class="param">single</span><br>/schematic regulator <span class="param">50</span> <span class="param">3phase</span><br>/schematic surge <span class="param">type2</span> <span class="param">single</span><br>/schematic surge <span class="param">type1+2</span> <span class="param">3phase</span><br>/schematic disconnect<br>/schematic single_line <span class="param">50</span> ats generator</div>
+          <div class="cmd-tags">
+            <span class="cmd-tag tag-schematic">Schematic</span>
+            <span class="cmd-tag tag-live">Live</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TRADE -->
+    <div class="cmd-group reveal">
+      <div class="cmd-group-label">Import / Export Trade Calculator</div>
+      <div class="cmd-cards">
+
+        <div class="cmd-card tier-free" data-tier="free" data-tags="trade">
+          <button class="cmd-copy" onclick="copyCmd('/trade',this)">Copy</button>
+          <div class="cmd-top">
+            <span class="cmd-emoji">🚢</span>
+            <div class="cmd-main">
+              <div class="cmd-name"><code>/trade</code></div>
+              <div class="cmd-desc">Full import/export cost calculator — landed cost, duties, freight, VAT, clearance fees, and margin analysis. All 19+ equipment items tradeable with live pricing.</div>
+            </div>
+          </div>
+          <div class="cmd-usage">/trade import <span class="param">50kva_industrial_stabilizer_three_phase</span> from=<span class="param">China</span> to=<span class="param">Nigeria</span> qty=<span class="param">5</span><br>/trade export <span class="param">copper</span> from=<span class="param">Nigeria</span> to=<span class="param">UK</span><br>/trade margin <span class="param">stabilizer</span> from=<span class="param">China</span><br>/trade rates<br>/trade duties <span class="param">Nigeria</span><br>/trade items<br>/trade prices</div>
+          <div class="cmd-tags">
+            <span class="cmd-tag tag-trade">Trade</span>
+            <span class="cmd-tag tag-live">Live</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SUBSCRIPTION & WARRANTY -->
+    <div class="cmd-group reveal">
+      <div class="cmd-group-label">Subscription &amp; Warranty</div>
+      <div class="cmd-cards">
+
+        <div class="cmd-card tier-free" data-tier="free" data-tags="info">
+          <button class="cmd-copy" onclick="copyCmd('/subscribe',this)">Copy</button>
+          <div class="cmd-top">
+            <span class="cmd-emoji">⭐</span>
+            <div class="cmd-main">
+              <div class="cmd-name"><code>/subscribe</code></div>
+              <div class="cmd-desc">View all premium plans with live pricing from Firebase. Plans are updated in real-time — prices, features, and promos change without bot restart.</div>
+            </div>
+          </div>
+          <div class="cmd-usage">/subscribe<br>/subscribe <span class="param">daily</span><br>/subscribe <span class="param">weekly</span><br>/subscribe <span class="param">monthly</span><br>/subscribe <span class="param">quarterly</span><br>/subscribe <span class="param">annual</span><br>/subscribe <span class="param">enterprise</span></div>
+          <div class="cmd-tags"><span class="cmd-tag tag-info">Info</span></div>
+        </div>
+
+        <div class="cmd-card tier-free" data-tier="free" data-tags="info">
+          <button class="cmd-copy" onclick="copyCmd('/warranty',this)">Copy</button>
+          <div class="cmd-top">
+            <span class="cmd-emoji">🔒</span>
+            <div class="cmd-main">
+              <div class="cmd-name"><code>/warranty</code></div>
+              <div class="cmd-desc">Register a product warranty or check the status of an existing warranty by ID. Data stored in Firebase RTDB.</div>
+            </div>
+          </div>
+          <div class="cmd-usage">/warranty register <span class="param">IV-5KVA-2024</span> <span class="param">2024-03-15</span> <span class="param">LAG001</span><br>/warranty check</div>
+          <div class="cmd-tags"><span class="cmd-tag tag-info">Info</span></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════ PREMIUM TIER ══════════ -->
+  <div class="tier-section" id="premium">
+
+    <div class="tier-lock reveal">
+      <span class="tier-lock-icon">⭐</span>
+      <div>
+        <h3>Premium Commands — Unlimited Access</h3>
+        <p>Remove the 10 query/day limit and unlock price alerts, advanced analytics, and priority support. Plans start at ₦500/day. Payment via bank transfer, PayPal, or USDT (TRC20).</p>
+      </div>
+      <a href="https://t.me/ivoltbot" target="_blank" rel="noopener" class="tier-lock-btn">Upgrade in Bot</a>
+    </div>
+
+    <div class="tier-header reveal">
+      <div class="tier-icon premium">⭐</div>
+      <div>
+        <div class="tier-title">Premium Commands</div>
+        <div class="tier-subtitle">Unlimited queries · Price alerts · Priority support · Firebase-synced plans</div>
+      </div>
+      <span class="tier-badge tb-premium">Premium</span>
+    </div>
+
+    <div class="cmd-group reveal">
+      <div class="cmd-group-label">Premium Features</div>
+      <div class="cmd-cards">
+
+        <div class="cmd-card tier-premium" data-tier="premium" data-tags="alerts market">
+          <button class="cmd-copy" onclick="copyCmd('/alert',this)">Copy</button>
+          <div class="cmd-top">
+            <span class="cmd-emoji">🔔</span>
+            <div class="cmd-main">
+              <div class="cmd-name"><code>/alert</code></div>
+              <div class="cmd-desc">Set price alerts for USD/NGN, copper, steel, and oil. Bot notifies you instantly when your target price is hit. Background checker runs every 60 seconds.</div>
+            </div>
+          </div>
+          <div class="cmd-usage">/alert set <span class="param">USDNGN</span> <span class="param">1600</span><br>/alert set <span class="param">COPPER</span> <span class="param">4.50</span><br>/alert set <span class="param">STEEL</span> <span class="param">800</span><br>/alert list<br>/alert remove <span class="param">[id]</span></div>
+          <div class="cmd-tags">
+            <span class="cmd-tag tag-alerts">Alerts</span>
+            <span class="cmd-tag tag-market">Market</span>
+            <span class="cmd-tag tag-live">Live</span>
+          </div>
+        </div>
+
+        <div class="cmd-card tier-premium" data-tier="premium" data-tags="info">
+          <button class="cmd-copy" onclick="copyCmd('/status',this)">Copy</button>
+          <div class="cmd-top">
+            <span class="cmd-emoji">💎</span>
+            <div class="cmd-main">
+              <div class="cmd-name"><code>/status</code> <small style="color:var(--gold);font-size:10px;">— Enhanced</small></div>
+              <div class="cmd-desc">Premium status view includes subscription expiry countdown, remaining query balance, active alerts, feature access matrix, and upgrade prompts.</div>
+            </div>
+          </div>
+          <div class="cmd-usage">/status</div>
+          <div class="cmd-tags">
+            <span class="cmd-tag tag-info">Info</span>
+            <span class="cmd-tag tag-new">Enhanced</span>
+          </div>
+        </div>
+
+        <div class="cmd-card tier-premium" data-tier="premium" data-tags="market">
+          <div class="cmd-top">
+            <span class="cmd-emoji">♾️</span>
+            <div class="cmd-main">
+              <div class="cmd-name">Unlimited Queries</div>
+              <div class="cmd-desc">All free commands — /report, /analysis, /cycle, /global, /stocks, /price, /oil, /project, /schematic, /trade — run without any daily limit.</div>
+            </div>
+          </div>
+          <div class="cmd-tags">
+            <span class="cmd-tag tag-new">Upgrade</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- ══════════ ADMIN TIER ══════════ -->
+    <div class="tier-header reveal" style="margin-top:60px;">
+      <div class="tier-icon admin">🔐</div>
+      <div>
+        <div class="tier-title">Admin Commands</div>
+        <div class="tier-subtitle">Admin-only · Role-based permissions · Firebase-powered plan management</div>
+      </div>
+      <span class="tier-badge tb-admin">Admin</span>
+    </div>
+
+    <div class="cmd-group reveal">
+      <div class="cmd-group-label">Plan Management (Firebase)</div>
+      <div class="cmd-cards">
+
+        <div class="cmd-card tier-admin" data-tier="admin" data-tags="admin">
+          <button class="cmd-copy" onclick="copyCmd('/setplan',this)">Copy</button>
+          <div class="cmd-top">
+            <span class="cmd-emoji">💰</span>
+            <div class="cmd-main">
+              <div class="cmd-name"><code>/setplan</code></div>
+              <div class="cmd-desc">Create or update any premium plan in Firebase RTDB. Changes go live instantly — users see new prices next time they run /subscribe. No restart needed.</div>
+            </div>
+          </div>
+          <div class="cmd-usage">/setplan <span class="param">monthly</span> price=<span class="param">6000</span> days=<span class="param">30</span> queries=<span class="param">2000</span> name=<span class="param">Monthly Plus</span><br>/setplan <span class="param">promo</span> price=<span class="param">800</span> days=<span class="param">7</span> queries=<span class="param">500</span> promo=<span class="param">Limited time!</span><br>/setplan <span class="param">enterprise</span> active=<span class="param">false</span></div>
+          <div class="cmd-tags"><span class="cmd-tag tag-admin">Admin</span><span class="cmd-tag tag-new">Firebase</span></div>
+        </div>
+
+        <div class="cmd-card tier-admin" data-tier="admin" data-tags="admin">
+          <button class="cmd-copy" onclick="copyCmd('/listplans',this)">Copy</button>
+          <div class="cmd-top">
+            <span class="cmd-emoji">📋</span>
+            <div class="cmd-main">
+              <div class="cmd-name"><code>/listplans</code></div>
+              <div class="cmd-desc">View all premium plans from Firebase with full metadata — price, duration, queries, last updated timestamp, and who made the last change.</div>
+            </div>
+          </div>
+          <div class="cmd-usage">/listplans</div>
+          <div class="cmd-tags"><span class="cmd-tag tag-admin">Admin</span><span class="cmd-tag tag-new">Firebase</span></div>
+        </div>
+
+        <div class="cmd-card tier-admin" data-tier="admin" data-tags="admin">
+          <button class="cmd-copy" onclick="copyCmd('/deleteplan',this)">Copy</button>
+          <div class="cmd-top">
+            <span class="cmd-emoji">🗑️</span>
+            <div class="cmd-main">
+              <div class="cmd-name"><code>/deleteplan</code></div>
+              <div class="cmd-desc">Permanently remove a plan from Firebase. Use /setplan active=false to hide a plan without deleting its data.</div>
+            </div>
+          </div>
+          <div class="cmd-usage">/deleteplan <span class="param">plan_id</span></div>
+          <div class="cmd-tags"><span class="cmd-tag tag-admin">Admin</span></div>
+        </div>
+
+        <div class="cmd-card tier-admin" data-tier="admin" data-tags="admin">
+          <button class="cmd-copy" onclick="copyCmd('/firebase',this)">Copy</button>
+          <div class="cmd-top">
+            <span class="cmd-emoji">🔥</span>
+            <div class="cmd-main">
+              <div class="cmd-name"><code>/firebase</code></div>
+              <div class="cmd-desc">Firebase RTDB health check — connection status, latency, record counts (users, warranties, alerts, projects), and plan sync status.</div>
+            </div>
+          </div>
+          <div class="cmd-usage">/firebase</div>
+          <div class="cmd-tags"><span class="cmd-tag tag-admin">Admin</span><span class="cmd-tag tag-new">Firebase</span></div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="cmd-group reveal">
+      <div class="cmd-group-label">Price Overrides</div>
+      <div class="cmd-cards">
+
+        <div class="cmd-card tier-admin" data-tier="admin" data-tags="admin equipment">
+          <button class="cmd-copy" onclick="copyCmd('/price setprice',this)">Copy</button>
+          <div class="cmd-top">
+            <span class="cmd-emoji">⚡</span>
+            <div class="cmd-main">
+              <div class="cmd-name"><code>/price setprice</code></div>
+              <div class="cmd-desc">Override any equipment price in USD. Persists across restarts. Override takes priority over all live market data sources.</div>
+            </div>
+          </div>
+          <div class="cmd-usage">/price setprice <span class="param">10kVA Servo Stabilizer</span> <span class="param">195</span><br>/price clearprice <span class="param">10kVA Servo Stabilizer</span><br>/price overrides</div>
+          <div class="cmd-tags"><span class="cmd-tag tag-admin">Admin</span><span class="cmd-tag tag-equipment">Equipment</span></div>
+        </div>
+
+        <div class="cmd-card tier-admin" data-tier="admin" data-tags="admin oil">
+          <button class="cmd-copy" onclick="copyCmd('/oil setprice',this)">Copy</button>
+          <div class="cmd-top">
+            <span class="cmd-emoji">🛢️</span>
+            <div class="cmd-main">
+              <div class="cmd-name"><code>/oil setprice</code></div>
+              <div class="cmd-desc">Override transformer oil price in USD/litre. Override takes priority over live crude/soy/canola commodity market feeds.</div>
+            </div>
+          </div>
+          <div class="cmd-usage">/oil setprice <span class="param">Mineral Oil (Naphthenic)</span> <span class="param">3.50</span><br>/oil clearprice <span class="param">Mineral Oil (Naphthenic)</span><br>/oil overrides</div>
+          <div class="cmd-tags"><span class="cmd-tag tag-admin">Admin</span><span class="cmd-tag tag-oil">Oil</span></div>
+        </div>
+
+        <div class="cmd-card tier-admin" data-tier="admin" data-tags="admin trade">
+          <button class="cmd-copy" onclick="copyCmd('/trade setprice',this)">Copy</button>
+          <div class="cmd-top">
+            <span class="cmd-emoji">🌍</span>
+            <div class="cmd-main">
+              <div class="cmd-name"><code>/trade setprice</code></div>
+              <div class="cmd-desc">Override trade item price by slug. Override takes priority over live Yahoo Finance proxy pricing.</div>
+            </div>
+          </div>
+          <div class="cmd-usage">/trade setprice item=<span class="param">stabilizer</span> usd=<span class="param">220</span><br>/trade clearprice item=<span class="param">stabilizer</span></div>
+          <div class="cmd-tags"><span class="cmd-tag tag-admin">Admin</span><span class="cmd-tag tag-trade">Trade</span></div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="cmd-group reveal">
+      <div class="cmd-group-label">User &amp; Command Management</div>
+      <div class="cmd-cards">
+
+        <div class="cmd-card tier-admin" data-tier="admin" data-tags="admin">
+          <button class="cmd-copy" onclick="copyCmd('/admin',this)">Copy</button>
+          <div class="cmd-top">
+            <span class="cmd-emoji">🔐</span>
+            <div class="cmd-main">
+              <div class="cmd-name"><code>/admin</code></div>
+              <div class="cmd-desc">Admin panel overview — all management commands, Firebase status, and permission matrix by role (super_admin, admin, moderator, support).</div>
+            </div>
+          </div>
+          <div class="cmd-usage">/admin</div>
+          <div class="cmd-tags"><span class="cmd-tag tag-admin">Admin</span></div>
+        </div>
+
+        <div class="cmd-card tier-admin" data-tier="admin" data-tags="admin">
+          <button class="cmd-copy" onclick="copyCmd('/broadcast',this)">Copy</button>
+          <div class="cmd-top">
+            <span class="cmd-emoji">📢</span>
+            <div class="cmd-main">
+              <div class="cmd-name"><code>/broadcast</code></div>
+              <div class="cmd-desc">Send a message to all registered users. Use for announcements, price change notices, or new feature alerts.</div>
+            </div>
+          </div>
+          <div class="cmd-usage">/broadcast <span class="param">Your message here</span></div>
+          <div class="cmd-tags"><span class="cmd-tag tag-admin">Admin</span></div>
+        </div>
+
+        <div class="cmd-card tier-admin" data-tier="admin" data-tags="admin">
+          <button class="cmd-copy" onclick="copyCmd('/lockcmd',this)">Copy</button>
+          <div class="cmd-top">
+            <span class="cmd-emoji">🔒</span>
+            <div class="cmd-main">
+              <div class="cmd-name"><code>/lockcmd · /unlockcmd · /globallock</code></div>
+              <div class="cmd-desc">Lock individual commands or all public commands globally — with a reason and optional timeout. Useful during maintenance or market hours.</div>
+            </div>
+          </div>
+          <div class="cmd-usage">/lockcmd <span class="param">/project</span> <span class="param">Maintenance</span> <span class="param">60</span><br>/unlockcmd <span class="param">/project</span><br>/listlocks<br>/globallock <span class="param">Emergency maintenance</span><br>/globalunlock</div>
+          <div class="cmd-tags"><span class="cmd-tag tag-admin">Admin</span></div>
+        </div>
+
+        <div class="cmd-card tier-admin" data-tier="admin" data-tags="admin">
+          <button class="cmd-copy" onclick="copyCmd('/ban',this)">Copy</button>
+          <div class="cmd-top">
+            <span class="cmd-emoji">🚫</span>
+            <div class="cmd-main">
+              <div class="cmd-name"><code>/ban · /unban · /banned</code></div>
+              <div class="cmd-desc">Ban or unban users by Telegram ID. Banned users see an error on every command. List all currently banned users.</div>
+            </div>
+          </div>
+          <div class="cmd-usage">/ban <span class="param">123456789</span> <span class="param">Spam</span><br>/unban <span class="param">123456789</span><br>/banned</div>
+          <div class="cmd-tags"><span class="cmd-tag tag-admin">Admin</span></div>
+        </div>
+
+        <div class="cmd-card tier-admin" data-tier="admin" data-tags="admin">
+          <button class="cmd-copy" onclick="copyCmd('/addadmin',this)">Copy</button>
+          <div class="cmd-top">
+            <span class="cmd-emoji">👑</span>
+            <div class="cmd-main">
+              <div class="cmd-name"><code>/addadmin · /removeadmin · /listadmins</code></div>
+              <div class="cmd-desc">Manage admin team with role-based permissions. Roles: super_admin, admin, moderator, support — each with different access levels.</div>
+            </div>
+          </div>
+          <div class="cmd-usage">/addadmin <span class="param">123456789</span> <span class="param">moderator</span> <span class="param">John</span><br>/removeadmin <span class="param">123456789</span><br>/listadmins<br>/audit</div>
+          <div class="cmd-tags"><span class="cmd-tag tag-admin">Admin</span></div>
+        </div>
+
+        <div class="cmd-card tier-admin" data-tier="admin" data-tags="admin">
+          <button class="cmd-copy" onclick="copyCmd('/userstats',this)">Copy</button>
+          <div class="cmd-top">
+            <span class="cmd-emoji">📊</span>
+            <div class="cmd-main">
+              <div class="cmd-name"><code>/userstats</code></div>
+              <div class="cmd-desc">View query usage, subscription status, last active date, and activity history for any user by Telegram ID.</div>
+            </div>
+          </div>
+          <div class="cmd-usage">/userstats <span class="param">123456789</span></div>
+          <div class="cmd-tags"><span class="cmd-tag tag-admin">Admin</span></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════ COMPARE TABLE ══════════ -->
+  <div id="compare">
+    <div class="section-tag reveal">Plans</div>
+    <h2 class="section-title reveal">Free vs Premium</h2>
+    <p class="section-desc reveal">Everything in Free is included in Premium. Upgrade anytime with <strong>/subscribe</strong> in the bot.</p>
+
+    <div class="compare-wrap reveal">
+      <table class="compare">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Free</th>
+            <th class="gold">Premium</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Daily query limit</td><td class="lim">10 / day</td><td class="chk">✓ Unlimited</td></tr>
+          <tr><td>/report — Live FX &amp; commodities</td><td class="chk">✓</td><td class="chk">✓</td></tr>
+          <tr><td>/analysis — Technical analysis</td><td class="chk">✓</td><td class="chk">✓</td></tr>
+          <tr><td>/global — Power sector overview</td><td class="chk">✓</td><td class="chk">✓</td></tr>
+          <tr><td>/stocks — Live stock prices</td><td class="chk">✓</td><td class="chk">✓</td></tr>
+          <tr><td>/cycle — Market cycle detection</td><td class="chk">✓</td><td class="chk">✓</td></tr>
+          <tr><td>/price — Live equipment pricing</td><td class="chk">✓</td><td class="chk">✓</td></tr>
+          <tr><td>/oil — Transformer oil database</td><td class="chk">✓</td><td class="chk">✓</td></tr>
+          <tr><td>/project — Full project calculator</td><td class="chk">✓</td><td class="chk">✓</td></tr>
+          <tr><td>/schematic — Live wiring diagrams</td><td class="chk">✓</td><td class="chk">✓</td></tr>
+          <tr><td>/trade — Import/export calculator</td><td class="chk">✓</td><td class="chk">✓</td></tr>
+          <tr><td>/dict — Dynamic dictionary</td><td class="chk">✓</td><td class="chk">✓</td></tr>
+          <tr><td>/warranty — Product warranty</td><td class="chk">✓</td><td class="chk">✓</td></tr>
+          <tr><td>/alert — Price alerts</td><td class="cross">—</td><td class="chk">✓</td></tr>
+          <tr><td>Background alert monitoring</td><td class="cross">—</td><td class="chk">✓ Every 60s</td></tr>
+          <tr><td>Priority support via @ivoltadmin</td><td class="cross">—</td><td class="chk">✓</td></tr>
+          <tr><td>Firebase-synced plan updates</td><td class="chk">✓</td><td class="chk">✓</td></tr>
+          <tr><td>Payment methods</td><td colspan="2" style="color:var(--muted);font-size:11px;">Bank transfer (Kuda) · PayPal · USDT TRC20</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section reveal">
+    <h2>Ready to start?</h2>
+    <p>Open the bot on Telegram, run <strong>/start</strong>, and get your first 10 free market data queries today. Upgrade anytime with /subscribe.</p>
+    <div class="cta-btns">
+      <a href="https://t.me/ivoltbot" target="_blank" rel="noopener" class="cta-btn-tg">✈️ Open Bot on Telegram</a>
+      <a href="https://ivoltpowersolutions.github.io" target="_blank" rel="noopener" class="cta-btn-sub">🌐 Visit Website</a>
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="https://ivoltpowersolutions.github.io" class="logo">i<span>Volt</span> Power</a>
+      <p>Nigeria's trusted dealer in Voltage Regulators, Power Suppressors, and Electrical Safety Inspections. Now with a fully automated Telegram market intelligence bot.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Bot Commands</h5>
+      <ul>
+        <li><a href="#free">/report</a></li>
+        <li><a href="#free">/price</a></li>
+        <li><a href="#free">/project</a></li>
+        <li><a href="#free">/trade</a></li>
+        <li><a href="#free">/oil</a></li>
+        <li><a href="#free">/schematic</a></li>
+        <li><a href="#free">/dict</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Links</h5>
+      <ul>
+        <li><a href="https://ivoltpowersolutions.github.io">Website</a></li>
+        <li><a href="https://t.me/ivoltbot" target="_blank" rel="noopener">Telegram Bot</a></li>
+        <li><a href="https://t.me/ivoltpowersolutions" target="_blank" rel="noopener">Import &amp; Export Channel</a></li>
+        <li><a href="tel:+2349032156174">+234 903 215 6174</a></li>
+        <li><a href="mailto:ivoltpowersolutions@gmail.com">Email Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 iVolt Power Solutions<span class="dot">·</span>Lagos, Nigeria<span class="dot">·</span>All rights reserved</p>
+    <p>Bot support: @ivoltadmin</p>
+  </div>
+</footer>
+
+<script>
+// ── Mobile menu ──────────────────────────────────────────────────────────────
+function toggleMenu(){
+  document.getElementById('mobileMenu').classList.toggle('open');
+  var h=document.getElementById('ham');
+  h.classList.toggle('open');
+}
+
+// ── Copy command ─────────────────────────────────────────────────────────────
+function copyCmd(cmd, btn) {
+  navigator.clipboard.writeText(cmd).then(function(){
+    var orig = btn.textContent;
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(function(){ btn.textContent = orig; btn.classList.remove('copied'); }, 1800);
+  }).catch(function(){
+    btn.textContent = 'Copied!';
+    setTimeout(function(){ btn.textContent = 'Copy'; }, 1800);
+  });
+}
+
+// ── Filter tabs ───────────────────────────────────────────────────────────────
+function filterCmds(tag, btn) {
+  // Update active tab
+  document.querySelectorAll('.ftab').forEach(function(t){ t.classList.remove('active'); });
+  btn.classList.add('active');
+
+  var cards = document.querySelectorAll('.cmd-card');
+  cards.forEach(function(card){
+    if (tag === 'all') {
+      card.classList.remove('hidden');
+    } else if (tag === 'free' || tag === 'premium' || tag === 'admin') {
+      card.classList.toggle('hidden', card.dataset.tier !== tag);
+    } else {
+      var tags = (card.dataset.tags || '');
+      card.classList.toggle('hidden', !tags.includes(tag));
+    }
+  });
+
+  // Hide empty groups
+  document.querySelectorAll('.cmd-group').forEach(function(grp){
+    var visible = grp.querySelectorAll('.cmd-card:not(.hidden)').length;
+    grp.classList.toggle('all-hidden', visible === 0);
+  });
+}
+
+// ── Search ────────────────────────────────────────────────────────────────────
+function searchCmds(q) {
+  q = q.toLowerCase().trim();
+
+  // Reset filter tabs
+  document.querySelectorAll('.ftab').forEach(function(t){ t.classList.remove('active'); });
+  document.querySelector('.ftab').classList.add('active');
+
+  var cards = document.querySelectorAll('.cmd-card');
+  cards.forEach(function(card){
+    if (!q) {
+      card.classList.remove('hidden');
+    } else {
+      var text = card.innerText.toLowerCase();
+      card.classList.toggle('hidden', !text.includes(q));
+    }
+  });
+
+  document.querySelectorAll('.cmd-group').forEach(function(grp){
+    var visible = grp.querySelectorAll('.cmd-card:not(.hidden)').length;
+    grp.classList.toggle('all-hidden', visible === 0);
+  });
+}
+
+// ── Scroll reveal ─────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function(){
+  var items = document.querySelectorAll('.reveal');
+  items.forEach(function(el){ el.classList.add('js-ready'); });
+
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  },{threshold:0.08});
+  items.forEach(function(el){ obs.observe(el); });
+});
+</script>
+</body>
+</html>
