@@ -72,7 +72,7 @@ body {
   flex-shrink: 0; cursor: pointer; transition: color .2s;
 }
 .news-ticker-item:hover { color: var(--cyan); }
-.news-ticker-item::before { content: '⚡ '; color: var(--gold); }
+.news-ticker-item::before { content: ''; }
 
 .news-grid {
   display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;
@@ -981,8 +981,8 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
     <li><a href="#inspection">Book Inspection</a></li>
     <li><a href="#advertise">Advertise</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#impex">📦 Import &amp; Export</a></li>
-    <li><a href="https://t.me/ivoltpowersolutions" target="_blank" rel="noopener" class="nav-tg" style="color:var(--tg);">🛒 Shop on Telegram</a></li>
+    <li><a href="#impex">Import &amp; Export</a></li>
+    <li><a href="https://t.me/ivoltpowersolutions" target="_blank" rel="noopener" class="nav-tg" style="color:var(--tg);">Shop on Telegram</a></li>
     <li><a href="tel:+2349032156174" class="nav-cta">Call Now</a></li>
   </ul>
   <div class="hamburger" id="ham" onclick="toggleMenu()">
@@ -999,8 +999,8 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
   <a href="#inspection" onclick="toggleMenu()">Book Inspection</a>
   <a href="#advertise" onclick="toggleMenu()">Advertise</a>
   <a href="#contact" onclick="toggleMenu()">Contact</a>
-  <a href="#impex" onclick="toggleMenu()">📦 Import &amp; Export</a>
-  <a href="https://t.me/ivoltpowersolutions" target="_blank" rel="noopener" class="mobile-tg" onclick="toggleMenu()">🛒 Shop on Telegram</a>
+  <a href="#impex" onclick="toggleMenu()">Import &amp; Export</a>
+  <a href="https://t.me/ivoltpowersolutions" target="_blank" rel="noopener" class="mobile-tg" onclick="toggleMenu()">Shop on Telegram</a>
 </div>
 
 <!-- HERO -->
@@ -1040,27 +1040,27 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
   <div class="products-grid reveal">
     <div class="prod-card c1">
       <span class="prod-card-badge">NEW &amp; USED</span>
-      <span class="prod-card-icon">🔌</span>
+      <span class="prod-card-icon"></span>
       <h3>Power Regulator</h3>
       <p>Servo-Based AVS Units that protect your appliances from fluctuations. Available in single phase and three phase configurations for home, office, and industrial use.</p>
       <a href="#contact" class="prod-card-link">Enquire Now</a>
-      <button class="order-btn" onclick="openOrder('Power Regulator')">⚡ Order Now</button>
+      <button class="order-btn" onclick="openOrder('Power Regulator')">Order Now</button>
     </div>
     <div class="prod-card c2">
       <span class="prod-card-badge">IN STOCK</span>
-      <span class="prod-card-icon">🛡️</span>
+      <span class="prod-card-icon"></span>
       <h3>Surge Protective Device</h3>
       <p>Surge Protectors and Line Conditioners that guard against power spikes, surges, and electrical noise. Protect your electronics from permanent damage.</p>
       <a href="#contact" class="prod-card-link">Enquire Now</a>
-      <button class="order-btn" onclick="openOrder('Surge Protective Device')">⚡ Order Now</button>
+      <button class="order-btn" onclick="openOrder('Surge Protective Device')">Order Now</button>
     </div>
     <div class="prod-card c3">
       <span class="prod-card-badge">BOOK NOW</span>
-      <span class="prod-card-icon">📋</span>
+      <span class="prod-card-icon"></span>
       <h3>Safety Inspection</h3>
       <p>Professional electrical safety audits for homes, offices, and industrial facilities. Identify risks before they become hazards. Book a certified session today.</p>
       <a href="#inspection" class="prod-card-link">Book a Session</a>
-      <button class="order-btn" onclick="openOrder('Safety Inspection')">⚡ Request Now</button>
+      <button class="order-btn" onclick="openOrder('Safety Inspection')">Request Now</button>
     </div>
   </div>
 </section>
@@ -1109,17 +1109,17 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
         </div>
       </div>
       <div class="impex-hero-ctas" style="display:flex;flex-direction:column;gap:10px;align-items:flex-end;">
-        <a href="https://t.me/ivoltpowersolutions" target="_blank" rel="noopener" class="impex-btn-tg">✈️ Join Telegram</a>
-        <a href="https://t.me/ivoltpowersolutions" target="_blank" rel="noopener" class="impex-btn-bot">⚡ Open Bot</a>
+        <a href="https://t.me/ivoltpowersolutions" target="_blank" rel="noopener" class="impex-btn-tg">Join Telegram</a>
+        <a href="https://t.me/ivoltpowersolutions" target="_blank" rel="noopener" class="impex-btn-bot">Open Bot</a>
       </div>
     </div>
   </div>
 
   <div class="impex-tabs reveal">
-    <button class="impex-tab active-import" id="impexTabImport" onclick="switchImpex('import')">📥 Import to Nigeria</button>
-    <button class="impex-tab" id="impexTabExport" onclick="switchImpex('export')">📤 Export from Nigeria</button>
-    <button class="impex-tab" id="impexTabHow" onclick="switchImpex('how')">🔧 How It Works</button>
-    <button class="impex-tab" id="impexTabBot" onclick="switchImpex('bot')">🤖 Bot Commands</button>
+    <button class="impex-tab active-import" id="impexTabImport" onclick="switchImpex('import')">Import to Nigeria</button>
+    <button class="impex-tab" id="impexTabExport" onclick="switchImpex('export')">Export from Nigeria</button>
+    <button class="impex-tab" id="impexTabHow" onclick="switchImpex('how')">How It Works</button>
+    <button class="impex-tab" id="impexTabBot" onclick="switchImpex('bot')">Bot Commands</button>
   </div>
 
   <!-- IMPORT PANEL -->
@@ -1146,7 +1146,7 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
     <div class="impex-items-grid">
       <!-- Servo-Based AVS -->
       <div class="impex-item-card">
-        <span class="impex-item-icon">⚡</span>
+        <span class="impex-item-icon"></span>
         <div class="impex-item-name">Servo-Based AVS Units</div>
         <div class="impex-item-hs">HS CODE: 8504.40 · Duty: 5–10%</div>
         <div class="impex-item-desc">
@@ -1158,12 +1158,12 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
           <strong style="color:var(--text);">Lead time:</strong> 4–8 weeks sea · 7–14 days air
         </div>
         <div class="impex-item-tags"><span class="impex-item-tag itag-avail">In Stock</span><span class="impex-item-tag itag-demand">High Demand</span></div>
-        <button class="impex-item-bot" onclick="openImpexOrder('import','Servo-Based AVS')">⚡ Get Import Quote</button>
+        <button class="impex-item-bot" onclick="openImpexOrder('import','Servo-Based AVS')">Get Import Quote</button>
       </div>
 
       <!-- SPD -->
       <div class="impex-item-card gold-top">
-        <span class="impex-item-icon">🛡️</span>
+        <span class="impex-item-icon"></span>
         <div class="impex-item-name">Surge Protective Devices</div>
         <div class="impex-item-hs">HS CODE: 8535.40 · Duty: 10%</div>
         <div class="impex-item-desc">
@@ -1175,12 +1175,12 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
           <strong style="color:var(--text);">MOQ:</strong> 10 units for import orders
         </div>
         <div class="impex-item-tags"><span class="impex-item-tag itag-avail">Available</span><span class="impex-item-tag itag-demand">Growing</span></div>
-        <button class="impex-item-bot" onclick="openImpexOrder('import','Surge Protective Device')">⚡ Get Import Quote</button>
+        <button class="impex-item-bot" onclick="openImpexOrder('import','Surge Protective Device')">Get Import Quote</button>
       </div>
 
       <!-- Isolation Transformers -->
       <div class="impex-item-card green-top">
-        <span class="impex-item-icon">🏭</span>
+        <span class="impex-item-icon"></span>
         <div class="impex-item-name">Isolation Transformers</div>
         <div class="impex-item-hs">HS CODE: 8504.21 · Duty: 5%</div>
         <div class="impex-item-desc">
@@ -1192,12 +1192,12 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
           <strong style="color:var(--text);">Lead time:</strong> 6–10 weeks (order basis)
         </div>
         <div class="impex-item-tags"><span class="impex-item-tag itag-avail">Order Basis</span><span class="impex-item-tag itag-demand">Specialist</span></div>
-        <button class="impex-item-bot" onclick="openImpexOrder('import','Isolation Transformer')">⚡ Get Import Quote</button>
+        <button class="impex-item-bot" onclick="openImpexOrder('import','Isolation Transformer')">Get Import Quote</button>
       </div>
 
       <!-- Power Conditioning -->
       <div class="impex-item-card">
-        <span class="impex-item-icon">🔌</span>
+        <span class="impex-item-icon"></span>
         <div class="impex-item-name">Active Harmonic Filters</div>
         <div class="impex-item-hs">HS CODE: 8504.40 · Duty: 5%</div>
         <div class="impex-item-desc">
@@ -1209,19 +1209,19 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
           <strong style="color:var(--text);">Lead time:</strong> 6–12 weeks
         </div>
         <div class="impex-item-tags"><span class="impex-item-tag itag-avail">Order Basis</span><span class="impex-item-tag itag-demand">Industrial</span></div>
-        <button class="impex-item-bot" onclick="openImpexOrder('import','Active Harmonic Filter')">⚡ Get Import Quote</button>
+        <button class="impex-item-bot" onclick="openImpexOrder('import','Active Harmonic Filter')">Get Import Quote</button>
       </div>
     </div>
 
     <div class="impex-countries reveal">
       <div class="impex-countries-title">We source from</div>
       <div class="impex-country-pills">
-        <span class="impex-pill">🇨🇳 China</span>
-        <span class="impex-pill">🇬🇧 United Kingdom</span>
-        <span class="impex-pill">🇪🇺 Europe</span>
-        <span class="impex-pill">🇯🇵 Japan</span>
-        <span class="impex-pill">🇺🇸 USA</span>
-        <span class="impex-pill">🇦🇪 UAE</span>
+        <span class="impex-pill">China</span>
+        <span class="impex-pill">United Kingdom</span>
+        <span class="impex-pill">Europe</span>
+        <span class="impex-pill">Japan</span>
+        <span class="impex-pill">USA</span>
+        <span class="impex-pill">UAE</span>
       </div>
     </div>
 
@@ -1258,7 +1258,7 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
 
     <div class="impex-items-grid">
       <div class="impex-item-card gold-top">
-        <span class="impex-item-icon">🔶</span>
+        <span class="impex-item-icon"></span>
         <div class="impex-item-name">Scrap Copper</div>
         <div class="impex-item-hs">HS CODE: 7404.00 · Export Permit Required</div>
         <div class="impex-item-desc">Bare bright copper wire, copper busbars, and mixed copper from regulated sources. Priced live against COMEX copper futures. Full export documentation and NExIM bank compliance handled.</div>
@@ -1268,11 +1268,11 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
           <strong style="color:var(--text);">Buyers:</strong> UK, Germany, China, India
         </div>
         <div class="impex-item-tags"><span class="impex-item-tag itag-export">Export Ready</span><span class="impex-item-tag itag-demand">High Value</span></div>
-        <button class="impex-item-bot" onclick="openImpexOrder('export','Scrap Copper')">📤 Get Export Quote</button>
+        <button class="impex-item-bot" onclick="openImpexOrder('export','Scrap Copper')">Get Export Quote</button>
       </div>
 
       <div class="impex-item-card">
-        <span class="impex-item-icon">🪙</span>
+        <span class="impex-item-icon"></span>
         <div class="impex-item-name">Aluminium Scrap</div>
         <div class="impex-item-hs">HS CODE: 7602.00 · Export Permit Required</div>
         <div class="impex-item-desc">Aluminium wire, busbars, conductor offcuts, and extrusion scrap from electrical projects. Priced live against LME aluminium. Consistent demand from UK, EU, and Asian buyers for secondary smelting.</div>
@@ -1282,11 +1282,11 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
           <strong style="color:var(--text);">Buyers:</strong> UK, EU, Asia
         </div>
         <div class="impex-item-tags"><span class="impex-item-tag itag-export">Export Ready</span><span class="impex-item-tag itag-demand">Steady</span></div>
-        <button class="impex-item-bot" onclick="openImpexOrder('export','Aluminium Scrap')">📤 Get Export Quote</button>
+        <button class="impex-item-bot" onclick="openImpexOrder('export','Aluminium Scrap')">Get Export Quote</button>
       </div>
 
       <div class="impex-item-card green-top">
-        <span class="impex-item-icon">⚡</span>
+        <span class="impex-item-icon"></span>
         <div class="impex-item-name">Used Servo-Based AVS Units</div>
         <div class="impex-item-hs">HS CODE: 8504.40 · Pre-shipment Testing Required</div>
         <div class="impex-item-desc">Tested, working used AVRs from Nigeria. Popular in Ghana, Côte d'Ivoire, Cameroon, and Senegal where stabilizers are in high demand but new units are costly. All units professionally tested — output voltage verified, servo motor checked, transformer tested — before export.</div>
@@ -1296,11 +1296,11 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
           <strong style="color:var(--text);">Markets:</strong> West Africa, East Africa
         </div>
         <div class="impex-item-tags"><span class="impex-item-tag itag-export">Export Ready</span><span class="impex-item-tag itag-used">Used / Tokunbo</span></div>
-        <button class="impex-item-bot" onclick="openImpexOrder('export','Used Servo-Based AVS Units')">📤 Get Export Quote</button>
+        <button class="impex-item-bot" onclick="openImpexOrder('export','Used Servo-Based AVS Units')">Get Export Quote</button>
       </div>
 
       <div class="impex-item-card gold-top">
-        <span class="impex-item-icon">🛡️</span>
+        <span class="impex-item-icon"></span>
         <div class="impex-item-name">Surplus Power Equipment</div>
         <div class="impex-item-hs">HS CODE: 8504 · Condition Report Required</div>
         <div class="impex-item-desc">Surplus or decommissioned UPS units, surge protectors, transformers, and switchgear from factories, offices, or telecoms companies. We assess, value, and find buyers. Any condition considered — working, faulty, or for parts.</div>
@@ -1310,23 +1310,23 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
           <strong style="color:var(--text);">Payment:</strong> USD or NGN at your preference
         </div>
         <div class="impex-item-tags"><span class="impex-item-tag itag-export">Consignment</span><span class="impex-item-tag itag-used">Any Condition</span></div>
-        <button class="impex-item-bot" onclick="openImpexOrder('export','Surplus Power Equipment')">📤 Get Export Quote</button>
+        <button class="impex-item-bot" onclick="openImpexOrder('export','Surplus Power Equipment')">Get Export Quote</button>
       </div>
     </div>
 
     <div class="impex-countries reveal">
       <div class="impex-countries-title">We ship to</div>
       <div class="impex-country-pills">
-        <span class="impex-pill">🇬🇧 United Kingdom</span>
-        <span class="impex-pill">🇩🇪 Germany</span>
-        <span class="impex-pill">🇨🇳 China</span>
-        <span class="impex-pill">🇬🇭 Ghana</span>
-        <span class="impex-pill">🇿🇦 South Africa</span>
-        <span class="impex-pill">🇸🇳 Senegal</span>
-        <span class="impex-pill">🇨🇮 Côte d'Ivoire</span>
-        <span class="impex-pill">🇦🇪 UAE</span>
-        <span class="impex-pill">🇮🇳 India</span>
-        <span class="impex-pill">🇨🇲 Cameroon</span>
+        <span class="impex-pill">United Kingdom</span>
+        <span class="impex-pill">Germany</span>
+        <span class="impex-pill">China</span>
+        <span class="impex-pill">Ghana</span>
+        <span class="impex-pill">South Africa</span>
+        <span class="impex-pill">Senegal</span>
+        <span class="impex-pill">Côte d'Ivoire</span>
+        <span class="impex-pill">UAE</span>
+        <span class="impex-pill">India</span>
+        <span class="impex-pill">Cameroon</span>
       </div>
     </div>
   </div>
@@ -1335,11 +1335,11 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
   <div class="impex-panel reveal" id="impexPanelHow">
     <p style="font-size:13px;color:var(--muted);margin-bottom:28px;line-height:1.8;">Our import and export process is straightforward. We handle documentation, freight, and customs — you just tell us what you need and where it needs to go.</p>
     <div class="impex-how" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:24px;">
-      <div class="impex-step"><div class="impex-step-num">Step 01</div><div class="impex-step-icon">💬</div><h4>Contact Us</h4><p>Reach us on WhatsApp (+234-903-215-6174), Telegram (@ivoltadmin), or via the trade bot. Tell us the product, quantity, route, and your timeline. For exports, send photos and a brief condition report.</p></div>
-      <div class="impex-step"><div class="impex-step-num">Step 02</div><div class="impex-step-icon">📊</div><h4>Live Cost Quote</h4><p>We calculate your full landed or export cost using real-time market data — goods value, freight, insurance, import duty, VAT, port handling, and last-mile delivery. Our trade bot (<code>/trade import</code> or <code>/trade export</code>) generates this instantly.</p></div>
-      <div class="impex-step"><div class="impex-step-num">Step 03</div><div class="impex-step-icon">📋</div><h4>Documentation</h4><p>We prepare or assist with: commercial invoice, packing list, certificate of origin, Form M (imports), NExIM bank compliance (exports), SON/NAFDAC product certification, and HS code classification.</p></div>
-      <div class="impex-step"><div class="impex-step-num">Step 04</div><div class="impex-step-icon">🚢</div><h4>Freight &amp; Shipping</h4><p>We arrange sea freight (20ft/40ft container or LCL), air freight, or courier depending on quantity and urgency. Full shipment tracking provided from origin to delivery.</p></div>
-      <div class="impex-step"><div class="impex-step-num">Step 05</div><div class="impex-step-icon">🏁</div><h4>Clearance &amp; Delivery</h4><p>Customs clearance at Apapa/Tincan (Lagos) or Murtala airport. Last-mile delivery to your location anywhere in Nigeria. For exports — delivery to the buyer's nominated port or freight forwarder abroad.</p></div>
+      <div class="impex-step"><div class="impex-step-num">Step 01</div><div class="impex-step-icon"></div><h4>Contact Us</h4><p>Reach us on WhatsApp (+234-903-215-6174), Telegram (@ivoltadmin), or via the trade bot. Tell us the product, quantity, route, and your timeline. For exports, send photos and a brief condition report.</p></div>
+      <div class="impex-step"><div class="impex-step-num">Step 02</div><div class="impex-step-icon"></div><h4>Live Cost Quote</h4><p>We calculate your full landed or export cost using real-time market data — goods value, freight, insurance, import duty, VAT, port handling, and last-mile delivery. Our trade bot (<code>/trade import</code> or <code>/trade export</code>) generates this instantly.</p></div>
+      <div class="impex-step"><div class="impex-step-num">Step 03</div><div class="impex-step-icon"></div><h4>Documentation</h4><p>We prepare or assist with: commercial invoice, packing list, certificate of origin, Form M (imports), NExIM bank compliance (exports), SON/NAFDAC product certification, and HS code classification.</p></div>
+      <div class="impex-step"><div class="impex-step-num">Step 04</div><div class="impex-step-icon"></div><h4>Freight &amp; Shipping</h4><p>We arrange sea freight (20ft/40ft container or LCL), air freight, or courier depending on quantity and urgency. Full shipment tracking provided from origin to delivery.</p></div>
+      <div class="impex-step"><div class="impex-step-num">Step 05</div><div class="impex-step-icon"></div><h4>Clearance &amp; Delivery</h4><p>Customs clearance at Apapa/Tincan (Lagos) or Murtala airport. Last-mile delivery to your location anywhere in Nigeria. For exports — delivery to the buyer's nominated port or freight forwarder abroad.</p></div>
     </div>
   </div>
 
@@ -1362,33 +1362,33 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
       <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;border-left:3px solid var(--green);">
         <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:12px;font-weight:700;">What Each Quote Includes</div>
         <ul style="list-style:none;padding:0;font-size:12px;color:var(--muted);line-height:2.1;">
-          <li>✅ CIF value (goods + freight + insurance)</li>
-          <li>✅ Import duty (HS code specific)</li>
-          <li>✅ VAT (7.5%)</li>
-          <li>✅ Port handling &amp; clearance estimate</li>
-          <li>✅ Last-mile delivery fee (Lagos→your state)</li>
-          <li>✅ FX risk buffer</li>
-          <li>✅ Total landed cost in ₦ and $</li>
-          <li>✅ Suggested retail margin</li>
+          <li>CIF value (goods + freight + insurance)</li>
+          <li>Import duty (HS code specific)</li>
+          <li>VAT (7.5%)</li>
+          <li>Port handling &amp; clearance estimate</li>
+          <li>Last-mile delivery fee (Lagos→your state)</li>
+          <li>FX risk buffer</li>
+          <li>Total landed cost in ₦ and $</li>
+          <li>Suggested retail margin</li>
         </ul>
       </div>
     </div>
     <div style="text-align:center;">
       <a href="https://t.me/ivoltpowersolutions" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;background:var(--cyan);color:#000;font-weight:700;font-size:14px;padding:14px 32px;border-radius:8px;text-decoration:none;transition:background .2s,transform .2s;" onmouseover="this.style.background='#1d4ed8'" onmouseout="this.style.background='var(--cyan)'">
-        ⚡ Open Bot on Telegram
+        Open Bot on Telegram
       </a>
     </div>
   </div>
 
   <div class="impex-bot-cta reveal">
-    <div class="impex-bot-cta-icon">🤖</div>
+    <div class="impex-bot-cta-icon"></div>
     <div>
       <h4>Calculate Real-Time Import / Export Costs in Telegram</h4>
       <p>Our free Telegram bot calculates live landed costs, import duties, freight estimates, and profit margins for every tradeable item — updated in real-time from commodity and FX markets. Run <strong>/trade import</strong> or <strong>/trade export</strong> for an instant quote with full breakdown. Free to use, no account needed.</p>
     </div>
     <div class="impex-bot-cta-btns">
-      <a href="https://t.me/ivoltpowersolutions" target="_blank" rel="noopener" class="impex-btn-tg">⚡ Open Bot</a>
-      <a href="https://t.me/ivoltpowersolutions" target="_blank" rel="noopener" class="impex-btn-bot">✈️ Join Telegram</a>
+      <a href="https://t.me/ivoltpowersolutions" target="_blank" rel="noopener" class="impex-btn-tg">Open Bot</a>
+      <a href="https://t.me/ivoltpowersolutions" target="_blank" rel="noopener" class="impex-btn-bot">Join Telegram</a>
     </div>
   </div>
 </section>
@@ -1401,12 +1401,12 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
     <p class="section-desc">We stand behind every unit we sell with genuine quality, fair pricing, and expert knowledge.</p>
   </div>
   <div class="why-grid reveal">
-    <div class="why-card"><div class="why-icon">✅</div><h4>Genuine Products</h4><p>Every unit we sell is verified and authentic. No counterfeits, no compromises.</p></div>
-    <div class="why-card"><div class="why-icon">🔁</div><h4>Fair Trade Price</h4><p>Competitive rates whether you're buying or selling. Transparent pricing, no hidden charges.</p></div>
-    <div class="why-card"><div class="why-icon">🛠️</div><h4>Expert Testing</h4><p>All used equipment is professionally tested before sale. What you see is what you get.</p></div>
-    <div class="why-card"><div class="why-icon">🚚</div><h4>Fast Delivery</h4><p>Quick turnaround on orders and inspections. We value your time as much as you do.</p></div>
-    <div class="why-card"><div class="why-icon">🏆</div><h4>5+ Years Experience</h4><p>Over 5 years of expertise in power protection equipment across Nigeria.</p></div>
-    <div class="why-card"><div class="why-icon">📞</div><h4>Always Reachable</h4><p>Call, WhatsApp, DM us on X, or join our Telegram Import &amp; Export channel. We're always available.</p></div>
+    <div class="why-card"><div class="why-icon"></div><h4>Genuine Products</h4><p>Every unit we sell is verified and authentic. No counterfeits, no compromises.</p></div>
+    <div class="why-card"><div class="why-icon"></div><h4>Fair Trade Price</h4><p>Competitive rates whether you're buying or selling. Transparent pricing, no hidden charges.</p></div>
+    <div class="why-card"><div class="why-icon"></div><h4>Expert Testing</h4><p>All used equipment is professionally tested before sale. What you see is what you get.</p></div>
+    <div class="why-card"><div class="why-icon"></div><h4>Fast Delivery</h4><p>Quick turnaround on orders and inspections. We value your time as much as you do.</p></div>
+    <div class="why-card"><div class="why-icon"></div><h4>5+ Years Experience</h4><p>Over 5 years of expertise in power protection equipment across Nigeria.</p></div>
+    <div class="why-card"><div class="why-icon"></div><h4>Always Reachable</h4><p>Call, WhatsApp, DM us on X, or join our Telegram Import &amp; Export channel. We're always available.</p></div>
   </div>
 </section>
 
@@ -1444,7 +1444,7 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
         <code style="display:block;font-size:12px;word-break:break-all;overflow-wrap:break-word;color:var(--text);line-height:2;">/price<br>/price stabilizers<br>/price surge<br>/price transformers<br>/invoice 5kVA Servo-Based AVS 1 Lagos</code>
       </div>
       <a href="https://t.me/ivoltpowersolutions" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:rgba(16,185,129,0.12);color:var(--green);border:1px solid rgba(16,185,129,0.3);border-radius:8px;padding:10px 20px;font-size:13px;font-weight:700;text-decoration:none;transition:all .2s;" onmouseover="this.style.background='rgba(16,185,129,0.22)'" onmouseout="this.style.background='rgba(16,185,129,0.12)'">
-        ⚡ Run /price on Telegram
+        Run /price on Telegram
       </a>
     </div>
 
@@ -1458,28 +1458,28 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
       </p>
       <div style="font-size:12px;color:var(--muted);line-height:2;margin-bottom:20px;">
         <strong style="color:var(--text);display:block;margin-bottom:6px;">What you get from /shop:</strong>
-        <span style="display:flex;align-items:center;gap:8px;">🛒 10 Mercury stabilizers (2kVA–50kVA)</span>
-        <span style="display:flex;align-items:center;gap:8px;">📸 Product photos, specs, and weight</span>
+        <span style="display:flex;align-items:center;gap:8px;">10 Mercury stabilizers (2kVA–50kVA)</span>
+        <span style="display:flex;align-items:center;gap:8px;">Product photos, specs, and weight</span>
         <span style="display:flex;align-items:center;gap:8px;">✅ Live stock status (in stock / low / out)</span>
-        <span style="display:flex;align-items:center;gap:8px;">🚚 Live delivery fee to any of Nigeria's 36 states</span>
-        <span style="display:flex;align-items:center;gap:8px;">💰 Price in ₦ and $ with exchange rate shown</span>
-        <span style="display:flex;align-items:center;gap:8px;">🧾 Instant checkout invoice (bank + USDT + PayPal)</span>
-        <span style="display:flex;align-items:center;gap:8px;">⚡ Flash sales and bulk discounts when active</span>
-        <span style="display:flex;align-items:center;gap:8px;">🔔 Back-in-stock and price-drop alerts</span>
+        <span style="display:flex;align-items:center;gap:8px;">Live delivery fee to any of Nigeria's 36 states</span>
+        <span style="display:flex;align-items:center;gap:8px;">Price in ₦ and $ with exchange rate shown</span>
+        <span style="display:flex;align-items:center;gap:8px;">Instant checkout invoice (bank + USDT + PayPal)</span>
+        <span style="display:flex;align-items:center;gap:8px;">Flash sales and bulk discounts when active</span>
+        <span style="display:flex;align-items:center;gap:8px;">Back-in-stock and price-drop alerts</span>
       </div>
       <div style="background:rgba(0,0,0,0.3);border-radius:8px;padding:14px 16px;margin-bottom:20px;overflow-x:auto;">
         <div style="font-size:10px;letter-spacing:2px;color:var(--gold);margin-bottom:8px;font-weight:700;">EXAMPLE COMMANDS</div>
         <code style="display:block;font-size:12px;word-break:break-all;overflow-wrap:break-word;color:var(--text);line-height:2;">/shop<br>/shop STAB-10KVA-1PH Lagos<br>/invoice STAB-5KVA 2 Abuja<br>/notify stock STAB-10KVA-3PH<br>/compare STAB-5KVA STAB-10KVA-1PH</code>
       </div>
       <a href="https://t.me/ivoltpowersolutions" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:rgba(245,158,11,0.12);color:var(--gold);border:1px solid rgba(245,158,11,0.3);border-radius:8px;padding:10px 20px;font-size:13px;font-weight:700;text-decoration:none;transition:all .2s;" onmouseover="this.style.background='rgba(245,158,11,0.22)'" onmouseout="this.style.background='rgba(245,158,11,0.12)'">
-        🛒 Browse Shop on Telegram
+        Browse Shop on Telegram
       </a>
     </div>
   </div>
 
   <!-- Difference between /price and /shop -->
   <div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:12px;padding:28px 32px;margin-bottom:40px;" class="reveal">
-    <div style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:16px;font-weight:700;">📌 /price vs /shop — What's the Difference?</div>
+    <div style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:16px;font-weight:700;">/price vs /shop — What's the Difference?</div>
     <div class="priceshop-diff-grid">
       <div>
         <div style="font-size:14px;font-weight:700;color:var(--cyan);margin-bottom:10px;">/price — Import Cost Tool</div>
@@ -1494,21 +1494,21 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
 
   <!-- Market price guide (original table, clearly labelled as a guide) -->
   <div class="pricelist-notice reveal">
-    <span>📊</span>
+    
     <div>
       <strong>Nigeria Market Price Guide (2025)</strong> — estimates from dealers and online platforms.<br>
       These ranges help you budget and compare. Our actual prices (via the bot) may differ based on live FX and stock.
       <div style="margin-top:10px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
         <span id="priceLastUpdated" style="font-size:11px;color:var(--muted);">Last updated: loading...</span>
-        <button id="priceRefreshBtn" onclick="refreshPrices()" style="background:rgba(37,99,235,0.15);border:1px solid rgba(37,99,235,0.4);color:var(--cyan);border-radius:6px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;letter-spacing:1px;">⟳ REFRESH PRICES</button>
+        <button id="priceRefreshBtn" onclick="refreshPrices()" style="background:rgba(37,99,235,0.15);border:1px solid rgba(37,99,235,0.4);color:var(--cyan);border-radius:6px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;letter-spacing:1px;">Refresh Prices</button>
         <span id="priceRefreshStatus" style="font-size:11px;color:var(--green);display:none;">✓ Updated!</span>
       </div>
     </div>
   </div>
 
   <div class="pricelist-tabs reveal">
-    <button class="ptab active" onclick="switchTab('regulator')">🔌 Servo-Based AVS Units</button>
-    <button class="ptab" onclick="switchTab('suppressor')">🛡️ Surge Protective Devices</button>
+    <button class="ptab active" onclick="switchTab('regulator')">Servo-Based AVS Units</button>
+    <button class="ptab" onclick="switchTab('suppressor')">Surge Protective Devices</button>
   </div>
 
   <div class="ptable-panel active reveal" id="tab-regulator">
@@ -1528,7 +1528,7 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
         </tbody>
       </table>
     </div>
-    <p style="font-size:11px;color:var(--muted);margin-top:12px;line-height:1.7;">⚡ For live Mercury prices with delivery fee to your state, run <strong style="color:var(--cyan);">/shop</strong> on our Telegram bot. The bot shows exact prices from our current stock, not market estimates.</p>
+    <p style="font-size:11px;color:var(--muted);margin-top:12px;line-height:1.7;">For live Mercury prices with delivery fee to your state, run <strong style="color:var(--cyan);">/shop</strong> on our Telegram bot. The bot shows exact prices from our current stock, not market estimates.</p>
   </div>
 
   <div class="ptable-panel reveal" id="tab-suppressor">
@@ -1545,7 +1545,7 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
         </tbody>
       </table>
     </div>
-    <p style="font-size:11px;color:var(--muted);margin-top:12px;line-height:1.7;">⚡ For live import landed prices on SPDs, run <strong style="color:var(--cyan);">/price surge</strong> on our Telegram bot. For wiring diagrams, run <strong style="color:var(--cyan);">/schematic surge type2 single</strong>.</p>
+    <p style="font-size:11px;color:var(--muted);margin-top:12px;line-height:1.7;">For live import landed prices on SPDs, run <strong style="color:var(--cyan);">/price surge</strong> on our Telegram bot. For wiring diagrams, run <strong style="color:var(--cyan);">/schematic surge type2 single</strong>.</p>
   </div>
 
   <!-- All-features grid -->
@@ -1553,62 +1553,62 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
     <div style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:20px;font-weight:700;text-align:center;">Everything Available Free on the Bot</div>
     <div class="feature-mini-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;">
       <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px 16px;">
-        <div style="font-size:18px;margin-bottom:8px;">🛒</div>
+        <div style="font-size:18px;margin-bottom:8px;"></div>
         <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;">/shop</div>
         <div style="font-size:11px;color:var(--muted);line-height:1.6;">Mercury catalogue with live stock, prices and photos</div>
       </div>
       <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px 16px;">
-        <div style="font-size:18px;margin-bottom:8px;">💰</div>
+        <div style="font-size:18px;margin-bottom:8px;"></div>
         <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;">/price</div>
         <div style="font-size:11px;color:var(--muted);line-height:1.6;">Import landed prices — duty, VAT, logistics, FX risk all included</div>
       </div>
       <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px 16px;">
-        <div style="font-size:18px;margin-bottom:8px;">🧾</div>
+        <div style="font-size:18px;margin-bottom:8px;"></div>
         <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;">/invoice</div>
         <div style="font-size:11px;color:var(--muted);line-height:1.6;">Instant checkout invoice in NGN + USD with payment details</div>
       </div>
       <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px 16px;">
-        <div style="font-size:18px;margin-bottom:8px;">🚚</div>
+        <div style="font-size:18px;margin-bottom:8px;"></div>
         <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;">/shop [SKU] [state]</div>
         <div style="font-size:11px;color:var(--muted);line-height:1.6;">Delivery fee to any Nigerian state — live oil-driven calculation</div>
       </div>
       <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px 16px;">
-        <div style="font-size:18px;margin-bottom:8px;">🔔</div>
+        <div style="font-size:18px;margin-bottom:8px;"></div>
         <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;">/notify</div>
         <div style="font-size:11px;color:var(--muted);line-height:1.6;">Back-in-stock alert and price-drop notification</div>
       </div>
       <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px 16px;">
-        <div style="font-size:18px;margin-bottom:8px;">⚖️</div>
+        <div style="font-size:18px;margin-bottom:8px;"></div>
         <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;">/compare</div>
         <div style="font-size:11px;color:var(--muted);line-height:1.6;">Side-by-side product comparison with delivery costs</div>
       </div>
       <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px 16px;">
-        <div style="font-size:18px;margin-bottom:8px;">📐</div>
+        <div style="font-size:18px;margin-bottom:8px;"></div>
         <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;">/schematic</div>
         <div style="font-size:11px;color:var(--muted);line-height:1.6;">Live wiring diagrams for any stabilizer or SPD</div>
       </div>
       <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px 16px;">
-        <div style="font-size:18px;margin-bottom:8px;">📦</div>
+        <div style="font-size:18px;margin-bottom:8px;"></div>
         <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;">/track</div>
         <div style="font-size:11px;color:var(--muted);line-height:1.6;">Order tracking — status updates from confirmed to delivered</div>
       </div>
       <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px 16px;">
-        <div style="font-size:18px;margin-bottom:8px;">⚡</div>
+        <div style="font-size:18px;margin-bottom:8px;"></div>
         <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;">/flash</div>
         <div style="font-size:11px;color:var(--muted);line-height:1.6;">Live flash sales — limited-time discounts announced here first</div>
       </div>
       <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px 16px;">
-        <div style="font-size:18px;margin-bottom:8px;">🔍</div>
+        <div style="font-size:18px;margin-bottom:8px;"></div>
         <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;">/search</div>
         <div style="font-size:11px;color:var(--muted);line-height:1.6;">Search across shop items and import catalogue by keyword</div>
       </div>
       <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px 16px;">
-        <div style="font-size:18px;margin-bottom:8px;">📈</div>
+        <div style="font-size:18px;margin-bottom:8px;"></div>
         <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;">/pricehistory</div>
         <div style="font-size:11px;color:var(--muted);line-height:1.6;">Price trend chart for any shop item — see if prices are rising or falling</div>
       </div>
       <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px 16px;">
-        <div style="font-size:18px;margin-bottom:8px;">📱</div>
+        <div style="font-size:18px;margin-bottom:8px;"></div>
         <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;">WhatsApp too</div>
         <div style="font-size:11px;color:var(--muted);line-height:1.6;">All commands work on WhatsApp. Just type <em>shop</em>, <em>price</em>, <em>invoice</em> to start.</div>
       </div>
@@ -1617,12 +1617,12 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
 
   <!-- CTA -->
   <div style="text-align:center;margin-top:44px;padding:36px;background:rgba(37,99,235,0.05);border:1px solid rgba(37,99,235,0.15);border-radius:12px;" class="reveal">
-    <div style="font-size:28px;margin-bottom:12px;">🤖</div>
+    <div style="font-size:28px;margin-bottom:12px;"></div>
     <h3 style="font-family:'Montserrat',sans-serif;font-size:20px;font-weight:800;color:#fff;margin-bottom:10px;">Get Your Live Price Right Now</h3>
     <p style="font-size:13px;color:var(--muted);line-height:1.8;max-width:540px;margin:0 auto 22px;">Open the Telegram bot, type <strong style="color:var(--cyan);">/shop</strong> to browse our in-stock stabilizers or <strong style="color:var(--cyan);">/price</strong> to see full import landed costs. Free to use. No account needed.</p>
     <div class="priceshop-cta-btns" style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
-      <a href="https://t.me/ivoltpowersolutions" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:var(--cyan);color:#000;font-weight:700;font-size:13px;padding:12px 28px;border-radius:8px;text-decoration:none;transition:all .2s;">🛒 Shop on Telegram</a>
-      <a href="https://t.me/ivoltpowersolutions" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--text);font-weight:700;font-size:13px;padding:12px 28px;border-radius:8px;text-decoration:none;border:1px solid var(--border);transition:all .2s;">✈️ Join Telegram</a>
+      <a href="https://t.me/ivoltpowersolutions" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:var(--cyan);color:#000;font-weight:700;font-size:13px;padding:12px 28px;border-radius:8px;text-decoration:none;transition:all .2s;">Shop on Telegram</a>
+      <a href="https://t.me/ivoltpowersolutions" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--text);font-weight:700;font-size:13px;padding:12px 28px;border-radius:8px;text-decoration:none;border:1px solid var(--border);transition:all .2s;">Join Telegram</a>
     </div>
   </div>
 </section>
@@ -1657,7 +1657,7 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
         <select><option value="">Select one...</option><option>Residential / Home</option><option>Office / Commercial</option><option>Industrial / Factory</option><option>Other</option></select>
       </div>
       <div class="form-group"><label>Additional Notes</label><textarea placeholder="Describe any specific concerns..."></textarea></div>
-      <button class="submit-btn" onclick="handleSubmit()">⚡ Request Inspection</button>
+      <button class="submit-btn" onclick="handleSubmit()">Request Inspection</button>
     </div>
   </div>
 </section>
@@ -1673,19 +1673,19 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
     <div class="contact-info">
       <div class="contact-items">
         <div class="contact-item">
-          <div class="contact-item-icon">📞</div>
+          <div class="contact-item-icon">Tel</div>
           <div><div class="contact-item-label">Phone</div><div class="contact-item-val"><a href="tel:+2349032156174">+234 903 215 6174</a></div></div>
         </div>
         <div class="contact-item">
-          <div class="contact-item-icon">💬</div>
+          <div class="contact-item-icon">WA</div>
           <div><div class="contact-item-label">WhatsApp</div><div class="contact-item-val"><a href="https://wa.me/2349032156174" target="_blank">+234 903 215 6174</a></div></div>
         </div>
         <div class="contact-item">
-          <div class="contact-item-icon">𝕏</div>
+          <div class="contact-item-icon">X</div>
           <div><div class="contact-item-label">X (Twitter)</div><div class="contact-item-val"><a href="https://x.com/TradesByBami" target="_blank">@TradesByBami</a></div></div>
         </div>
         <div class="contact-item">
-          <div class="contact-item-icon tg-icon">✈️</div>
+          <div class="contact-item-icon tg-icon">TG</div>
           <div>
             <div class="contact-item-label">Telegram — Import &amp; Export</div>
             <div class="contact-item-val"><a href="https://t.me/ivoltpowersolutions" target="_blank" rel="noopener" class="tg-link">t.me/ivoltpowersolutions</a></div>
@@ -1695,7 +1695,7 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
     </div>
     <div>
       <div class="map-placeholder reveal">
-        <div class="map-icon">📍</div>
+        <div class="map-icon">&#x25CE;</div>
         <p>Lagos, Nigeria</p>
         <p style="font-size:10px;margin-top:4px;">Contact us for our exact location</p>
       </div>
@@ -1755,70 +1755,70 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
       <p class="section-sub">Promoted partners trusted by our community</p>
     </div>
     <div class="advert-tabs" style="margin-bottom:36px;">
-      <button class="advert-tab active" id="featTab1" onclick="switchFeatTab('webdesign')">💻 Web Design</button>
-      <button class="advert-tab" id="featTab2" onclick="switchFeatTab('moren')">🎂 Moren Sweet Treat</button>
+      <button class="advert-tab active" id="featTab1" onclick="switchFeatTab('webdesign')">Web Design</button>
+      <button class="advert-tab" id="featTab2" onclick="switchFeatTab('moren')">Moren Sweet Treat</button>
     </div>
 
     <div id="featPanel-webdesign">
       <p class="section-sub" style="margin-bottom:28px;">Serving Nigerian &amp; international businesses with world-class web solutions</p>
       <div class="advert-tabs" style="margin-bottom:24px;">
-        <button class="advert-tab active" id="wdTab1" onclick="switchAdTab('ng',this);document.getElementById('wdTab1').classList.add('active');document.getElementById('wdTab2').classList.remove('active');">🇳🇬 For Nigerian Businesses</button>
-        <button class="advert-tab" id="wdTab2" onclick="switchAdTab('intl',this);document.getElementById('wdTab2').classList.add('active');document.getElementById('wdTab1').classList.remove('active');">🌍 For International Businesses</button>
+        <button class="advert-tab active" id="wdTab1" onclick="switchAdTab('ng',this);document.getElementById('wdTab1').classList.add('active');document.getElementById('wdTab2').classList.remove('active');">For Nigerian Businesses</button>
+        <button class="advert-tab" id="wdTab2" onclick="switchAdTab('intl',this);document.getElementById('wdTab2').classList.add('active');document.getElementById('wdTab1').classList.remove('active');">For International Businesses</button>
       </div>
       <div class="advert-card-main" id="adCard-ng">
         <div class="advert-card-glow"></div>
         <div class="advert-card-left">
-          <div class="advert-icon-wrap">💻</div>
-          <div class="advert-badge">✨ Nigerian Businesses</div>
+          <div class="advert-icon-wrap"></div>
+          <div class="advert-badge">Nigerian Businesses</div>
           <h3 class="advert-title">Grow Your Business <span>Online in Nigeria</span></h3>
           <p class="advert-desc">We build fast, professional websites for Nigerian SMEs, traders, shops, and professionals. Get found on Google, attract more customers, and compete with the big brands — all at affordable Naira pricing.</p>
           <ul class="advert-features">
-            <li><span class="af-icon">🇳🇬</span> Nigeria-based team that understands your market</li>
-            <li><span class="af-icon">✅</span> Naira-friendly pricing — no hidden charges</li>
-            <li><span class="af-icon">📱</span> Mobile-first design for Nigeria's mobile users</li>
-            <li><span class="af-icon">🔍</span> Google SEO so locals can find your business</li>
-            <li><span class="af-icon">⚡</span> Fast loading even on slower connections</li>
-            <li><span class="af-icon">🔥</span> WhatsApp &amp; social media integration</li>
+            <li> Nigeria-based team that understands your market</li>
+            <li> Naira-friendly pricing — no hidden charges</li>
+            <li> Mobile-first design for Nigeria's mobile users</li>
+            <li> Google SEO so locals can find your business</li>
+            <li> Fast loading even on slower connections</li>
+            <li> WhatsApp &amp; social media integration</li>
           </ul>
           <div class="advert-stats-row">
             <div class="advert-stat"><span class="as-num">50+</span><span class="as-label">Sites Built</span></div>
             <div class="advert-stat"><span class="as-num">24hr</span><span class="as-label">Turnaround</span></div>
             <div class="advert-stat"><span class="as-num">100%</span><span class="as-label">Mobile-Ready</span></div>
           </div>
-          <div class="advert-contact-row"><a href="tel:+2349032156174" class="advert-btn-call">📞 Call +234 903 215 6174</a></div>
-          <div class="advert-wa-row"><a href="https://wa.me/2349032156174?text=Hi%2C%20I%20need%20a%20professional%20website%20for%20my%20business" target="_blank" class="advert-btn-wa">💬 Chat on WhatsApp</a></div>
+          <div class="advert-contact-row"><a href="tel:+2349032156174" class="advert-btn-call">Call +234 903 215 6174</a></div>
+          <div class="advert-wa-row"><a href="https://wa.me/2349032156174?text=Hi%2C%20I%20need%20a%20professional%20website%20for%20my%20business" target="_blank" class="advert-btn-wa">Chat on WhatsApp</a></div>
         </div>
         <div class="advert-card-right">
           <div class="advert-mockup"><div class="mockup-bar"><span></span><span></span><span></span></div><div class="mockup-body"><div class="mockup-line w80"></div><div class="mockup-line w60"></div><div class="mockup-block"></div><div class="mockup-line w90"></div><div class="mockup-line w50"></div><div class="mockup-btn-row"><div class="mockup-btn"></div><div class="mockup-btn outline"></div></div></div></div>
-          <div class="advert-right-tags"><span class="advert-rtag">🇳🇬 Lagos</span><span class="advert-rtag">🇳🇬 Abuja</span><span class="advert-rtag">🇳🇬 PH</span><span class="advert-rtag">Nationwide</span></div>
+          <div class="advert-right-tags"><span class="advert-rtag">Lagos</span><span class="advert-rtag">Abuja</span><span class="advert-rtag">PH</span><span class="advert-rtag">Nationwide</span></div>
           <div class="advert-sponsored-tag">Advertisement</div>
         </div>
       </div>
       <div class="advert-card-main" id="adCard-intl" style="display:none;">
         <div class="advert-card-glow" style="background:radial-gradient(ellipse at 10% 50%,rgba(16,185,129,0.15) 0%,transparent 55%),radial-gradient(ellipse at 90% 20%,rgba(37,99,235,0.12) 0%,transparent 50%);"></div>
         <div class="advert-card-left">
-          <div class="advert-icon-wrap" style="background:linear-gradient(135deg,#059669,#2563eb);">🌍</div>
-          <div class="advert-badge" style="background:rgba(16,185,129,0.12);border-color:rgba(16,185,129,0.3);color:#6ee7b7;">🌍 International Clients</div>
+          <div class="advert-icon-wrap" style="background:linear-gradient(135deg,#059669,#2563eb);"></div>
+          <div class="advert-badge" style="background:rgba(16,185,129,0.12);border-color:rgba(16,185,129,0.3);color:#6ee7b7;">International Clients</div>
           <h3 class="advert-title">World-Class Web Design <span style="color:#6ee7b7;">for Global Businesses</span></h3>
           <p class="advert-desc">Whether you're in the UK, US, Canada, Europe or beyond — we deliver high-quality, conversion-focused websites at competitive rates. Remote-first, deadline-driven, and fluent in international standards.</p>
           <ul class="advert-features">
-            <li><span class="af-icon">🌍</span> Serving clients in UK, US, Canada &amp; Europe</li>
-            <li><span class="af-icon">✅</span> USD / GBP / EUR pricing available</li>
-            <li><span class="af-icon">🔧</span> Full-stack: design, dev, hosting &amp; maintenance</li>
-            <li><span class="af-icon">🔍</span> International SEO &amp; performance optimisation</li>
-            <li><span class="af-icon">🔒</span> SSL, GDPR compliance &amp; accessibility-ready</li>
-            <li><span class="af-icon">📅</span> Flexible timelines with milestone delivery</li>
+            <li> Serving clients in UK, US, Canada &amp; Europe</li>
+            <li> USD / GBP / EUR pricing available</li>
+            <li> Full-stack: design, dev, hosting &amp; maintenance</li>
+            <li> International SEO &amp; performance optimisation</li>
+            <li> SSL, GDPR compliance &amp; accessibility-ready</li>
+            <li> Flexible timelines with milestone delivery</li>
           </ul>
           <div class="advert-stats-row">
             <div class="advert-stat"><span class="as-num">10+</span><span class="as-label">Countries</span></div>
-            <div class="advert-stat"><span class="as-num">5★</span><span class="as-label">Rated</span></div>
+            <div class="advert-stat"><span class="as-num">5 Stars</span><span class="as-label">Rated</span></div>
             <div class="advert-stat"><span class="as-num">GDPR</span><span class="as-label">Compliant</span></div>
           </div>
-          <div class="advert-wa-row"><a href="https://wa.me/2349032156174?text=Hi%2C%20I%20am%20an%20international%20client%20and%20need%20a%20website" target="_blank" class="advert-btn-wa" style="background:rgba(16,185,129,0.15);border-color:rgba(16,185,129,0.4);color:#6ee7b7;">💬 WhatsApp Enquiry</a></div>
+          <div class="advert-wa-row"><a href="https://wa.me/2349032156174?text=Hi%2C%20I%20am%20an%20international%20client%20and%20need%20a%20website" target="_blank" class="advert-btn-wa" style="background:rgba(16,185,129,0.15);border-color:rgba(16,185,129,0.4);color:#6ee7b7;">WhatsApp Enquiry</a></div>
         </div>
         <div class="advert-card-right" style="border-left-color:rgba(16,185,129,0.15);">
           <div class="advert-mockup"><div class="mockup-bar"><span></span><span></span><span></span></div><div class="mockup-body"><div class="mockup-line w80"></div><div class="mockup-line w60"></div><div class="mockup-block" style="background:linear-gradient(135deg,rgba(5,150,105,0.3),rgba(37,99,235,0.2));border-color:rgba(5,150,105,0.2);"></div><div class="mockup-line w90"></div><div class="mockup-line w50"></div><div class="mockup-btn-row"><div class="mockup-btn" style="background:linear-gradient(135deg,#059669,#2563eb);"></div><div class="mockup-btn outline"></div></div></div></div>
-          <div class="advert-right-tags"><span class="advert-rtag" style="border-color:rgba(16,185,129,0.3);color:#6ee7b7;">🇬🇧 UK</span><span class="advert-rtag" style="border-color:rgba(16,185,129,0.3);color:#6ee7b7;">🇺🇸 US</span><span class="advert-rtag" style="border-color:rgba(16,185,129,0.3);color:#6ee7b7;">🇨🇦 CA</span><span class="advert-rtag" style="border-color:rgba(16,185,129,0.3);color:#6ee7b7;">🇪🇺 EU</span></div>
+          <div class="advert-right-tags"><span class="advert-rtag" style="border-color:rgba(16,185,129,0.3);color:#6ee7b7;">UK</span><span class="advert-rtag" style="border-color:rgba(16,185,129,0.3);color:#6ee7b7;">US</span><span class="advert-rtag" style="border-color:rgba(16,185,129,0.3);color:#6ee7b7;">CA</span><span class="advert-rtag" style="border-color:rgba(16,185,129,0.3);color:#6ee7b7;">EU</span></div>
           <div class="advert-sponsored-tag">Advertisement</div>
         </div>
       </div>
@@ -1831,40 +1831,40 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
           <p style="font-size:14px;color:rgba(255,255,255,0.5);max-width:500px;margin:10px auto 0;line-height:1.7;">Sweetening Moments, One Treat At A Time — Fresh Cakes, Pastries, Snacks &amp; Drinks</p>
         </div>
         <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:3px;border-radius:14px;overflow:hidden;margin-top:24px;">
-          <div style="position:relative;aspect-ratio:1;overflow:hidden;background:#1a0d05;"><img src="https://morensweettreat.github.io/images/plantain-chips.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" style="width:100%;height:100%;object-fit:cover;"><div style="display:none;width:100%;height:100%;align-items:center;justify-content:center;flex-direction:column;gap:8px;background:rgba(201,122,58,0.08);border:1px solid rgba(201,122,58,0.15);"><span style="font-size:36px;">🌽</span><span style="font-size:10px;font-weight:700;letter-spacing:2px;color:var(--muted);">PLANTAIN CHIPS</span></div></div>
-          <div style="position:relative;aspect-ratio:1;overflow:hidden;background:#1a0d05;"><img src="https://morensweettreat.github.io/images/chin-chin.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" style="width:100%;height:100%;object-fit:cover;"><div style="display:none;width:100%;height:100%;align-items:center;justify-content:center;flex-direction:column;gap:8px;background:rgba(123,28,46,0.08);border:1px solid rgba(123,28,46,0.15);"><span style="font-size:36px;">🍪</span><span style="font-size:10px;font-weight:700;letter-spacing:2px;color:var(--muted);">CHIN CHIN</span></div></div>
-          <div style="position:relative;aspect-ratio:1;overflow:hidden;background:#1a0d05;"><img src="https://morensweettreat.github.io/images/cake.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" style="width:100%;height:100%;object-fit:cover;"><div style="display:none;width:100%;height:100%;align-items:center;justify-content:center;flex-direction:column;gap:8px;background:rgba(201,122,58,0.08);border:1px solid rgba(201,122,58,0.15);"><span style="font-size:36px;">🎂</span><span style="font-size:10px;font-weight:700;letter-spacing:2px;color:var(--muted);">CAKES</span></div></div>
-          <div style="position:relative;aspect-ratio:1;overflow:hidden;background:#1a0d05;"><img src="https://morensweettreat.github.io/images/pastries.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" style="width:100%;height:100%;object-fit:cover;"><div style="display:none;width:100%;height:100%;align-items:center;justify-content:center;flex-direction:column;gap:8px;background:rgba(123,28,46,0.08);border:1px solid rgba(123,28,46,0.15);"><span style="font-size:36px;">🥐</span><span style="font-size:10px;font-weight:700;letter-spacing:2px;color:var(--muted);">PASTRIES</span></div></div>
+          <div style="position:relative;aspect-ratio:1;overflow:hidden;background:#1a0d05;"><img src="https://morensweettreat.github.io/images/plantain-chips.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" style="width:100%;height:100%;object-fit:cover;"><div style="display:none;width:100%;height:100%;align-items:center;justify-content:center;flex-direction:column;gap:8px;background:rgba(201,122,58,0.08);border:1px solid rgba(201,122,58,0.15);"><span style="font-size:36px;"></span><span style="font-size:10px;font-weight:700;letter-spacing:2px;color:var(--muted);">PLANTAIN CHIPS</span></div></div>
+          <div style="position:relative;aspect-ratio:1;overflow:hidden;background:#1a0d05;"><img src="https://morensweettreat.github.io/images/chin-chin.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" style="width:100%;height:100%;object-fit:cover;"><div style="display:none;width:100%;height:100%;align-items:center;justify-content:center;flex-direction:column;gap:8px;background:rgba(123,28,46,0.08);border:1px solid rgba(123,28,46,0.15);"><span style="font-size:36px;"></span><span style="font-size:10px;font-weight:700;letter-spacing:2px;color:var(--muted);">CHIN CHIN</span></div></div>
+          <div style="position:relative;aspect-ratio:1;overflow:hidden;background:#1a0d05;"><img src="https://morensweettreat.github.io/images/cake.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" style="width:100%;height:100%;object-fit:cover;"><div style="display:none;width:100%;height:100%;align-items:center;justify-content:center;flex-direction:column;gap:8px;background:rgba(201,122,58,0.08);border:1px solid rgba(201,122,58,0.15);"><span style="font-size:36px;"></span><span style="font-size:10px;font-weight:700;letter-spacing:2px;color:var(--muted);">CAKES</span></div></div>
+          <div style="position:relative;aspect-ratio:1;overflow:hidden;background:#1a0d05;"><img src="https://morensweettreat.github.io/images/pastries.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" style="width:100%;height:100%;object-fit:cover;"><div style="display:none;width:100%;height:100%;align-items:center;justify-content:center;flex-direction:column;gap:8px;background:rgba(123,28,46,0.08);border:1px solid rgba(123,28,46,0.15);"><span style="font-size:36px;"></span><span style="font-size:10px;font-weight:700;letter-spacing:2px;color:var(--muted);">PASTRIES</span></div></div>
         </div>
         <div style="background:rgba(201,122,58,0.06);border:1px solid rgba(201,122,58,0.2);border-radius:16px;padding:28px 24px;margin-top:24px;">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
             <div>
               <div style="font-size:11px;font-weight:700;letter-spacing:2px;color:#c97a3a;margin-bottom:12px;">OUR MENU</div>
               <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
-                <li style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);">🎂 <span>Cakes — Chocolate, Vanilla, Red Velvet &amp; more</span></li>
-                <li style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);">🥐 <span>Pastries — Meat Pie, Fish Pie, Egg Roll, Puff Puff</span></li>
-                <li style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);">🌽 <span>Plantain Chips — Plain, Spicy, Honey Glazed</span></li>
-                <li style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);">🍪 <span>Chin Chin — Classic, Coconut, Peanut, Chocolate</span></li>
-                <li style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);">🍖 <span>Local Snacks — Kuli Kuli, Donkwa, Aadun &amp; more</span></li>
-                <li style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);">🌺 <span>Zobo — Classic, Ginger &amp; Cloves, Pineapple</span></li>
+                <li style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);"><span>Cakes — Chocolate, Vanilla, Red Velvet &amp; more</span></li>
+                <li style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);"><span>Pastries — Meat Pie, Fish Pie, Egg Roll, Puff Puff</span></li>
+                <li style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);"><span>Plantain Chips — Plain, Spicy, Honey Glazed</span></li>
+                <li style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);"><span>Chin Chin — Classic, Coconut, Peanut, Chocolate</span></li>
+                <li style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);"><span>Local Snacks — Kuli Kuli, Donkwa, Aadun &amp; more</span></li>
+                <li style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);"><span>Zobo — Classic, Ginger &amp; Cloves, Pineapple</span></li>
               </ul>
             </div>
             <div>
               <div style="font-size:11px;font-weight:700;letter-spacing:2px;color:#7b1c2e;margin-bottom:12px;">WHY MOREN?</div>
               <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
-                <li style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);">🌿 Fresh ingredients, sourced daily</li>
-                <li style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);">❤️ Made with love in every batch</li>
-                <li style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);">🎁 Perfect for birthdays &amp; gifting</li>
-                <li style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);">🚀 Quick &amp; reliable delivery</li>
-                <li style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);">📱 Easy WhatsApp ordering</li>
-                <li style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);">📦 Medium, Large &amp; XL sizes available</li>
+                <li style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);">Fresh ingredients, sourced daily</li>
+                <li style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);">Made with love in every batch</li>
+                <li style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);">Perfect for birthdays &amp; gifting</li>
+                <li style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);">Quick &amp; reliable delivery</li>
+                <li style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);">Easy WhatsApp ordering</li>
+                <li style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);">Medium, Large &amp; XL sizes available</li>
               </ul>
             </div>
           </div>
           <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:24px;">
-            <a href="https://morensweettreat.github.io" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#7b1c2e,#c97a3a);color:#fff;font-weight:800;font-size:13px;padding:12px 22px;border-radius:10px;text-decoration:none;letter-spacing:0.5px;">🎂 Visit Moren's Menu</a>
+            <a href="https://morensweettreat.github.io" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#7b1c2e,#c97a3a);color:#fff;font-weight:800;font-size:13px;padding:12px 22px;border-radius:10px;text-decoration:none;letter-spacing:0.5px;">Visit Moren's Menu</a>
           </div>
-          <div style="margin-top:16px;font-size:11px;color:var(--muted);border-top:1px solid rgba(255,255,255,0.06);padding-top:12px;text-align:center;">📷 Fresh treats made daily · 🇳🇬 Serving your neighbourhood</div>
+          <div style="margin-top:16px;font-size:11px;color:var(--muted);border-top:1px solid rgba(255,255,255,0.06);padding-top:12px;text-align:center;">Fresh treats made daily · Serving your neighbourhood</div>
         </div>
       </div>
     </div>
@@ -1893,38 +1893,38 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
       <h5>Contact &amp; Trade</h5>
       <ul>
         <li><a href="tel:+2349032156174">+234 903 215 6174</a></li>
-        <li><a href="https://wa.me/2349032156174" target="_blank">💬 WhatsApp Us</a></li>
+        <li><a href="https://wa.me/2349032156174" target="_blank">WhatsApp Us</a></li>
         <li><a href="https://x.com/TradesByBami" target="_blank">𝕏 @TradesByBami</a></li>
-        <li><a href="https://t.me/ivoltpowersolutions" target="_blank" rel="noopener" class="tg-footer">✈️ iVolt Telegram Channel</a></li>
-        <li><a href="https://t.me/ivoltpowersolutions" target="_blank" rel="noopener" class="tg-footer">⚡ iVolt Shop &amp; Trade Bot</a></li>
+        <li><a href="https://t.me/ivoltpowersolutions" target="_blank" rel="noopener" class="tg-footer">iVolt Telegram Channel</a></li>
+        <li><a href="https://t.me/ivoltpowersolutions" target="_blank" rel="noopener" class="tg-footer">iVolt Shop &amp; Trade Bot</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
     <p>© 2025 iVolt Power Solutions<span class="dot">·</span>All Rights Reserved</p>
-    <p>Built with ⚡ in Nigeria</p>
+    <p>Built in Nigeria</p>
   </div>
 </footer>
 
 <!-- AI CHAT ASSISTANT -->
 <button class="chat-bubble" id="chatBubble" onclick="toggleChat()" title="Chat with Volta AI">
-  <span id="chatBubbleIcon">⚡</span>
+  <span id="chatBubbleIcon">&#9889;</span>
   <div class="chat-badge" id="chatBadge">1</div>
 </button>
 <div class="chat-window" id="chatWindow">
   <div class="chat-header">
-    <div class="chat-avatar">⚡</div>
+    <div class="chat-avatar">V</div>
     <div class="chat-header-info">
       <div class="chat-header-name">Volta — iVolt AI Assistant</div>
       <div class="chat-header-status"><span class="chat-status-dot"></span> Online · Available Now</div>
     </div>
-    <button class="chat-close" onclick="toggleChat()">✕</button>
+    <button class="chat-close" onclick="toggleChat()">&times;</button>
   </div>
   <div class="chat-messages" id="chatMessages">
     <div class="msg bot">
-      <div class="chat-avatar" style="width:32px;height:32px;font-size:16px;flex-shrink:0;">⚡</div>
+      <div class="chat-avatar" style="width:32px;height:32px;font-size:16px;flex-shrink:0;">V</div>
       <div>
-        <div class="msg-bubble">👋 Hello! I'm <strong>Volta</strong>, iVolt Power Solutions' AI assistant. I can help you with:<br><br>• Product recommendations<br>• Pricing &amp; availability<br>• Voltage regulator sizing<br>• Booking an inspection<br><br>How can I help you today?</div>
+        <div class="msg-bubble">Hello! I'm <strong>Volta</strong>, iVolt Power Solutions' AI assistant. I can help you with:<br><br>• Product recommendations<br>• Pricing &amp; availability<br>• Voltage regulator sizing<br>• Booking an inspection<br><br>How can I help you today?</div>
         <div class="msg-time">Just now</div>
       </div>
     </div>
@@ -1934,14 +1934,14 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
       <button class="chat-back-btn" onclick="showQuickMenu()">← Back to Menu</button>
     </div>
     <div class="chat-quick-btns" id="quickBtns">
-      <button class="quick-btn" onclick="quickAsk('What servo-based AVS do I need for my home?')">🏠 Home AVR sizing</button>
-      <button class="quick-btn" onclick="quickAsk('What are your current prices?')">💰 Pricing</button>
-      <button class="quick-btn" onclick="quickAsk('How do I book an electrical inspection?')">🔌 Book inspection</button>
-      <button class="quick-btn" onclick="quickAsk('Do you sell used (Tokunbo) regulators?')">♻️ Used units</button>
+      <button class="quick-btn" onclick="quickAsk('What servo-based AVS do I need for my home?')">Home AVR sizing</button>
+      <button class="quick-btn" onclick="quickAsk('What are your current prices?')">Pricing</button>
+      <button class="quick-btn" onclick="quickAsk('How do I book an electrical inspection?')">Book inspection</button>
+      <button class="quick-btn" onclick="quickAsk('Do you sell used (Tokunbo) regulators?')">Used units</button>
     </div>
     <div class="chat-input-row">
       <input class="chat-input" id="chatInput" type="text" placeholder="Ask about our products…" onkeydown="if(event.key==='Enter') sendChat()">
-      <button class="chat-send" onclick="sendChat()">➤</button>
+      <button class="chat-send" onclick="sendChat()">Send</button>
     </div>
   </div>
 </div>
@@ -1949,7 +1949,7 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
 <!-- ORDER MODAL -->
 <div class="order-overlay" id="orderOverlay" onclick="overlayClose(event)">
   <div class="order-modal">
-    <button class="order-modal-close" onclick="closeOrder()">✕</button>
+    <button class="order-modal-close" onclick="closeOrder()">&times;</button>
     <div class="order-modal-tag">Place an Order</div>
     <h3 id="orderProductTitle">Power Regulator</h3>
     <p class="order-modal-sub">Fill in your specs and we'll confirm availability within 24 hrs.</p>
@@ -1964,7 +1964,7 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
     <div class="form-group"><label>Your Name</label><input type="text" id="oName" placeholder="Full name"></div>
     <div class="form-group"><label>Phone Number</label><input type="tel" id="oPhone" placeholder="+234 000 000 0000"></div>
     <div class="form-group"><label>Additional Notes <span style="color:var(--muted);font-size:8px;letter-spacing:1px;">(OPTIONAL)</span></label><input type="text" id="oNotes" placeholder="Delivery location, urgency, custom spec…"></div>
-    <button class="order-modal-submit" onclick="submitOrder()">⚡ Send Order via WhatsApp</button>
+    <button class="order-modal-submit" onclick="submitOrder()">Send Order via WhatsApp</button>
   </div>
 </div>
 
@@ -2145,44 +2145,44 @@ function loadMoreNews() {
 }
 
 var chatOpen=false,hasChattedBefore=false;
-function toggleChat(){chatOpen=!chatOpen;document.getElementById('chatWindow').classList.toggle('open',chatOpen);document.getElementById('chatBubbleIcon').textContent=chatOpen?'\u2715':'\u26A1';document.getElementById('chatBadge').style.display=chatOpen?'none':'flex';if(chatOpen)setTimeout(function(){document.getElementById('chatInput').focus();},300);}
+function toggleChat(){chatOpen=!chatOpen;document.getElementById('chatWindow').classList.toggle('open',chatOpen);document.getElementById('chatBubbleIcon').textContent=chatOpen?'\u2715':'V';document.getElementById('chatBadge').style.display=chatOpen?'none':'flex';if(chatOpen)setTimeout(function(){document.getElementById('chatInput').focus();},300);}
 function showQuickMenu(){document.getElementById('quickBtns').style.display='flex';document.getElementById('chatBackBar').style.display='none';document.getElementById('chatInput').focus();}
 function quickAsk(text){document.getElementById('quickBtns').style.display='none';document.getElementById('chatInput').value=text;sendChat();}
 function addMsg(role,html){
   var msgs=document.getElementById('chatMessages'),wrapper=document.createElement('div');
   wrapper.className='msg '+role;
   var now=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
-  if(role==='bot'){wrapper.innerHTML='<div style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">\u26A1</div><div><div class="msg-bubble">'+html+'</div><div class="msg-time">'+now+'</div></div>';}
+  if(role==='bot'){wrapper.innerHTML='<div style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">V</div><div><div class="msg-bubble">'+html+'</div><div class="msg-time">'+now+'</div></div>';}
   else{wrapper.innerHTML='<div><div class="msg-bubble">'+html+'</div><div class="msg-time">'+now+'</div></div>';}
   msgs.appendChild(wrapper);msgs.scrollTo({top:msgs.scrollHeight,behavior:'smooth'});
 }
-function showTyping(){var msgs=document.getElementById('chatMessages'),div=document.createElement('div');div.className='msg bot';div.id='typingIndicator';div.innerHTML='<div style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">\u26A1</div><div class="msg-bubble">...</div>';msgs.appendChild(div);msgs.scrollTo({top:msgs.scrollHeight,behavior:'smooth'});}
+function showTyping(){var msgs=document.getElementById('chatMessages'),div=document.createElement('div');div.className='msg bot';div.id='typingIndicator';div.innerHTML='<div style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">V</div><div class="msg-bubble">...</div>';msgs.appendChild(div);msgs.scrollTo({top:msgs.scrollHeight,behavior:'smooth'});}
 function removeTyping(){var t=document.getElementById('typingIndicator');if(t)t.remove();}
 
 var voltaKB=[
-  {keys:['price','cost','how much','pricing','rate','charge','fee','naira','ngn'],reply:'Here are our <strong>approximate price ranges</strong> (confirm with our team):<br><br>⚡ <strong>Servo-Based AVS Units (AVRs):</strong><br>&nbsp;&nbsp;• 500VA — from ₦18,000<br>&nbsp;&nbsp;• 1 KVA — from ₦28,000<br>&nbsp;&nbsp;• 2 KVA — from ₦45,000<br>&nbsp;&nbsp;• 5 KVA — from ₦120,000<br>&nbsp;&nbsp;• 10 KVA — from ₦250,000<br>&nbsp;&nbsp;• 20–50 KVA — contact us<br><br>🛡️ <strong>Surge Protective Devices:</strong> from ₦8,000<br><br>Tokunbo (used) units available at lower rates.<br>WhatsApp: <strong>+234 903 215 6174</strong>'},
+  {keys:['price','cost','how much','pricing','rate','charge','fee','naira','ngn'],reply:'Here are our <strong>approximate price ranges</strong> (confirm with our team):<br><br><strong>Servo-Based AVS Units (AVRs):</strong><br>&nbsp;&nbsp;• 500VA — from ₦18,000<br>&nbsp;&nbsp;• 1 KVA — from ₦28,000<br>&nbsp;&nbsp;• 2 KVA — from ₦45,000<br>&nbsp;&nbsp;• 5 KVA — from ₦120,000<br>&nbsp;&nbsp;• 10 KVA — from ₦250,000<br>&nbsp;&nbsp;• 20–50 KVA — contact us<br><br><strong>Surge Protective Devices:</strong> from ₦8,000<br><br>Tokunbo (used) units available at lower rates.<br>WhatsApp: <strong>+234 903 215 6174</strong>'},
   {keys:['size','sizing','kva','va','watt','load','capacity','home regulator','apartment','house'],reply:'Add up your appliance wattage, then multiply by <strong>1.5–2×</strong> for headroom.<br><br><strong>Quick guide:</strong><br>• Small apartment: <strong>1–2 KVA</strong><br>• Medium home + AC 1HP: <strong>3–5 KVA</strong><br>• Large home / AC 2HP+: <strong>7.5–10 KVA</strong><br>• Office: <strong>10–50 KVA</strong><br><br>WhatsApp: <strong>+234 903 215 6174</strong>'},
   {keys:['tokunbo','used','second hand','fairly used'],reply:'Yes! We stock both <strong>New</strong> and <strong>Tokunbo (fairly used)</strong> units — tested, quality-checked, and great value.<br><br>WhatsApp: <strong>+234 903 215 6174</strong>'},
   {keys:['brand','brands','sollatek','prostar','mikano','mercury'],reply:'We stock: <strong>Sollatek</strong>, <strong>Prostar</strong>, <strong>Mikano</strong>, <strong>Mercury</strong> and more — in new &amp; Tokunbo condition.<br><br>WhatsApp: <strong>+234 903 215 6174</strong>'},
   {keys:['surge','suppressor','surge protector','spike','lightning','tvss'],reply:'We sell <strong>Surge Protective Devices (SPDs)</strong> from ₦8,000. Best used <em>alongside</em> a servo-based AVS for full protection.<br><br>WhatsApp: <strong>+234 903 215 6174</strong>'},
-  {keys:['inspection','safety','electrical safety','check','wiring','fault','electrician','book inspection'],reply:'We offer <strong>Professional Electrical Safety Inspections</strong> for homes, offices &amp; industrial premises.<br><br>Book via the form on this page or:<br>📱 WhatsApp: <strong>+234 903 215 6174</strong>'},
-  {keys:['buy','order','purchase','stock','available','how to order'],reply:'Ordering is easy:<br>1️⃣ Click <strong>"Order Now"</strong> on any product card<br>2️⃣ Fill in your specs<br>3️⃣ Sent via WhatsApp — we confirm in <strong>24 hours</strong><br><br>📱 <strong>+234 903 215 6174</strong>'},
-  {keys:['sell','i have','dispose','old regulator','buy from me','trade in'],reply:'Yes, we <strong>buy used power equipment</strong>! Send us: brand, KVA rating, condition &amp; photos.<br><br>📱 WhatsApp: <strong>+234 903 215 6174</strong>'},
-  {keys:['contact','whatsapp','phone','call','email','reach','location','address','telegram'],reply:'Reach <strong>iVolt Power Solutions</strong> via:<br><br>📱 <strong>WhatsApp / Call:</strong> +234 903 215 6174<br>✈️ <strong>Telegram:</strong> t.me/ivoltpowersolutions<br>𝕏 <strong>Twitter/X:</strong> @TradesByBami<br><br>Based in <strong>Lagos, Nigeria</strong> — serving nationwide.'},
-  {keys:['import','export','channel','telegram'],reply:'We have an <strong>Import &amp; Export Telegram channel</strong>! Join us for deals, stock updates &amp; trade opportunities:<br><br>✈️ <a href="https://t.me/ivoltpowersolutions" target="_blank" style="color:#229ED9;">t.me/ivoltpowersolutions</a>'},
-  {keys:['delivery','ship','lagos','abuja','nationwide','state'],reply:'We serve customers <strong>nationwide across Nigeria</strong>! Contact us for delivery timelines &amp; costs.<br><br>📱 WhatsApp: <strong>+234 903 215 6174</strong>'},
-  {keys:['warranty','guarantee','return','refund','faulty'],reply:'New products come with manufacturer warranty. Tokunbo units are tested before sale. Contact us immediately for any issues.<br><br>📱 <strong>+234 903 215 6174</strong>'},
-  {keys:['single phase','three phase','phase','industrial'],reply:'We stock both <strong>Single Phase</strong> (home/office) and <strong>Three Phase</strong> (industrial) regulators — 500VA to 50 KVA+.<br><br>📱 WhatsApp: <strong>+234 903 215 6174</strong>'},
+  {keys:['inspection','safety','electrical safety','check','wiring','fault','electrician','book inspection'],reply:'We offer <strong>Professional Electrical Safety Inspections</strong> for homes, offices &amp; industrial premises.<br><br>Book via the form on this page or:<br>WhatsApp: <strong>+234 903 215 6174</strong>'},
+  {keys:['buy','order','purchase','stock','available','how to order'],reply:'Ordering is easy:<br>1. Click <strong>"Order Now"</strong> on any product card<br>2. Fill in your specs<br>3. Sent via WhatsApp — we confirm in <strong>24 hours</strong><br><br><strong>+234 903 215 6174</strong>'},
+  {keys:['sell','i have','dispose','old regulator','buy from me','trade in'],reply:'Yes, we <strong>buy used power equipment</strong>! Send us: brand, KVA rating, condition &amp; photos.<br><br>WhatsApp: <strong>+234 903 215 6174</strong>'},
+  {keys:['contact','whatsapp','phone','call','email','reach','location','address','telegram'],reply:'Reach <strong>iVolt Power Solutions</strong> via:<br><br><strong>WhatsApp / Call:</strong> +234 903 215 6174<br><strong>Telegram:</strong> t.me/ivoltpowersolutions<br><strong>Twitter/X:</strong> @TradesByBami<br><br>Based in <strong>Lagos, Nigeria</strong> — serving nationwide.'},
+  {keys:['import','export','channel','telegram'],reply:'We have an <strong>Import &amp; Export Telegram channel</strong>! Join us for deals, stock updates &amp; trade opportunities:<br><br><a href="https://t.me/ivoltpowersolutions" target="_blank" style="color:#229ED9;">t.me/ivoltpowersolutions</a>'},
+  {keys:['delivery','ship','lagos','abuja','nationwide','state'],reply:'We serve customers <strong>nationwide across Nigeria</strong>! Contact us for delivery timelines &amp; costs.<br><br>WhatsApp: <strong>+234 903 215 6174</strong>'},
+  {keys:['warranty','guarantee','return','refund','faulty'],reply:'New products come with manufacturer warranty. Tokunbo units are tested before sale. Contact us immediately for any issues.<br><br><strong>+234 903 215 6174</strong>'},
+  {keys:['single phase','three phase','phase','industrial'],reply:'We stock both <strong>Single Phase</strong> (home/office) and <strong>Three Phase</strong> (industrial) regulators — 500VA to 50 KVA+.<br><br>WhatsApp: <strong>+234 903 215 6174</strong>'},
   {keys:['what is avr','servo-based AVS','how does','stabiliser','stabilizer'],reply:'A <strong>Servo-Based AVS (AVR)</strong> corrects unstable electricity — boosting low voltage and clamping high voltage — protecting your appliances.<br><br>A <strong>Surge Protective Device (SPD)</strong> blocks brief, intense voltage spikes. For full protection, use <em>both</em> together!'},
-  {keys:['hello','hi','hey','good morning','good afternoon','good evening','start','help'],reply:'👋 Hello! Welcome to <strong>iVolt Power Solutions</strong>! I can help with:<br>⚡ AVR sizing &nbsp; 🛡️ Surge protective devices &nbsp; 💰 Pricing &nbsp; 🔌 Inspections &nbsp; 📦 Orders<br><br>What can I help you with?'},
-  {keys:['thank','thanks','okay','ok','great','perfect'],reply:'You\'re welcome! 😊 Anything else I can help with?<br>📱 WhatsApp: <strong>+234 903 215 6174</strong>'}
+  {keys:['hello','hi','hey','good morning','good afternoon','good evening','start','help'],reply:'Hello! Welcome to <strong>iVolt Power Solutions</strong>! I can help with:<br>AVR sizing &nbsp;&nbsp; Surge protective devices &nbsp;&nbsp; Pricing &nbsp;&nbsp; Inspections &nbsp;&nbsp; Orders<br><br>What can I help you with?'},
+  {keys:['thank','thanks','okay','ok','great','perfect'],reply:'You\'re welcome! Anything else I can help with?<br>WhatsApp: <strong>+234 903 215 6174</strong>'}
 ];
 
 function voltaRespond(userText) {
   var q=userText.toLowerCase(),best=null,bestScore=0;
   for(var i=0;i<voltaKB.length;i++){var score=0;for(var j=0;j<voltaKB[i].keys.length;j++){if(q.indexOf(voltaKB[i].keys[j])!==-1)score+=voltaKB[i].keys[j].length;}if(score>bestScore){bestScore=score;best=voltaKB[i];}}
   if(best&&bestScore>1)return best.reply;
-  return 'Thanks for your message! For the most accurate answer, reach our team:<br><br>📱 <strong>WhatsApp: +234 903 215 6174</strong><br>✈️ <strong>Telegram:</strong> t.me/ivoltpowersolutions<br><br>Or ask about: <em>pricing, AVR sizing, brands, inspections, ordering, or delivery.</em>';
+  return 'Thanks for your message! For the most accurate answer, reach our team:<br><br><strong>WhatsApp: +234 903 215 6174</strong><br><strong>Telegram:</strong> t.me/ivoltpowersolutions<br><br>Or ask about: <em>pricing, AVR sizing, brands, inspections, ordering, or delivery.</em>';
 }
 
 function sendChat() {
