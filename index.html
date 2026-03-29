@@ -982,7 +982,7 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
     <li><a href="#advertise">Advertise</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#impex">Import &amp; Export</a></li>
-    <li><a href="https://t.me/ivoltpowersolutions" target="_blank" rel="noopener" class="nav-tg" style="color:var(--tg);">Shop on Telegram</a></li>
+    <li><a href="#telegram" class="nav-tg" style="color:var(--tg);display:inline-flex;align-items:center;gap:5px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.32 13.617l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.828.942z"/></svg>Telegram Bots</a></li>
     <li><a href="tel:+2349032156174" class="nav-cta">Call Now</a></li>
   </ul>
   <div class="hamburger" id="ham" onclick="toggleMenu()">
@@ -995,12 +995,13 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
   <a href="#products" onclick="toggleMenu()">Products</a>
   <a href="#trade" onclick="toggleMenu()">Buy &amp; Sell</a>
   <a href="#why" onclick="toggleMenu()">Why Us</a>
-  <a href="#pricelist" onclick="toggleMenu()">Price List</a>
+  <a href="#pricelist" onclick="toggleMenu()">Live Prices</a>
+  <a href="#news" onclick="toggleMenu()">News</a>
   <a href="#inspection" onclick="toggleMenu()">Book Inspection</a>
   <a href="#advertise" onclick="toggleMenu()">Advertise</a>
   <a href="#contact" onclick="toggleMenu()">Contact</a>
   <a href="#impex" onclick="toggleMenu()">Import &amp; Export</a>
-  <a href="https://t.me/ivoltpowersolutions" target="_blank" rel="noopener" class="mobile-tg" onclick="toggleMenu()">Shop on Telegram</a>
+  <a href="#telegram" class="mobile-tg" onclick="toggleMenu()" style="display:inline-flex;align-items:center;gap:8px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.32 13.617l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.828.942z"/></svg>Telegram Bots</a>
 </div>
 
 <!-- HERO -->
@@ -1492,6 +1493,171 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
     </div>
   </div>
 
+  <!-- LIVE FIREBASE PRICE BOARD -->
+  <div class="reveal" style="margin-bottom:40px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:16px;">
+      <div>
+        <div style="font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--green);font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:8px;">
+          <span style="width:7px;height:7px;border-radius:50%;background:var(--green);display:inline-block;animation:blink 2s ease infinite;"></span>
+          Live Stock &amp; Pricing
+        </div>
+        <div style="font-family:'Montserrat',sans-serif;font-size:18px;font-weight:800;color:#fff;">iVolt Current Catalogue</div>
+      </div>
+      <button onclick="loadIvoltPrices()" id="ivolt-refresh-btn" style="background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.35);color:var(--green);border-radius:8px;padding:8px 18px;font-size:11px;font-weight:700;cursor:pointer;letter-spacing:1px;font-family:'Inter',sans-serif;transition:all .2s;" onmouseover="this.style.background='rgba(16,185,129,0.22)'" onmouseout="this.style.background='rgba(16,185,129,0.12)'">↻ Refresh</button>
+    </div>
+
+    <!-- Loading state -->
+    <div id="ivolt-loading" style="text-align:center;padding:40px;background:var(--card);border:1px solid var(--border);border-radius:12px;">
+      <div style="font-size:24px;margin-bottom:12px;animation:spin 1s linear infinite;display:inline-block;">⟳</div>
+      <div style="font-size:13px;color:var(--muted);">Loading live prices from iVolt database…</div>
+    </div>
+
+    <!-- Error state -->
+    <div id="ivolt-error" style="display:none;text-align:center;padding:40px;background:rgba(220,38,38,0.06);border:1px solid rgba(220,38,38,0.2);border-radius:12px;">
+      <div style="font-size:24px;margin-bottom:10px;">⚠️</div>
+      <div style="font-size:13px;color:var(--muted);">Unable to load live prices right now.</div>
+      <button onclick="loadIvoltPrices()" style="margin-top:14px;background:rgba(220,38,38,0.12);border:1px solid rgba(220,38,38,0.3);color:#f87171;border-radius:6px;padding:7px 18px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;">Try Again</button>
+    </div>
+
+    <!-- Price grid -->
+    <div id="ivolt-prices" style="display:none;"></div>
+
+    <div id="ivolt-footer" style="display:none;font-size:11px;color:var(--muted);margin-top:12px;text-align:right;">
+      Prices from iVolt live database · <span id="ivolt-timestamp"></span>
+    </div>
+  </div>
+
+  <style>
+  #ivolt-prices {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 14px;
+  }
+  .ivolt-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 16px;
+    transition: transform .25s, border-color .25s, box-shadow .25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .ivolt-item::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--cyan), #1d4ed8);
+  }
+  .ivolt-item:hover {
+    transform: translateY(-4px);
+    border-color: rgba(37,99,235,0.4);
+    box-shadow: 0 12px 30px rgba(37,99,235,0.1);
+  }
+  .ivolt-item-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.4;
+    margin-bottom: 10px;
+  }
+  .ivolt-item-sku {
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .ivolt-item-price {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: 900;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .ivolt-stock-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 3px 9px;
+    border-radius: 20px;
+    text-transform: uppercase;
+  }
+  .ivolt-stock-in    { background: rgba(16,185,129,0.15); color: #34d399; border: 1px solid rgba(16,185,129,0.3); }
+  .ivolt-stock-low   { background: rgba(245,158,11,0.15); color: #fbbf24; border: 1px solid rgba(245,158,11,0.3); }
+  .ivolt-stock-out   { background: rgba(220,38,38,0.12);  color: #f87171; border: 1px solid rgba(220,38,38,0.25); }
+  </style>
+
+  <script>
+  function loadIvoltPrices() {
+    var loading = document.getElementById('ivolt-loading');
+    var error   = document.getElementById('ivolt-error');
+    var grid    = document.getElementById('ivolt-prices');
+    var footer  = document.getElementById('ivolt-footer');
+    var btn     = document.getElementById('ivolt-refresh-btn');
+
+    loading.style.display = 'block';
+    error.style.display   = 'none';
+    grid.style.display    = 'none';
+    footer.style.display  = 'none';
+    if (btn) btn.textContent = '↻ Refreshing…';
+
+    fetch("https://x-dashboard-b1098-default-rtdb.europe-west1.firebasedatabase.app/shop_catalogue_flat.json")
+      .then(function(r) {
+        if (!r.ok) throw new Error('Network error ' + r.status);
+        return r.json();
+      })
+      .then(function(items) {
+        if (!items || typeof items !== 'object') throw new Error('No data');
+        var entries = Object.entries(items);
+        if (entries.length === 0) throw new Error('Empty catalogue');
+
+        grid.innerHTML = entries.map(function(entry) {
+          var sku  = entry[0];
+          var item = entry[1];
+          var price = item.retail_ngn ? '₦' + Number(item.retail_ngn).toLocaleString('en-NG') : 'POA';
+          var stock = (item.stock_level || '').toString().toLowerCase();
+          var badgeClass = stock.includes('out') ? 'ivolt-stock-out'
+                         : stock.includes('low') ? 'ivolt-stock-low'
+                         : 'ivolt-stock-in';
+          var dot = stock.includes('out') ? '✕' : stock.includes('low') ? '!' : '●';
+          var stockLabel = item.stock_level || 'In Stock';
+
+          return '<div class="ivolt-item">'
+            + '<div class="ivolt-item-sku">' + sku + '</div>'
+            + '<div class="ivolt-item-name">' + (item.name || sku) + '</div>'
+            + '<div class="ivolt-item-price">' + price + '</div>'
+            + '<span class="ivolt-stock-badge ' + badgeClass + '">' + dot + ' ' + stockLabel + '</span>'
+            + '</div>';
+        }).join('');
+
+        loading.style.display = 'none';
+        grid.style.display    = 'grid';
+        footer.style.display  = 'block';
+        document.getElementById('ivolt-timestamp').textContent =
+          'Updated ' + new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+        if (btn) btn.textContent = '↻ Refresh';
+      })
+      .catch(function(err) {
+        console.error('iVolt price fetch error:', err);
+        loading.style.display = 'none';
+        error.style.display   = 'block';
+        if (btn) btn.textContent = '↻ Refresh';
+      });
+  }
+
+  // Auto-load on page ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadIvoltPrices);
+  } else {
+    loadIvoltPrices();
+  }
+  </script>
+
   <!-- Market price guide (original table, clearly labelled as a guide) -->
   <div class="pricelist-notice reveal">
     
@@ -1687,8 +1853,29 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
         <div class="contact-item">
           <div class="contact-item-icon tg-icon">TG</div>
           <div>
-            <div class="contact-item-label">Telegram — Import &amp; Export</div>
+            <div class="contact-item-label">Telegram Group</div>
             <div class="contact-item-val"><a href="https://t.me/ivoltpowersolutions" target="_blank" rel="noopener" class="tg-link">t.me/ivoltpowersolutions</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon tg-icon">TG</div>
+          <div>
+            <div class="contact-item-label">Local &amp; International Shop Bot</div>
+            <div class="contact-item-val"><a href="https://t.me/ivoltpowersolutionsbot" target="_blank" rel="noopener" class="tg-link">t.me/ivoltpowersolutionsbot</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon tg-icon">TG</div>
+          <div>
+            <div class="contact-item-label">Installer &amp; Safety Inspector Marketplace</div>
+            <div class="contact-item-val"><a href="https://t.me/ivoltpowersolutionssInstallerbot" target="_blank" rel="noopener" class="tg-link">t.me/ivoltpowersolutionssInstallerbot</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon tg-icon">TG</div>
+          <div>
+            <div class="contact-item-label">Market Data &amp; Project Calculator</div>
+            <div class="contact-item-val"><a href="https://t.me/ivoltpowersolutionsMarketdatabot" target="_blank" rel="noopener" class="tg-link">t.me/ivoltpowersolutionsMarketdatabot</a></div>
           </div>
         </div>
       </div>
@@ -1700,6 +1887,60 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
         <p style="font-size:10px;margin-top:4px;">Contact us for our exact location</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- TELEGRAM ECOSYSTEM -->
+<section style="background:var(--bg2);border-top:1px solid var(--border);padding:80px 5%;position:relative;z-index:2;" id="telegram">
+  <div class="section-tag">Connect on Telegram</div>
+  <h2 class="section-title">Our Telegram Ecosystem</h2>
+  <p class="section-desc">Everything iVolt — all in Telegram. Join our community, shop, find certified installers, and calculate project costs instantly.</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;">
+
+    <!-- Group -->
+    <a href="https://t.me/ivoltpowersolutions" target="_blank" rel="noopener" style="text-decoration:none;">
+      <div style="background:var(--card);border:1px solid rgba(34,158,217,0.25);border-radius:14px;padding:28px 24px;transition:transform .3s,border-color .3s,box-shadow .3s;cursor:pointer;" onmouseover="this.style.transform='translateY(-6px)';this.style.borderColor='rgba(34,158,217,0.6)';this.style.boxShadow='0 16px 40px rgba(34,158,217,0.12)';" onmouseout="this.style.transform='';this.style.borderColor='rgba(34,158,217,0.25)';this.style.boxShadow='';">
+        <div style="width:48px;height:48px;border-radius:12px;background:rgba(34,158,217,0.15);border:1px solid rgba(34,158,217,0.3);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:18px;">✈️</div>
+        <div style="font-size:9px;letter-spacing:3px;color:var(--tg);text-transform:uppercase;font-weight:700;margin-bottom:8px;">Community</div>
+        <h4 style="font-family:'Montserrat',sans-serif;font-size:15px;font-weight:700;color:#fff;margin-bottom:8px;line-height:1.4;">Telegram Group</h4>
+        <p style="font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:16px;">Join our main community for updates, deals, industry news, and direct support from the iVolt team.</p>
+        <span style="font-size:11px;color:var(--tg);font-weight:600;">@ivoltpowersolutions →</span>
+      </div>
+    </a>
+
+    <!-- Shop Bot -->
+    <a href="https://t.me/ivoltpowersolutionsbot" target="_blank" rel="noopener" style="text-decoration:none;">
+      <div style="background:var(--card);border:1px solid rgba(37,99,235,0.25);border-radius:14px;padding:28px 24px;transition:transform .3s,border-color .3s,box-shadow .3s;cursor:pointer;" onmouseover="this.style.transform='translateY(-6px)';this.style.borderColor='rgba(37,99,235,0.6)';this.style.boxShadow='0 16px 40px rgba(37,99,235,0.12)';" onmouseout="this.style.transform='';this.style.borderColor='rgba(37,99,235,0.25)';this.style.boxShadow='';">
+        <div style="width:48px;height:48px;border-radius:12px;background:rgba(37,99,235,0.15);border:1px solid rgba(37,99,235,0.3);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:18px;">🛒</div>
+        <div style="font-size:9px;letter-spacing:3px;color:var(--cyan);text-transform:uppercase;font-weight:700;margin-bottom:8px;">Marketplace</div>
+        <h4 style="font-family:'Montserrat',sans-serif;font-size:15px;font-weight:700;color:#fff;margin-bottom:8px;line-height:1.4;">Local &amp; International Shop Bot</h4>
+        <p style="font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:16px;">Browse and order AVS units, surge protectors, and power equipment — locally and from international suppliers.</p>
+        <span style="font-size:11px;color:var(--cyan);font-weight:600;">@ivoltpowersolutionsbot →</span>
+      </div>
+    </a>
+
+    <!-- Installer Bot -->
+    <a href="https://t.me/ivoltpowersolutionssInstallerbot" target="_blank" rel="noopener" style="text-decoration:none;">
+      <div style="background:var(--card);border:1px solid rgba(16,185,129,0.25);border-radius:14px;padding:28px 24px;transition:transform .3s,border-color .3s,box-shadow .3s;cursor:pointer;" onmouseover="this.style.transform='translateY(-6px)';this.style.borderColor='rgba(16,185,129,0.6)';this.style.boxShadow='0 16px 40px rgba(16,185,129,0.12)';" onmouseout="this.style.transform='';this.style.borderColor='rgba(16,185,129,0.25)';this.style.boxShadow='';">
+        <div style="width:48px;height:48px;border-radius:12px;background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.3);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:18px;">🔧</div>
+        <div style="font-size:9px;letter-spacing:3px;color:var(--green);text-transform:uppercase;font-weight:700;margin-bottom:8px;">Professionals</div>
+        <h4 style="font-family:'Montserrat',sans-serif;font-size:15px;font-weight:700;color:#fff;margin-bottom:8px;line-height:1.4;">Installer &amp; Safety Inspector Marketplace</h4>
+        <p style="font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:16px;">Find certified electricians, safety inspectors, and installation professionals near you — or list your services.</p>
+        <span style="font-size:11px;color:var(--green);font-weight:600;">@ivoltpowersolutionssInstallerbot →</span>
+      </div>
+    </a>
+
+    <!-- Market Data Bot -->
+    <a href="https://t.me/ivoltpowersolutionsMarketdatabot" target="_blank" rel="noopener" style="text-decoration:none;">
+      <div style="background:var(--card);border:1px solid rgba(245,158,11,0.25);border-radius:14px;padding:28px 24px;transition:transform .3s,border-color .3s,box-shadow .3s;cursor:pointer;" onmouseover="this.style.transform='translateY(-6px)';this.style.borderColor='rgba(245,158,11,0.6)';this.style.boxShadow='0 16px 40px rgba(245,158,11,0.12)';" onmouseout="this.style.transform='';this.style.borderColor='rgba(245,158,11,0.25)';this.style.boxShadow='';">
+        <div style="width:48px;height:48px;border-radius:12px;background:rgba(245,158,11,0.15);border:1px solid rgba(245,158,11,0.3);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:18px;">📊</div>
+        <div style="font-size:9px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;font-weight:700;margin-bottom:8px;">Intelligence</div>
+        <h4 style="font-family:'Montserrat',sans-serif;font-size:15px;font-weight:700;color:#fff;margin-bottom:8px;line-height:1.4;">Market Data &amp; Project Calculator</h4>
+        <p style="font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:16px;">Get live FX rates, import duties, commodity prices, and calculate full project costs in real time — free.</p>
+        <span style="font-size:11px;color:var(--gold);font-weight:600;">@ivoltpowersolutionsMarketdatabot →</span>
+      </div>
+    </a>
+
   </div>
 </section>
 
@@ -1895,8 +2136,10 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
         <li><a href="tel:+2349032156174">+234 903 215 6174</a></li>
         <li><a href="https://wa.me/2349032156174" target="_blank">WhatsApp Us</a></li>
         <li><a href="https://x.com/TradesByBami" target="_blank">𝕏 @TradesByBami</a></li>
-        <li><a href="https://t.me/ivoltpowersolutions" target="_blank" rel="noopener" class="tg-footer">iVolt Telegram Channel</a></li>
-        <li><a href="https://t.me/ivoltpowersolutions" target="_blank" rel="noopener" class="tg-footer">iVolt Shop &amp; Trade Bot</a></li>
+        <li><a href="https://t.me/ivoltpowersolutions" target="_blank" rel="noopener" class="tg-footer">Telegram Group</a></li>
+        <li><a href="https://t.me/ivoltpowersolutionsbot" target="_blank" rel="noopener" class="tg-footer">Local &amp; International Shop Bot</a></li>
+        <li><a href="https://t.me/ivoltpowersolutionssInstallerbot" target="_blank" rel="noopener" class="tg-footer">Installer &amp; Safety Inspector Marketplace</a></li>
+        <li><a href="https://t.me/ivoltpowersolutionsMarketdatabot" target="_blank" rel="noopener" class="tg-footer">Market Data &amp; Project Calculator</a></li>
       </ul>
     </div>
   </div>
