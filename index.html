@@ -260,10 +260,37 @@ nav {
   min-height: 100vh; display: flex; align-items: center; justify-content: flex-start;
   padding: 120px 5% 80px; position: relative; overflow: hidden;
 }
+/* hero inner wrapper for mobile side-by-side layout */
+.hero-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; gap: 24px; position: relative; z-index: 2;
+}
+.hero-content { max-width: 580px; position: relative; z-index: 2; animation: fadeUp .8s ease both; flex: 1; }
+.hero-bolt-inline {
+  display: none; /* hidden on desktop – absolute bolt used instead */
+  flex-shrink: 0;
+  animation: boltFloat 3s ease-in-out infinite;
+}
 .hero-bg-glow { position: absolute; border-radius: 50%; pointer-events: none; }
 .hero-glow1 { width: 600px; height: 600px; top: -100px; left: -150px; background: radial-gradient(circle, rgba(37,99,235,0.07) 0%, transparent 65%); }
 .hero-glow2 { width: 500px; height: 500px; bottom: -80px; right: -120px; background: radial-gradient(circle, rgba(245,158,11,0.06) 0%, transparent 65%); }
-.hero-content { max-width: 680px; position: relative; z-index: 2; animation: fadeUp .8s ease both; }
+/* hero-content defined above */
+/* Mobile: auto height, bolt inline */
+@media (max-width: 900px) {
+  .hero {
+    min-height: unset !important;
+    padding: 88px 5% 52px !important;
+    align-items: flex-start !important;
+  }
+  .hero-device { display: none !important; }   /* hide absolute bolt */
+  .hero-bolt-inline { display: block !important; } /* show inline bolt */
+  .hero-bolt-inline svg { width: 90px; height: 140px; }
+  .hero-inner { align-items: center; }
+}
+@media (max-width: 480px) {
+  .hero-bolt-inline svg { width: 70px; height: 110px; }
+  .hero-inner { gap: 12px; }
+}
 @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
 .hero-eyebrow {
   font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 5px; color: var(--cyan);
@@ -294,9 +321,64 @@ nav {
 .btn-secondary:hover { border-color: var(--cyan); color: var(--cyan); }
 .hero-device {
   position: absolute; right: 5%; top: 50%; transform: translateY(-50%);
-  z-index: 1; opacity: 0.18; animation: float 6s ease-in-out infinite;
+  z-index: 1;
+  animation: boltFloat 3s ease-in-out infinite;
 }
-@keyframes float { 0%,100%{transform:translateY(-50%) translateX(0)} 50%{transform:translateY(-52%) translateX(-8px)} }
+/* Main bolt: float + drop strike */
+@keyframes boltFloat {
+  0%   { transform: translateY(-50%) translateX(0)   scaleY(1);   filter: drop-shadow(0 0 18px #f59e0b) drop-shadow(0 0 6px #fff); opacity: 0.85; }
+  18%  { transform: translateY(-58%) translateX(-6px) scaleY(1.04); filter: drop-shadow(0 0 32px #ffe066) drop-shadow(0 0 12px #fff); opacity: 1; }
+  22%  { transform: translateY(-44%) translateX(4px)  scaleY(0.96); filter: drop-shadow(0 0 60px #fff)   drop-shadow(0 0 30px #f59e0b); opacity: 1; }
+  /* FLASH */
+  23%  { opacity: 1;   filter: drop-shadow(0 0 80px #fff) drop-shadow(0 0 40px #ffe066) brightness(2.5); }
+  24%  { opacity: 0.1; filter: none; }
+  25%  { opacity: 1;   filter: drop-shadow(0 0 80px #fff) drop-shadow(0 0 40px #ffe066) brightness(2); }
+  26%  { opacity: 0.2; filter: none; }
+  27%  { opacity: 1;   filter: drop-shadow(0 0 50px #f59e0b); }
+  50%  { transform: translateY(-52%) translateX(-4px) scaleY(1); filter: drop-shadow(0 0 22px #f59e0b); opacity: 0.9; }
+  100% { transform: translateY(-50%) translateX(0)   scaleY(1);   filter: drop-shadow(0 0 18px #f59e0b); opacity: 0.85; }
+}
+/* Electric glow ring that pulses on strike */
+.hero-device::after {
+  content: '';
+  position: absolute; inset: -20px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(245,158,11,0.35) 0%, transparent 70%);
+  animation: boltPulse 3s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes boltPulse {
+  0%,100% { opacity: 0.3; transform: scale(1); }
+  22%      { opacity: 0.0; transform: scale(0.8); }
+  25%      { opacity: 1.0; transform: scale(1.5); }
+  35%      { opacity: 0.4; transform: scale(1.1); }
+  50%      { opacity: 0.5; transform: scale(1.05); }
+}
+/* Spark particles */
+.hero-device-sparks {
+  position: absolute; inset: 0; pointer-events: none; z-index: 0;
+}
+.spark {
+  position: absolute; width: 3px; height: 3px; border-radius: 50%;
+  background: #fff; opacity: 0;
+  animation: sparkFly 3s ease-in-out infinite;
+}
+.spark:nth-child(1) { top: 40%; left: 50%; animation-delay: 0.23s; }
+.spark:nth-child(2) { top: 55%; left: 40%; animation-delay: 0.25s; }
+.spark:nth-child(3) { top: 35%; left: 60%; animation-delay: 0.24s; }
+.spark:nth-child(4) { top: 60%; left: 55%; animation-delay: 0.26s; }
+.spark:nth-child(5) { top: 45%; left: 35%; animation-delay: 0.22s; }
+@keyframes sparkFly {
+  0%,22%  { opacity: 0; transform: translate(0,0) scale(1); }
+  25%     { opacity: 1; transform: translate(0,0) scale(1.5); }
+  45%     { opacity: 0; transform: translate(var(--dx,12px), var(--dy,-18px)) scale(0); }
+  100%    { opacity: 0; }
+}
+.spark:nth-child(1) { --dx: 18px;  --dy: -22px; }
+.spark:nth-child(2) { --dx: -20px; --dy: -15px; }
+.spark:nth-child(3) { --dx: 14px;  --dy: 20px;  }
+.spark:nth-child(4) { --dx: -12px; --dy: 18px;  }
+.spark:nth-child(5) { --dx: 22px;  --dy: 8px;   }
 .hero-stats { display: flex; gap: 40px; margin-top: 56px; flex-wrap: wrap; }
 .stat-val { font-family: 'Montserrat', sans-serif; font-size: 28px; font-weight: 900; color: var(--gold); }
 .stat-lbl { font-family: 'Inter', sans-serif; font-size: 9px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; margin-top: 2px; }
@@ -616,8 +698,7 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 4
 .footer-bottom .dot { color: var(--cyan); margin: 0 6px; }
 
 /* ══ HERO SCANLINE ══ */
-.scanline-hero { position: absolute; left: 0; right: 0; height: 1px; background: linear-gradient(90deg,transparent,rgba(0,229,255,0.4),transparent); animation: scanHero 8s linear infinite; pointer-events: none; z-index: 1; }
-@keyframes scanHero { from{top:64px;opacity:1} to{top:100vh;opacity:0} }
+/* scanline removed */
 
 /* ══ MOBILE NAV ══ */
 .mobile-menu { display: none; position: fixed; inset: 0; z-index: 99; background: rgba(7,9,15,0.98); padding: 100px 40px 40px; flex-direction: column; gap: 28px; overflow-y: auto; }
@@ -635,8 +716,6 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 4
   .trade-grid { grid-template-columns: 1fr; }
   .trade-panel.buy { border-right: none; border-bottom: 1px solid var(--border); }
   .hero-device { display: none; }
-  .hero { min-height: unset; padding: 100px 5% 60px; }
-  section { padding: 72px 5%; }
 }
 @media (max-width: 860px) {
   .nav-links { display: none; }
@@ -682,12 +761,6 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
 /* ══ MISC RESPONSIVE ══ */
 *, *::before, *::after { max-width: 100%; }
 @media (max-width: 480px) {
-  .hero {
-    min-height: unset;
-    padding: 90px 5% 52px;
-    align-items: flex-start;
-    justify-content: flex-start;
-  }
   .hero-content { width: 100%; }
   .hero h1 { font-size: clamp(32px,10vw,52px); line-height: 1.1; }
   .hero-sub { font-size: 14px; }
@@ -1016,13 +1089,38 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
 
 <!-- HERO -->
 <section class="hero" id="home">
-  <div class="scanline-hero"></div>
   <div class="hero-bg-glow hero-glow1"></div>
   <div class="hero-bg-glow hero-glow2"></div>
-  <div class="hero-device">
-    <svg viewBox="0 0 200 320" width="320" height="480" xmlns="http://www.w3.org/2000/svg">
-      <defs><linearGradient id="hg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#2563eb"/><stop offset="100%" stop-color="#f59e0b"/></linearGradient></defs>
-      <polygon points="120,0 40,160 95,160 50,320 185,120 125,120 175,0" fill="url(#hg)"/>
+  <div class="hero-inner">
+  <div class="hero-device" id="heroBolt">
+    <div class="hero-device-sparks">
+      <div class="spark"></div>
+      <div class="spark"></div>
+      <div class="spark"></div>
+      <div class="spark"></div>
+      <div class="spark"></div>
+    </div>
+    <svg viewBox="0 0 200 320" width="300" height="460" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="hg" x1="0" y1="0" x2="0.6" y2="1">
+          <stop offset="0%"   stop-color="#ffffff"/>
+          <stop offset="30%"  stop-color="#2563eb"/>
+          <stop offset="100%" stop-color="#f59e0b"/>
+        </linearGradient>
+        <filter id="boltGlow">
+          <feGaussianBlur stdDeviation="6" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <!-- Outer glow bolt -->
+      <polygon points="120,0 40,160 95,160 50,320 185,120 125,120 175,0"
+        fill="rgba(245,158,11,0.15)" filter="url(#boltGlow)"/>
+      <!-- Main bolt -->
+      <polygon points="120,0 40,160 95,160 50,320 185,120 125,120 175,0"
+        fill="url(#hg)" opacity="0.95"/>
+      <!-- Bright core highlight -->
+      <polygon points="118,8 55,150 98,150 60,305 172,128 120,128 168,8"
+        fill="rgba(255,255,255,0.18)"/>
     </svg>
   </div>
   <div class="hero-content">
@@ -1039,6 +1137,31 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
       <div class="stat-item"><div class="stat-val">100%</div><div class="stat-lbl">Certified</div></div>
     </div>
   </div>
+
+  <!-- Inline bolt for mobile -->
+  <div class="hero-bolt-inline">
+    <svg viewBox="0 0 200 320" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="hgm" x1="0" y1="0" x2="0.6" y2="1">
+          <stop offset="0%"   stop-color="#ffffff"/>
+          <stop offset="30%"  stop-color="#2563eb"/>
+          <stop offset="100%" stop-color="#f59e0b"/>
+        </linearGradient>
+        <filter id="boltGlowM">
+          <feGaussianBlur stdDeviation="6" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <polygon points="120,0 40,160 95,160 50,320 185,120 125,120 175,0"
+        fill="rgba(245,158,11,0.15)" filter="url(#boltGlowM)"/>
+      <polygon points="120,0 40,160 95,160 50,320 185,120 125,120 175,0"
+        fill="url(#hgm)" opacity="0.95"/>
+      <polygon points="118,8 55,150 98,150 60,305 172,128 120,128 168,8"
+        fill="rgba(255,255,255,0.18)"/>
+    </svg>
+  </div>
+
+  </div><!-- /hero-inner -->
 </section>
 
 <!-- PRODUCTS -->
