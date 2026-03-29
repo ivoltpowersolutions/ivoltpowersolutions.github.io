@@ -257,7 +257,7 @@ nav {
 
 /* ══ HERO ══ */
 .hero {
-  min-height: 100vh; display: flex; align-items: center; justify-content: center;
+  min-height: 100vh; display: flex; align-items: center; justify-content: flex-start;
   padding: 120px 5% 80px; position: relative; overflow: hidden;
 }
 .hero-bg-glow { position: absolute; border-radius: 50%; pointer-events: none; }
@@ -636,9 +636,11 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 4
   .trade-panel.buy { border-right: none; border-bottom: 1px solid var(--border); }
   .hero-device { display: none; }
 }
-@media (max-width: 640px) {
+@media (max-width: 860px) {
   .nav-links { display: none; }
   .hamburger { display: flex; }
+}
+@media (max-width: 640px) {
   .footer-inner { grid-template-columns: 1fr; }
   .hero-stats { gap: 24px; }
   section { padding: 70px 5%; }
@@ -678,7 +680,14 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
 /* ══ MISC RESPONSIVE ══ */
 *, *::before, *::after { max-width: 100%; }
 @media (max-width: 480px) {
-  .hero { padding: 90px 5% 60px; min-height: auto; align-items: flex-start; }
+  .hero {
+    padding: 80px 5% 48px;
+    min-height: 100svh;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .hero-content { width: 100%; }
   .hero h1 { font-size: clamp(32px,10vw,52px); line-height: 1.1; }
   .hero-sub { font-size: 14px; }
   .hero-btns { flex-direction: column; gap: 12px; }
@@ -1606,7 +1615,7 @@ table.price-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
     footer.style.display  = 'none';
     if (btn) btn.textContent = '↻ Refreshing…';
 
-    fetch("https://x-dashboard-b1098-default-rtdb.europe-west1.firebasedatabase.app/shop_catalogue_flat.json")
+    fetch("https://x-dashboard-b1098-default-rtdb.europe-west1.firebasedatabase.app/shop_catalogue_flat.json?auth=HtSaOvwz7W9HzLzbnFcufeBZECKoez995SehKNKP")
       .then(function(r) {
         if (!r.ok) throw new Error('Network error ' + r.status);
         return r.json();
