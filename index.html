@@ -258,7 +258,7 @@ nav {
 /* ══ HERO ══ */
 .hero {
   display: flex; align-items: center;
-  padding: 120px 5% 80px; position: relative; overflow: hidden;
+  padding: 80px 5% 80px; position: relative; overflow: hidden;
 }
 .hero-inner {
   display: flex; align-items: center; justify-content: space-between;
@@ -948,6 +948,423 @@ img, svg, video { max-width: 100%; }
 }
 
 
+/* ══ MARKETING SLIDESHOW ══ */
+#mktSlider {
+  position: relative;
+  width: 100%;
+  height: clamp(520px, 90vh, 820px);
+  background: var(--bg);
+  overflow: hidden;
+  margin-top: 64px; /* nav height */
+}
+
+/* grid overlay */
+#mktSlider::before {
+  content: '';
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(37,99,235,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37,99,235,.05) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+/* scanlines */
+#mktSlider::after {
+  content: '';
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,.12) 3px,rgba(0,0,0,.12) 4px);
+}
+
+/* ── slides ── */
+.mkt-slide {
+  position: absolute; inset: 0; z-index: 10;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: clamp(20px,5vw,60px) clamp(16px,6vw,80px) 44px;
+  opacity: 0; pointer-events: none;
+  transition: opacity .55s ease;
+}
+.mkt-slide.mkt-active { opacity: 1; pointer-events: auto; }
+
+/* ── progress bar ── */
+#mktProgressWrap {
+  position: absolute; bottom: 0; left: 0; right: 0; z-index: 50;
+  height: 3px; background: rgba(255,255,255,.06);
+}
+#mktProgressBar {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--cyan), #60a5fa);
+  box-shadow: 0 0 10px rgba(37,99,235,.6);
+}
+
+/* ── dots ── */
+#mktDots {
+  position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%);
+  z-index: 50; display: flex; gap: 7px;
+}
+.mkt-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: rgba(255,255,255,.2); cursor: pointer;
+  transition: background .3s, transform .3s;
+  border: none; padding: 0;
+}
+.mkt-dot.mkt-dot-active { background: var(--cyan); transform: scale(1.5); }
+
+/* ── nav arrows ── */
+.mkt-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  z-index: 50; width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(37,99,235,.15); border: 1px solid rgba(37,99,235,.3);
+  color: var(--cyan); font-size: 18px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s; line-height: 1;
+}
+.mkt-arrow:hover { background: rgba(37,99,235,.3); }
+#mktPrev { left: 12px; }
+#mktNext { right: 12px; }
+
+/* ── play/pause ── */
+#mktPlayPause {
+  position: absolute; bottom: 8px; right: 14px; z-index: 50;
+  background: rgba(37,99,235,.12); border: 1px solid rgba(37,99,235,.25);
+  color: rgba(255,255,255,.45); font-size: 10px; letter-spacing: .1em;
+  padding: 4px 10px; border-radius: 20px; cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: background .2s;
+}
+#mktPlayPause:hover { background: rgba(37,99,235,.25); color: #fff; }
+
+/* ── slide counter ── */
+#mktCounter {
+  position: absolute; top: 14px; right: 16px; z-index: 50;
+  font-family: 'Montserrat', sans-serif; font-size: 10px;
+  color: rgba(255,255,255,.25); letter-spacing: .12em;
+}
+#mktCounter b { color: var(--cyan); }
+
+/* ── corner marks ── */
+.mkt-corner {
+  position: absolute; width: 28px; height: 28px; z-index: 50;
+  pointer-events: none;
+}
+.mkt-corner-tl { top: 14px; left: 14px; border-top: 1px solid rgba(37,99,235,.45); border-left: 1px solid rgba(37,99,235,.45); }
+.mkt-corner-br { bottom: 28px; right: 14px; border-bottom: 1px solid rgba(37,99,235,.45); border-right: 1px solid rgba(37,99,235,.45); }
+
+/* ── common typography ── */
+.mkt-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(9px,1.2vw,11px); letter-spacing: .22em;
+  text-transform: uppercase; color: var(--cyan);
+  margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
+  opacity: 0; animation: mktUp .5s .2s forwards;
+}
+.mkt-label::before { content: ''; width: 20px; height: 1px; background: var(--cyan); flex-shrink: 0; }
+
+.mkt-h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(36px, 6.5vw, 78px);
+  font-weight: 900; line-height: .95; text-align: center;
+  color: #fff; letter-spacing: -.01em;
+  opacity: 0; animation: mktUp .6s .32s forwards;
+}
+.mkt-h1 span { color: var(--gold); }
+.mkt-h1 em { color: var(--cyan); font-style: normal; }
+
+.mkt-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(13px,1.8vw,17px); font-weight: 300;
+  color: rgba(255,255,255,.5); text-align: center;
+  max-width: 620px; line-height: 1.6; margin-top: 14px;
+  opacity: 0; animation: mktUp .6s .46s forwards;
+}
+
+.mkt-divider {
+  width: 48px; height: 2px; margin: 16px auto;
+  background: linear-gradient(90deg, var(--cyan), var(--gold));
+  opacity: 0; transform-origin: left;
+  animation: mktScale .5s .38s forwards;
+}
+
+@keyframes mktUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes mktIn {
+  from { opacity: 0; } to { opacity: 1; }
+}
+@keyframes mktScale {
+  from { opacity: 0; transform: scaleX(0); }
+  to   { opacity: 1; transform: scaleX(1); }
+}
+
+/* ── SLIDE 0: INTRO ── */
+.mkt-logo-wrap {
+  display: flex; flex-direction: column; align-items: center;
+  opacity: 0; animation: mktIn .7s .1s forwards;
+}
+.mkt-bolt-svg {
+  width: clamp(48px,7vw,80px);
+  filter: drop-shadow(0 0 16px var(--gold));
+  animation: mktBolt 2.5s ease-in-out infinite;
+  margin-bottom: 4px;
+}
+@keyframes mktBolt {
+  0%,100% { filter: drop-shadow(0 0 14px var(--gold)); }
+  50%      { filter: drop-shadow(0 0 30px #ffe066) drop-shadow(0 0 8px #fff); }
+}
+.mkt-logo-name {
+  font-family: 'Montserrat', sans-serif; font-weight: 900;
+  font-size: clamp(56px, 11vw, 130px); line-height: 1;
+  letter-spacing: -.02em;
+  background: linear-gradient(135deg, #fff 0%, var(--cyan) 45%, var(--gold) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.mkt-logo-sub {
+  font-family: 'Montserrat', sans-serif; font-size: clamp(10px,1.8vw,14px);
+  letter-spacing: .3em; text-transform: uppercase; color: rgba(255,255,255,.4);
+  margin-top: 2px;
+}
+.mkt-logo-sub span { color: var(--green); }
+.mkt-tagline {
+  margin-top: 28px; font-family: 'Montserrat', sans-serif;
+  font-size: clamp(13px,2.2vw,22px); font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.75);
+  opacity: 0; animation: mktUp .6s .75s forwards; text-align: center;
+}
+.mkt-tagline em { color: var(--gold); font-style: normal; }
+
+/* ── SLIDE 1: PROBLEM ── */
+.mkt-stat-row {
+  display: flex; gap: clamp(10px,2vw,28px);
+  margin-top: 28px; flex-wrap: wrap; justify-content: center;
+}
+.mkt-stat-box {
+  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
+  border-left: 2px solid var(--cyan);
+  padding: clamp(12px,2vw,18px) clamp(14px,2.5vw,26px);
+  min-width: clamp(120px,18vw,150px); text-align: center;
+  opacity: 0; animation: mktUp .5s forwards;
+}
+.mkt-stat-box:nth-child(1) { animation-delay: .52s; }
+.mkt-stat-box:nth-child(2) { animation-delay: .65s; }
+.mkt-stat-box:nth-child(3) { animation-delay: .78s; }
+.mkt-stat-num {
+  font-family: 'Montserrat', sans-serif; font-weight: 900;
+  font-size: clamp(28px,4vw,46px); color: var(--gold); line-height: 1;
+}
+.mkt-stat-lbl {
+  font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 500;
+  color: rgba(255,255,255,.4); margin-top: 4px; text-transform: uppercase;
+  letter-spacing: .06em;
+}
+
+/* ── SLIDE 2: 5 BOTS ── */
+.mkt-bot-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: clamp(8px,1.2vw,14px);
+  margin-top: 24px; width: 100%;
+  max-width: min(100%, 900px);
+}
+.mkt-bot-card {
+  background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08);
+  padding: clamp(12px,1.8vw,18px) clamp(10px,1.5vw,14px);
+  position: relative; overflow: hidden;
+  opacity: 0; animation: mktUp .5s forwards;
+  transition: border-color .2s;
+}
+.mkt-bot-card:hover { border-color: rgba(37,99,235,.5); }
+.mkt-bot-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--cyan), var(--gold));
+  transform: scaleX(0); transform-origin: left; transition: transform .35s;
+}
+.mkt-bot-card:hover::before { transform: scaleX(1); }
+.mkt-bot-card:nth-child(1) { animation-delay: .38s; }
+.mkt-bot-card:nth-child(2) { animation-delay: .48s; }
+.mkt-bot-card:nth-child(3) { animation-delay: .58s; }
+.mkt-bot-card:nth-child(4) { animation-delay: .68s; }
+.mkt-bot-card:nth-child(5) { animation-delay: .78s; }
+.mkt-bot-icon { font-size: clamp(18px,2.5vw,26px); display: block; margin-bottom: 6px; }
+.mkt-bot-name {
+  font-family: 'Montserrat', sans-serif; font-weight: 800;
+  font-size: clamp(10px,1.3vw,14px); color: #93c5fd;
+  letter-spacing: .03em; margin-bottom: 4px;
+}
+.mkt-bot-desc { font-family: 'Inter', sans-serif; font-size: clamp(10px,1.1vw,12px); color: rgba(255,255,255,.38); line-height: 1.45; }
+.mkt-bot-num {
+  position: absolute; top: 8px; right: 10px;
+  font-family: 'Montserrat', sans-serif; font-size: 9px; font-weight: 700;
+  color: rgba(37,99,235,.35); letter-spacing: .08em;
+}
+
+/* ── SLIDE 3: FEATURES ── */
+.mkt-feat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(8px,1.5vw,14px);
+  margin-top: 20px; width: 100%; max-width: 820px;
+}
+.mkt-feat-item {
+  display: flex; gap: 12px; align-items: flex-start;
+  padding: clamp(10px,1.5vw,14px) clamp(10px,1.5vw,14px);
+  background: rgba(37,99,235,.04); border: 1px solid rgba(37,99,235,.12);
+  opacity: 0; animation: mktUp .5s forwards;
+}
+.mkt-feat-item:nth-child(1) { animation-delay: .33s; }
+.mkt-feat-item:nth-child(2) { animation-delay: .42s; }
+.mkt-feat-item:nth-child(3) { animation-delay: .51s; }
+.mkt-feat-item:nth-child(4) { animation-delay: .60s; }
+.mkt-feat-item:nth-child(5) { animation-delay: .69s; }
+.mkt-feat-item:nth-child(6) { animation-delay: .78s; }
+.mkt-feat-icon { font-size: clamp(16px,2vw,22px); flex-shrink: 0; margin-top: 1px; }
+.mkt-feat-title {
+  font-family: 'Montserrat', sans-serif; font-weight: 700;
+  font-size: clamp(10px,1.2vw,13px); text-transform: uppercase; letter-spacing: .04em;
+  color: #fff; margin-bottom: 3px;
+}
+.mkt-feat-detail { font-family: 'Inter', sans-serif; font-size: clamp(10px,1vw,12px); color: rgba(255,255,255,.4); line-height: 1.5; }
+
+/* ── SLIDE 4: ESCROW ── */
+.mkt-flow {
+  display: flex; align-items: center; gap: clamp(6px,1vw,10px);
+  margin-top: 28px; flex-wrap: wrap; justify-content: center;
+}
+.mkt-flow-step {
+  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
+  padding: clamp(10px,1.5vw,16px) clamp(12px,2vw,20px); text-align: center;
+  min-width: clamp(90px,12vw,115px);
+  opacity: 0; animation: mktUp .5s forwards;
+}
+.mkt-flow-step:nth-child(1) { animation-delay: .38s; }
+.mkt-flow-step:nth-child(3) { animation-delay: .5s; }
+.mkt-flow-step:nth-child(5) { animation-delay: .62s; }
+.mkt-flow-step:nth-child(7) { animation-delay: .74s; }
+.mkt-flow-step:nth-child(9) { animation-delay: .86s; }
+.mkt-flow-emoji { font-size: clamp(18px,2.5vw,26px); display: block; margin-bottom: 5px; }
+.mkt-flow-name { font-family: 'Montserrat', sans-serif; font-weight: 700;
+  font-size: clamp(9px,1.1vw,12px); text-transform: uppercase; letter-spacing: .05em; color: #fff; }
+.mkt-flow-arrow { font-size: 20px; color: var(--cyan); opacity: 0; animation: mktIn .4s .55s forwards; }
+.mkt-escrow-badge {
+  margin-top: 22px;
+  background: rgba(16,185,129,.07); border: 1px solid rgba(16,185,129,.22);
+  padding: clamp(10px,1.5vw,14px) clamp(18px,3vw,28px); text-align: center;
+  opacity: 0; animation: mktUp .6s .9s forwards;
+}
+.mkt-escrow-badge .mkt-eb-big {
+  font-family: 'Montserrat', sans-serif; font-weight: 900;
+  font-size: clamp(14px,2.2vw,22px); color: var(--green); letter-spacing: .05em;
+}
+.mkt-escrow-badge .mkt-eb-small { font-family: 'Inter', sans-serif; font-size: 11px; color: rgba(255,255,255,.4); margin-top: 3px; }
+
+/* ── SLIDE 5: PLANS ── */
+.mkt-plan-row {
+  display: flex; gap: clamp(8px,1.2vw,12px);
+  margin-top: 22px; flex-wrap: wrap; justify-content: center;
+}
+.mkt-plan-card {
+  background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08);
+  padding: clamp(14px,2vw,20px) clamp(12px,1.8vw,18px);
+  min-width: clamp(110px,14vw,140px); text-align: center;
+  opacity: 0; animation: mktUp .5s forwards;
+  transition: border-color .2s, transform .2s;
+}
+.mkt-plan-card:hover { border-color: rgba(37,99,235,.5); transform: translateY(-3px); }
+.mkt-plan-card.mkt-featured { border-color: var(--cyan); background: rgba(37,99,235,.07); }
+.mkt-plan-card.mkt-featured::after {
+  content: 'POPULAR'; display: block; font-family: 'Montserrat', sans-serif;
+  font-size: 8px; font-weight: 700; letter-spacing: .15em;
+  color: var(--cyan); margin-top: 8px;
+}
+.mkt-plan-card:nth-child(1) { animation-delay: .33s; }
+.mkt-plan-card:nth-child(2) { animation-delay: .43s; }
+.mkt-plan-card:nth-child(3) { animation-delay: .53s; }
+.mkt-plan-card:nth-child(4) { animation-delay: .63s; }
+.mkt-plan-card:nth-child(5) { animation-delay: .73s; }
+.mkt-plan-name { font-family: 'Montserrat', sans-serif; font-weight: 900;
+  font-size: clamp(14px,1.8vw,18px); color: #fff; letter-spacing: .04em; }
+.mkt-plan-price { font-family: 'Montserrat', sans-serif; font-weight: 700;
+  font-size: clamp(18px,2.5vw,24px); color: var(--gold); margin: 6px 0; }
+.mkt-plan-price small { font-size: 11px; color: rgba(255,255,255,.35); font-weight: 400; }
+.mkt-plan-q { font-family: 'Inter', sans-serif; font-size: 11px; color: rgba(255,255,255,.4); margin-top: 3px; }
+
+/* ── SLIDE 6: CTA ── */
+.mkt-cta-bolt {
+  font-size: clamp(48px,8vw,90px); line-height: 1;
+  filter: drop-shadow(0 0 18px var(--gold));
+  opacity: 0; animation: mktIn .5s .15s forwards, mktBolt 2s .65s infinite;
+}
+.mkt-cta-h {
+  font-family: 'Montserrat', sans-serif; font-weight: 900;
+  font-size: clamp(34px,5.5vw,66px); line-height: .95;
+  text-align: center; margin-top: 8px;
+  opacity: 0; animation: mktUp .6s .36s forwards;
+}
+.mkt-cta-h span { color: var(--gold); }
+.mkt-cta-links {
+  display: flex; gap: 12px; margin-top: 24px;
+  flex-wrap: wrap; justify-content: center;
+  opacity: 0; animation: mktUp .6s .55s forwards;
+}
+.mkt-cta-btn {
+  padding: clamp(10px,1.5vw,13px) clamp(18px,3vw,26px);
+  font-family: 'Montserrat', sans-serif; font-weight: 800;
+  font-size: clamp(12px,1.5vw,16px); letter-spacing: .08em; text-transform: uppercase;
+  border: none; cursor: pointer; text-decoration: none; display: inline-flex;
+  align-items: center; gap: 8px;
+  transition: transform .15s, box-shadow .15s;
+  border-radius: 4px;
+}
+.mkt-cta-btn:hover { transform: translateY(-2px); }
+.mkt-cta-btn.mkt-primary {
+  background: var(--cyan); color: #000;
+  box-shadow: 0 4px 20px rgba(37,99,235,.4);
+}
+.mkt-cta-btn.mkt-primary:hover { box-shadow: 0 6px 28px rgba(37,99,235,.6); }
+.mkt-cta-btn.mkt-secondary {
+  background: transparent; border: 1px solid var(--green); color: var(--green);
+}
+.mkt-cta-btn.mkt-wa {
+  background: rgba(37,211,102,.12); border: 1px solid rgba(37,211,102,.3);
+  color: #25d366;
+}
+.mkt-contact {
+  display: flex; gap: clamp(12px,2vw,24px); flex-wrap: wrap; justify-content: center;
+  margin-top: 18px;
+  opacity: 0; animation: mktUp .6s .75s forwards;
+}
+.mkt-contact-item {
+  font-family: 'Inter', sans-serif; font-size: 11px;
+  color: rgba(255,255,255,.35); letter-spacing: .04em;
+}
+.mkt-contact-item span { color: rgba(255,255,255,.65); }
+
+/* ── RESPONSIVE BREAKPOINTS ── */
+@media (max-width: 900px) {
+  #mktSlider { height: clamp(480px, 88vh, 700px); }
+  .mkt-bot-grid { grid-template-columns: repeat(3, 1fr); }
+  .mkt-bot-card:nth-child(4) { grid-column: 1; }
+  .mkt-bot-card:nth-child(5) { grid-column: 2; }
+  .mkt-feat-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  #mktSlider { height: auto; min-height: 100svh; padding-bottom: 0; }
+  .mkt-slide { padding: 20px 14px 50px; justify-content: flex-start; padding-top: clamp(24px,6vw,50px); }
+  .mkt-bot-grid { grid-template-columns: repeat(2, 1fr); }
+  .mkt-bot-card:nth-child(4), .mkt-bot-card:nth-child(5) { grid-column: auto; }
+  .mkt-feat-grid { grid-template-columns: 1fr; }
+  .mkt-plan-row { gap: 8px; }
+  .mkt-plan-card { min-width: calc(45% - 4px); }
+  .mkt-flow { gap: 4px; }
+  .mkt-flow-step { min-width: 70px; padding: 8px 8px; }
+  .mkt-flow-arrow { font-size: 14px; }
+  .mkt-arrow { display: none; }
+}
+@media (max-width: 400px) {
+  .mkt-bot-grid { grid-template-columns: 1fr 1fr; }
+  .mkt-plan-card { min-width: calc(50% - 4px); }
+}
+
 /* ══ RESPONSIVE FIXES FOR PRICE, SHOP & IMPEX NEW SECTIONS ══ */
 
 /* Price/shop two-column card → stack on mobile */
@@ -1109,6 +1526,335 @@ img, svg, video { max-width: 100%; }
   <a href="#impex" onclick="toggleMenu()">Import &amp; Export</a>
   <a href="#telegram" class="mobile-tg" onclick="toggleMenu()" style="display:inline-flex;align-items:center;gap:8px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.32 13.617l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.828.942z"/></svg>Telegram Bots</a>
 </div>
+
+<!-- ══ MARKETING SLIDESHOW ══ -->
+<div id="mktSlider">
+
+  <!-- decorative corners -->
+  <div class="mkt-corner mkt-corner-tl"></div>
+  <div class="mkt-corner mkt-corner-br"></div>
+
+  <!-- slide counter -->
+  <div id="mktCounter"><b id="mktCurNum">01</b> / 07</div>
+
+  <!-- progress -->
+  <div id="mktProgressWrap"><div id="mktProgressBar"></div></div>
+
+  <!-- dots -->
+  <div id="mktDots"></div>
+
+  <!-- nav arrows -->
+  <button class="mkt-arrow" id="mktPrev" aria-label="Previous">&#8249;</button>
+  <button class="mkt-arrow" id="mktNext" aria-label="Next">&#8250;</button>
+
+  <!-- play/pause -->
+  <button id="mktPlayPause">&#9646;&#9646;</button>
+
+  <!-- ─ SLIDE 0: INTRO ─ -->
+  <div class="mkt-slide mkt-active" id="mktS0">
+    <div class="mkt-logo-wrap">
+      <svg class="mkt-bolt-svg" viewBox="0 0 80 120" fill="none">
+        <polygon points="48,0 12,65 38,65 32,120 68,50 42,50" fill="url(#mg)"/>
+        <defs>
+          <linearGradient id="mg" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#ffffff"/>
+            <stop offset="40%" stop-color="#2563eb"/>
+            <stop offset="100%" stop-color="#f59e0b"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <div class="mkt-logo-name">iVolt</div>
+      <div class="mkt-logo-sub">Power Solutions &nbsp;·&nbsp; <span>Nigeria</span></div>
+    </div>
+    <div class="mkt-tagline">Where <em>Electricity</em> Meets Intelligence</div>
+  </div>
+
+  <!-- ─ SLIDE 1: PROBLEM ─ -->
+  <div class="mkt-slide" id="mktS1">
+    <div class="mkt-label">The Challenge</div>
+    <div class="mkt-h1">Nigeria Runs on Power.<br><span>Power Runs on Us.</span></div>
+    <div class="mkt-divider"></div>
+    <div class="mkt-sub">200 million people. Unstable grid. A multi-billion-naira market — with no unified intelligent platform. Until now.</div>
+    <div class="mkt-stat-row">
+      <div class="mkt-stat-box">
+        <div class="mkt-stat-num">200M+</div>
+        <div class="mkt-stat-lbl">People Affected</div>
+      </div>
+      <div class="mkt-stat-box">
+        <div class="mkt-stat-num">₦2T+</div>
+        <div class="mkt-stat-lbl">Equipment Market</div>
+      </div>
+      <div class="mkt-stat-box">
+        <div class="mkt-stat-num">5 Bots</div>
+        <div class="mkt-stat-lbl">One Platform</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─ SLIDE 2: 5 BOTS ─ -->
+  <div class="mkt-slide" id="mktS2">
+    <div class="mkt-label">The Platform</div>
+    <div class="mkt-h1">Five Bots. <em>One Ecosystem.</em></div>
+    <div class="mkt-divider"></div>
+    <div class="mkt-bot-grid">
+      <div class="mkt-bot-card">
+        <span class="mkt-bot-icon">🏪</span>
+        <div class="mkt-bot-name">Bot 1 — Shop</div>
+        <div class="mkt-bot-desc">Live Mercury catalogue, flash sales, bulk discounts &amp; order tracking.</div>
+        <span class="mkt-bot-num">01</span>
+      </div>
+      <div class="mkt-bot-card">
+        <span class="mkt-bot-icon">📊</span>
+        <div class="mkt-bot-name">Bot 2 — Market Data</div>
+        <div class="mkt-bot-desc">Real-time FX, commodities, landed cost &amp; premium reports.</div>
+        <span class="mkt-bot-num">02</span>
+      </div>
+      <div class="mkt-bot-card">
+        <span class="mkt-bot-icon">🔧</span>
+        <div class="mkt-bot-name">Bot 3 — Installer</div>
+        <div class="mkt-bot-desc">Certified installer &amp; safety marketplace for verified professionals.</div>
+        <span class="mkt-bot-num">03</span>
+      </div>
+      <div class="mkt-bot-card">
+        <span class="mkt-bot-icon">🛡️</span>
+        <div class="mkt-bot-name">Bot 4 — Admin</div>
+        <div class="mkt-bot-desc">Super-admin oversight, platform control &amp; analytics.</div>
+        <span class="mkt-bot-num">04</span>
+      </div>
+      <div class="mkt-bot-card">
+        <span class="mkt-bot-icon">♻️</span>
+        <div class="mkt-bot-name">Bot 5 — Used Market</div>
+        <div class="mkt-bot-desc">Buy &amp; sell second-hand electrical equipment with escrow protection.</div>
+        <span class="mkt-bot-num">05</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─ SLIDE 3: FEATURES ─ -->
+  <div class="mkt-slide" id="mktS3">
+    <div class="mkt-label">What We Offer</div>
+    <div class="mkt-h1">Pro Features <span>Built for Nigeria</span></div>
+    <div class="mkt-divider"></div>
+    <div class="mkt-feat-grid">
+      <div class="mkt-feat-item">
+        <span class="mkt-feat-icon">📡</span>
+        <div>
+          <div class="mkt-feat-title">Live Pricing Engine</div>
+          <div class="mkt-feat-detail">Real-time NGN/USD rates, import duty, VAT &amp; oil-adjusted logistics on every quote.</div>
+        </div>
+      </div>
+      <div class="mkt-feat-item">
+        <span class="mkt-feat-icon">🔔</span>
+        <div>
+          <div class="mkt-feat-title">Smart Alerts</div>
+          <div class="mkt-feat-detail">Back-in-stock &amp; price-drop notifications sent instantly to Telegram or WhatsApp.</div>
+        </div>
+      </div>
+      <div class="mkt-feat-item">
+        <span class="mkt-feat-icon">📐</span>
+        <div>
+          <div class="mkt-feat-title">Schematics &amp; Diagrams</div>
+          <div class="mkt-feat-detail">Live wiring diagrams tied to shop items and real-time component prices.</div>
+        </div>
+      </div>
+      <div class="mkt-feat-item">
+        <span class="mkt-feat-icon">💬</span>
+        <div>
+          <div class="mkt-feat-title">WhatsApp Bridge</div>
+          <div class="mkt-feat-detail">Every command works on WhatsApp via Twilio — no app switch needed.</div>
+        </div>
+      </div>
+      <div class="mkt-feat-item">
+        <span class="mkt-feat-icon">🧮</span>
+        <div>
+          <div class="mkt-feat-title">Project Calculator</div>
+          <div class="mkt-feat-detail">Full project cost estimator, trade calculator &amp; transformer oil database.</div>
+        </div>
+      </div>
+      <div class="mkt-feat-item">
+        <span class="mkt-feat-icon">🏢</span>
+        <div>
+          <div class="mkt-feat-title">Enterprise API</div>
+          <div class="mkt-feat-detail">Firebase Price API, 500 calls/day, white-label quotes &amp; scheduled reports.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─ SLIDE 4: ESCROW ─ -->
+  <div class="mkt-slide" id="mktS4">
+    <div class="mkt-label">Trust &amp; Safety</div>
+    <div class="mkt-h1">Peer-to-Peer.<br><span>Escrow-Protected.</span></div>
+    <div class="mkt-divider"></div>
+    <div class="mkt-sub">Buy &amp; sell used electrical equipment with zero counterparty risk. Funds held until delivery confirmed.</div>
+    <div class="mkt-flow">
+      <div class="mkt-flow-step"><span class="mkt-flow-emoji">📋</span><span class="mkt-flow-name">List Item</span></div>
+      <span class="mkt-flow-arrow">→</span>
+      <div class="mkt-flow-step"><span class="mkt-flow-emoji">🛒</span><span class="mkt-flow-name">Buyer Orders</span></div>
+      <span class="mkt-flow-arrow">→</span>
+      <div class="mkt-flow-step"><span class="mkt-flow-emoji">🔒</span><span class="mkt-flow-name">Escrow Locks</span></div>
+      <span class="mkt-flow-arrow">→</span>
+      <div class="mkt-flow-step"><span class="mkt-flow-emoji">🚚</span><span class="mkt-flow-name">Delivered</span></div>
+      <span class="mkt-flow-arrow">→</span>
+      <div class="mkt-flow-step"><span class="mkt-flow-emoji">✅</span><span class="mkt-flow-name">Funds Released</span></div>
+    </div>
+    <div class="mkt-escrow-badge">
+      <div class="mkt-eb-big">🛡️ Protected Every Step of the Way</div>
+      <div class="mkt-eb-small">Dispute resolution · Seller ratings · Verified IVT user IDs</div>
+    </div>
+  </div>
+
+  <!-- ─ SLIDE 5: PLANS ─ -->
+  <div class="mkt-slide" id="mktS5">
+    <div class="mkt-label">Premium Access</div>
+    <div class="mkt-h1">Plans for <span>Every</span> Professional</div>
+    <div class="mkt-divider"></div>
+    <div class="mkt-plan-row">
+      <div class="mkt-plan-card">
+        <div class="mkt-plan-name">Daily</div>
+        <div class="mkt-plan-price">₦500<small>/day</small></div>
+        <div class="mkt-plan-q">50 queries</div>
+      </div>
+      <div class="mkt-plan-card">
+        <div class="mkt-plan-name">Weekly</div>
+        <div class="mkt-plan-price">₦1,500<small>/wk</small></div>
+        <div class="mkt-plan-q">300 queries</div>
+      </div>
+      <div class="mkt-plan-card mkt-featured">
+        <div class="mkt-plan-name">Monthly</div>
+        <div class="mkt-plan-price">₦5,000<small>/mo</small></div>
+        <div class="mkt-plan-q">1,500 queries</div>
+      </div>
+      <div class="mkt-plan-card">
+        <div class="mkt-plan-name">Annual</div>
+        <div class="mkt-plan-price">₦50K<small>/yr</small></div>
+        <div class="mkt-plan-q">Unlimited</div>
+      </div>
+      <div class="mkt-plan-card">
+        <div class="mkt-plan-name">Enterprise</div>
+        <div class="mkt-plan-price">₦150K<small>/yr</small></div>
+        <div class="mkt-plan-q">API + White-label</div>
+      </div>
+    </div>
+    <div class="mkt-sub" style="margin-top:14px;">Partner plan for certified installers &amp; safety professionals — ₦30,000/yr</div>
+  </div>
+
+  <!-- ─ SLIDE 6: CTA ─ -->
+  <div class="mkt-slide" id="mktS6">
+    <span class="mkt-cta-bolt">⚡</span>
+    <div class="mkt-cta-h">Power Up Your <span>Business</span> Today.</div>
+    <div class="mkt-cta-links">
+      <a href="https://t.me/ivoltpowersolutions" target="_blank" rel="noopener" class="mkt-cta-btn mkt-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.32 13.617l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.828.942z"/></svg>
+        Join Telegram
+      </a>
+      <a href="tel:+2349032156174" class="mkt-cta-btn mkt-wa">📞 Call Now</a>
+      <a href="#products" class="mkt-cta-btn mkt-secondary">View Products</a>
+    </div>
+    <div class="mkt-contact">
+      <div class="mkt-contact-item">📧 <span>ivoltpowersolutions@gmail.com</span></div>
+      <div class="mkt-contact-item">💬 <span>@ivoltadmin</span></div>
+      <div class="mkt-contact-item">📞 <span>+234-903-215-6174</span></div>
+    </div>
+  </div>
+
+</div><!-- /#mktSlider -->
+
+<script>
+(function() {
+  var slides   = document.querySelectorAll('.mkt-slide');
+  var N        = slides.length;
+  var DURS     = [4200, 5800, 6800, 6500, 6200, 5800, 8000];
+  var bar      = document.getElementById('mktProgressBar');
+  var counter  = document.getElementById('mktCurNum');
+  var ppBtn    = document.getElementById('mktPlayPause');
+  var dotsWrap = document.getElementById('mktDots');
+
+  var cur = 0, playing = true, raf = null, startTs = 0, elapsed = 0;
+
+  // build dots
+  for (var i = 0; i < N; i++) {
+    (function(idx) {
+      var d = document.createElement('button');
+      d.className = 'mkt-dot' + (idx === 0 ? ' mkt-dot-active' : '');
+      d.setAttribute('aria-label', 'Go to slide ' + (idx+1));
+      d.addEventListener('click', function() { elapsed = 0; goTo(idx); });
+      dotsWrap.appendChild(d);
+    })(i);
+  }
+
+  function updateDots() {
+    var ds = dotsWrap.querySelectorAll('.mkt-dot');
+    ds.forEach(function(d, i) { d.classList.toggle('mkt-dot-active', i === cur); });
+  }
+
+  function showSlide(idx) {
+    // re-trigger animations by replacing node
+    var old = slides[idx];
+    var clone = old.cloneNode(true);
+    old.parentNode.replaceChild(clone, old);
+    slides[idx] = clone;
+
+    slides.forEach(function(s, i) {
+      s.classList.toggle('mkt-active', i === idx);
+      s.style.pointerEvents = i === idx ? 'auto' : 'none';
+    });
+    counter.textContent = String(idx + 1).padStart(2, '0');
+    updateDots();
+  }
+
+  function goTo(idx) {
+    stopProgress();
+    cur = ((idx % N) + N) % N;
+    showSlide(cur);
+    if (playing) startProgress();
+  }
+
+  function startProgress() {
+    var dur = DURS[cur];
+    startTs = performance.now() - elapsed;
+    function tick(now) {
+      var pct = Math.min((now - startTs) / dur * 100, 100);
+      bar.style.width = pct + '%';
+      if (pct >= 100) {
+        elapsed = 0;
+        cur = (cur + 1) % N;
+        showSlide(cur);
+        startProgress();
+        return;
+      }
+      raf = requestAnimationFrame(tick);
+    }
+    raf = requestAnimationFrame(tick);
+  }
+
+  function stopProgress() {
+    if (raf) { cancelAnimationFrame(raf); raf = null; }
+  }
+
+  document.getElementById('mktPrev').addEventListener('click', function() { elapsed = 0; goTo(cur - 1); });
+  document.getElementById('mktNext').addEventListener('click', function() { elapsed = 0; goTo(cur + 1); });
+
+  ppBtn.addEventListener('click', function() {
+    playing = !playing;
+    ppBtn.innerHTML = playing ? '&#9646;&#9646;' : '&#9654;';
+    if (playing) startProgress(); else stopProgress();
+  });
+
+  // swipe support
+  var touchX = 0;
+  document.getElementById('mktSlider').addEventListener('touchstart', function(e) {
+    touchX = e.changedTouches[0].clientX;
+  }, { passive: true });
+  document.getElementById('mktSlider').addEventListener('touchend', function(e) {
+    var dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 40) { elapsed = 0; goTo(dx < 0 ? cur + 1 : cur - 1); }
+  }, { passive: true });
+
+  showSlide(0);
+  startProgress();
+})();
+</script>
 
 <!-- HERO -->
 <section class="hero" id="home">
