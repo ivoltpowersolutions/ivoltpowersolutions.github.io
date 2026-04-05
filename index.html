@@ -261,7 +261,8 @@ nav {
 /* ══ HERO ══ */
 .hero {
   display: flex; align-items: center;
-  padding: 80px 5% 80px; position: relative; overflow: hidden;
+  padding: 80px 5% 64px; position: relative; overflow: hidden;
+  max-height: 80vh;
 }
 .hero-inner {
   display: flex; align-items: center; justify-content: space-between;
@@ -291,7 +292,7 @@ nav {
 .hero-glow2 { width: 500px; height: 500px; bottom: -80px; right: -120px; background: radial-gradient(circle, rgba(37,99,235,0.06) 0%, transparent 65%); }
 @media (min-width: 901px) {
   /* On desktop: large absolute bolt on right, inline bolt hidden */
-  .hero { min-height: 100vh; }
+  .hero { min-height: 60vh; }
   .hero-device { display: block; }
   .hero-bolt-inline { display: none; }
   .hero-content { max-width: 580px; }
@@ -413,7 +414,7 @@ nav {
 .stat-lbl { font-family: 'Inter', sans-serif; font-size: 9px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; margin-top: 2px; }
 
 /* ══ SECTION SHARED ══ */
-section { padding: 100px 5%; position: relative; z-index: 2; max-width: 100%; box-sizing: border-box; }
+section { padding: 72px 5%; position: relative; z-index: 2; max-width: 100%; box-sizing: border-box; }
 .section-tag {
   font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 5px; color: var(--cyan);
   text-transform: uppercase; margin-bottom: 14px; display: flex; align-items: center; gap: 12px;
@@ -956,7 +957,7 @@ img, svg, video { max-width: 100%; }
 #mktSlider {
   position: relative;
   width: 100%;
-  height: clamp(520px, 90vh, 820px);
+  height: clamp(400px, 60vh, 640px);
   background: var(--bg);
   overflow: hidden;
   margin-top: 64px; /* nav height */
