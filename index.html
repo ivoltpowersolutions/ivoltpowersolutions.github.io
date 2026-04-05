@@ -13,8 +13,8 @@
 :root {
   --cyan: #2563eb;
   --cyan-dim: rgba(37,99,235,0.15);
-  --gold: #2563eb;
-  --gold-dim: rgba(37,99,235,0.12);
+  --gold: #f5a623;
+  --gold-dim: rgba(245,166,35,0.15);
   --green: #3b82f6;
   --red: #2563eb;
   --orange: #3b82f6;
@@ -240,7 +240,7 @@ nav {
   font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 900;
   color: #fff; letter-spacing: 2px; text-decoration: none;
 }
-.nav-logo span { color: var(--cyan); }
+.nav-logo span { color: #fff; }
 .nav-links { display: flex; gap: 28px; list-style: none; }
 .nav-links a {
   font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 2px;
@@ -713,7 +713,7 @@ section { padding: 100px 5%; position: relative; z-index: 2; max-width: 100%; bo
 footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 48px 5% 88px; }
 .footer-inner { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
 .footer-brand .logo { font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 900; color: #fff; letter-spacing: 2px; text-decoration: none; display: block; margin-bottom: 14px; }
-.footer-brand .logo span { color: var(--cyan); }
+.footer-brand .logo span { color: #fff; }
 .footer-brand p { font-size: 12px; color: var(--muted); line-height: 1.8; max-width: 280px; }
 .footer-col h5 { font-family: 'Inter', sans-serif; font-size: 9px; letter-spacing: 3px; color: var(--cyan); text-transform: uppercase; margin-bottom: 16px; }
 .footer-col ul { list-style: none; }
@@ -950,7 +950,6 @@ img, svg, video { max-width: 100%; }
   .impex-hero { padding: 28px 20px; }
   .impex-hero-stats { gap: 20px; }
 }
-
 
 /* ══ MARKETING SLIDESHOW ══ */
 #mktSlider {
@@ -1498,7 +1497,7 @@ img, svg, video { max-width: 100%; }
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">i<span>Volt</span> Power</a>
+  <a href="#" class="nav-logo">i<span>Volt</span> Power Solutions</a>
   <ul class="nav-links">
     <li><a href="#products">Products</a></li>
     <li><a href="#trade">Buy &amp; Sell</a></li>
@@ -1560,9 +1559,9 @@ img, svg, video { max-width: 100%; }
         <polygon points="48,0 12,65 38,65 32,120 68,50 42,50" fill="url(#mg)"/>
         <defs>
           <linearGradient id="mg" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#ffffff"/>
-            <stop offset="40%" stop-color="#2563eb"/>
-            <stop offset="100%" stop-color="#2563eb"/>
+            <stop offset="0%" stop-color="#fff7cc"/>
+            <stop offset="40%" stop-color="#f5a623"/>
+            <stop offset="100%" stop-color="#c47f00"/>
           </linearGradient>
         </defs>
       </svg>
@@ -1744,7 +1743,7 @@ img, svg, video { max-width: 100%; }
 
   <!-- ─ SLIDE 6: CTA ─ -->
   <div class="mkt-slide" id="mktS6">
-    <span class="mkt-cta-bolt">⚡</span>
+    <span class="mkt-cta-bolt" style="filter: sepia(1) saturate(4) hue-rotate(5deg);">⚡</span>
     <div class="mkt-cta-h">Power Up Your <span>Business</span> Today.</div>
     <div class="mkt-cta-links">
       <a href="https://t.me/ivoltpowersolutions" target="_blank" rel="noopener" class="mkt-cta-btn mkt-primary">
@@ -1755,7 +1754,7 @@ img, svg, video { max-width: 100%; }
       <a href="#products" class="mkt-cta-btn mkt-secondary">View Products</a>
     </div>
     <div class="mkt-contact">
-      <div class="mkt-contact-item">📧 <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0e677861627a7e61796b7c7d61627b7a6761607d4e69636f6762206d6163">[email&#160;protected]</a></span></div>
+      <div class="mkt-contact-item">📧 <span><a href="mailto:ivoltpowersolutions@gmail.com" style="color:inherit;text-decoration:none;">ivoltpowersolutions@gmail.com</a></span></div>
       <div class="mkt-contact-item">💬 <span>@ivoltadmin</span></div>
       <div class="mkt-contact-item">📞 <span>+234-903-215-6174</span></div>
     </div>
@@ -1763,7 +1762,7 @@ img, svg, video { max-width: 100%; }
 
 </div><!-- /#mktSlider -->
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 (function() {
   var slides   = Array.from(document.querySelectorAll('.mkt-slide'));
   var N        = slides.length;
@@ -1875,9 +1874,9 @@ img, svg, video { max-width: 100%; }
     <svg viewBox="0 0 200 320" width="300" height="460" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="hg" x1="0" y1="0" x2="0.6" y2="1">
-          <stop offset="0%"   stop-color="#ffffff"/>
-          <stop offset="30%"  stop-color="#2563eb"/>
-          <stop offset="100%" stop-color="#2563eb"/>
+          <stop offset="0%"   stop-color="#fff7cc"/>
+          <stop offset="30%"  stop-color="#f5a623"/>
+          <stop offset="100%" stop-color="#c47f00"/>
         </linearGradient>
         <filter id="boltGlow">
           <feGaussianBlur stdDeviation="6" result="blur"/>
@@ -1886,7 +1885,7 @@ img, svg, video { max-width: 100%; }
       </defs>
       <!-- Outer glow bolt -->
       <polygon points="120,0 40,160 95,160 50,320 185,120 125,120 175,0"
-        fill="rgba(37,99,235,0.15)" filter="url(#boltGlow)"/>
+        fill="rgba(245,166,35,0.15)" filter="url(#boltGlow)"/>
       <!-- Main bolt -->
       <polygon points="120,0 40,160 95,160 50,320 185,120 125,120 175,0"
         fill="url(#hg)" opacity="0.95"/>
@@ -1897,7 +1896,7 @@ img, svg, video { max-width: 100%; }
   </div>
   <div class="hero-content">
     <div class="hero-eyebrow">Nigeria's Power Protection Dealer</div>
-    <h1><span class="accent">iVolt</span><br>Power<br><span class="accent">Solutions</span></h1>
+    <h1>iVolt<br>Power<br>Solutions</h1>
     <p class="hero-sub">Your trusted source for buying and selling quality Servo-Based AVS Units, Surge Protective Devices, and professional Electrical Safety Inspections.</p>
     <div class="hero-btns">
       <a href="#products" class="btn-primary">View Products</a>
@@ -1915,9 +1914,9 @@ img, svg, video { max-width: 100%; }
     <svg viewBox="0 0 200 320" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="hgm" x1="0" y1="0" x2="0.6" y2="1">
-          <stop offset="0%"   stop-color="#ffffff"/>
-          <stop offset="30%"  stop-color="#2563eb"/>
-          <stop offset="100%" stop-color="#2563eb"/>
+          <stop offset="0%"   stop-color="#fff7cc"/>
+          <stop offset="30%"  stop-color="#f5a623"/>
+          <stop offset="100%" stop-color="#c47f00"/>
         </linearGradient>
         <filter id="boltGlowM">
           <feGaussianBlur stdDeviation="6" result="blur"/>
@@ -1925,7 +1924,7 @@ img, svg, video { max-width: 100%; }
         </filter>
       </defs>
       <polygon points="120,0 40,160 95,160 50,320 185,120 125,120 175,0"
-        fill="rgba(37,99,235,0.15)" filter="url(#boltGlowM)"/>
+        fill="rgba(245,166,35,0.15)" filter="url(#boltGlowM)"/>
       <polygon points="120,0 40,160 95,160 50,320 185,120 125,120 175,0"
         fill="url(#hgm)" opacity="0.95"/>
       <polygon points="118,8 55,150 98,150 60,305 172,128 120,128 168,8"
@@ -2617,7 +2616,6 @@ img, svg, video { max-width: 100%; }
     </div>
     <p style="font-size:11px;color:var(--muted);margin-top:12px;line-height:1.7;">Hybrid inverters include MPPT solar charge controller, multi-source charging (solar / grid / generator), and LCD monitoring. For live pricing run <strong style="color:var(--cyan);">/price</strong> or <strong style="color:var(--cyan);">/shop</strong> on our Telegram bot.</p>
   </div>
-
 
   <!-- ══ INVERTER & BATTERY SIZING CALCULATOR ══ -->
   <div class="reveal" style="margin-top:56px;">
@@ -3419,7 +3417,6 @@ function getStaticFallback() {
 document.addEventListener('DOMContentLoaded', function(){ fetchNews(); });
 </script>
 
-
 <!-- ADVERTISE SECTION REMOVED -->
 <section class="advertise-section" id="advertise" style="display:none;">
   <div class="advertise-inner">
@@ -3661,7 +3658,6 @@ function switchAdTab(tab,btn) {
   document.getElementById('wdTab2').classList.toggle('active', tab==='intl');
 }
 
-
 /* ── LIVE PRICE ENGINE ─────────────────────────────────────────────────────
    Sources (all free, no API key required):
    1. USD/NGN rate  → open.er-api.com  (free tier, updates hourly)
@@ -3899,7 +3895,6 @@ function openImpexOrder(dir, product) {
   var msg = 'Hi iVolt! I\'m interested in: ' + (dir === 'import' ? 'Importing' : 'Exporting') + ' — ' + product + '\n\nPlease send me a quote.';
   window.open('https://wa.me/2349032156174?text=' + encodeURIComponent(msg), '_blank');
 }
-
 
 var chatOpen=false,hasChattedBefore=false;
 function toggleChat(){chatOpen=!chatOpen;document.getElementById('chatWindow').classList.toggle('open',chatOpen);document.getElementById('chatBubbleIcon').textContent=chatOpen?'\u2715':'V';document.getElementById('chatBadge').style.display=chatOpen?'none':'flex';if(chatOpen)setTimeout(function(){document.getElementById('chatInput').focus();},300);}
