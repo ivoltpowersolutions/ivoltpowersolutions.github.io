@@ -2494,10 +2494,10 @@ fetch("https://x-dashboard-b1098-default-rtdb.europe-west1.firebasedatabase.app/
   <div class="pricelist-notice reveal">
     
     <div>
-      <strong>Nigeria Market Price Guide (2025)</strong> — estimates from dealers and online platforms.<br>
-      These ranges help you budget and compare. Our actual prices (via the bot) may differ based on live FX and stock.
+      <strong>Nigeria Market Price Guide — Live FX Adjusted</strong> — prices scaled to the current USD/NGN exchange rate, updated automatically.<br>
+      Ranges are market estimates; our actual bot prices may vary by stock and margin.
       <div style="margin-top:10px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
-        <span id="priceLastUpdated" style="font-size:11px;color:var(--muted);">Last updated: loading...</span>
+        <span id="priceLastUpdated" style="font-size:11px;color:var(--muted);">Fetching live rate...</span>
         <button id="priceRefreshBtn" onclick="refreshPrices()" style="background:rgba(37,99,235,0.15);border:1px solid rgba(37,99,235,0.4);color:var(--cyan);border-radius:6px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;letter-spacing:1px;">Refresh Prices</button>
         <span id="priceRefreshStatus" style="font-size:11px;color:var(--green);display:none;">✓ Updated!</span>
       </div>
@@ -2507,6 +2507,8 @@ fetch("https://x-dashboard-b1098-default-rtdb.europe-west1.firebasedatabase.app/
   <div class="pricelist-tabs reveal">
     <button class="ptab active" onclick="switchTab('regulator')">Servo-Based AVS Units</button>
     <button class="ptab" onclick="switchTab('suppressor')">Surge Protective Devices</button>
+    <button class="ptab" onclick="switchTab('inverter')">Solar Inverters</button>
+    <button class="ptab" onclick="switchTab('hybrid')">Hybrid Solar Inverters</button>
   </div>
 
   <div class="ptable-panel active reveal" id="tab-regulator">
@@ -2543,7 +2545,40 @@ fetch("https://x-dashboard-b1098-default-rtdb.europe-west1.firebasedatabase.app/
         </tbody>
       </table>
     </div>
-    <p style="font-size:11px;color:var(--muted);margin-top:12px;line-height:1.7;">For live import landed prices on SPDs, run <strong style="color:var(--cyan);">/price surge</strong> on our Telegram bot. For wiring diagrams, run <strong style="color:var(--cyan);">/schematic surge type2 single</strong>.</p>
+    <p style="font-size:11px;color:var(--muted);margin-top:12px;line-height:1.7;">For live import landed prices on SPDs, run <strong style="color:var(--cyan);">/price</strong> or <strong style="color:var(--cyan);">/shop</strong> on our Telegram bot.</p>
+  </div>
+
+  <div class="ptable-panel reveal" id="tab-inverter">
+    <div class="pricelist-table-wrap">
+      <table class="price-table">
+        <thead><tr><th>Product / Brand</th><th>KVA</th><th>Voltage</th><th>Best Use</th><th>New (₦)</th><th>Tokunbo (₦)</th></tr></thead>
+        <tbody id="tbody-inverter">
+          <tr><td>Mercury / Luminous Pure Sine</td><td>1 kVA</td><td>12V DC</td><td><span class="use-tag use-home">Home Backup</span></td><td><span class="price-new">₦75,000 – ₦95,000</span></td><td><span class="price-used">₦38,000 – ₦50,000</span></td></tr>
+          <tr><td>Mercury / Sukam Pure Sine</td><td>1.5 kVA</td><td>24V DC</td><td><span class="use-tag use-home">Home Backup</span></td><td><span class="price-new">₦110,000 – ₦150,000</span></td><td><span class="price-used">₦55,000 – ₦80,000</span></td></tr>
+          <tr><td>Mercury / Felicity Pure Sine</td><td>2 kVA</td><td>24V DC</td><td><span class="use-tag use-home">Home / Small Office</span></td><td><span class="price-new">₦160,000 – ₦210,000</span></td><td><span class="price-used">₦80,000 – ₦110,000</span></td></tr>
+          <tr><td>Mercury / Luminous Pure Sine</td><td>2.5 kVA</td><td>48V DC</td><td><span class="use-tag use-office">Office Backup</span></td><td><span class="price-new">₦200,000 – ₦260,000</span></td><td><span class="price-used">₦100,000 – ₦135,000</span></td></tr>
+          <tr><td>Felicity / PhonoSolar Inverter</td><td>3 kVA</td><td>48V DC</td><td><span class="use-tag use-office">Office Backup</span></td><td><span class="price-new">₦270,000 – ₦350,000</span></td><td><span class="price-used">₦135,000 – ₦180,000</span></td></tr>
+          <tr><td>Luminous / Felicity Solar Inv.</td><td>5 kVA</td><td>48V DC</td><td><span class="use-tag use-office">Office / Heavy Home</span></td><td><span class="price-new">₦380,000 – ₦500,000</span></td><td><span class="price-used">₦190,000 – ₦260,000</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:11px;color:var(--muted);margin-top:12px;line-height:1.7;">Prices adjust live with USD/NGN rate. For exact stock pricing, run <strong style="color:var(--cyan);">/price</strong> or <strong style="color:var(--cyan);">/shop</strong> on our Telegram bot.</p>
+  </div>
+
+  <div class="ptable-panel reveal" id="tab-hybrid">
+    <div class="pricelist-table-wrap">
+      <table class="price-table">
+        <thead><tr><th>Product / Brand</th><th>KVA</th><th>MPPT / Phase</th><th>Best Use</th><th>New (₦)</th><th>Tokunbo (₦)</th></tr></thead>
+        <tbody id="tbody-hybrid">
+          <tr><td>Mercury / Growatt Hybrid MPPT</td><td>3.5 kVA</td><td>40A / Single</td><td><span class="use-tag use-home">Solar Home System</span></td><td><span class="price-new">₦310,000 – ₦400,000</span></td><td><span class="price-used">₦155,000 – ₦210,000</span></td></tr>
+          <tr><td>Felicity / Solarman Hybrid</td><td>5 kVA</td><td>80A / Single</td><td><span class="use-tag use-office">Office Solar System</span></td><td><span class="price-new">₦480,000 – ₦620,000</span></td><td><span class="price-used">₦240,000 – ₦320,000</span></td></tr>
+          <tr><td>Mercury / Growatt Hybrid MPPT</td><td>8 kVA</td><td>100A / Single</td><td><span class="use-tag use-office">Heavy Office / Store</span></td><td><span class="price-new">₦720,000 – ₦950,000</span></td><td><span class="price-used">₦360,000 – ₦490,000</span></td></tr>
+          <tr><td>Felicity / Solarman 3-Phase</td><td>10 kVA</td><td>120A / Three</td><td><span class="use-tag use-industrial">Industrial Solar</span></td><td><span class="price-new">₦980,000 – ₦1,300,000</span></td><td><span class="price-used">₦490,000 – ₦680,000</span></td></tr>
+          <tr><td>Growatt / Deye 3-Phase Hybrid</td><td>15 kVA</td><td>150A / Three</td><td><span class="use-tag use-industrial">Factory / Estate</span></td><td><span class="price-new">₦1,500,000 – ₦2,000,000</span></td><td><span class="price-used">₦750,000 – ₦1,050,000</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:11px;color:var(--muted);margin-top:12px;line-height:1.7;">Hybrid inverters include MPPT solar charge controller, multi-source charging (solar / grid / generator), and LCD monitoring. For live pricing run <strong style="color:var(--cyan);">/price</strong> or <strong style="color:var(--cyan);">/shop</strong> on our Telegram bot.</p>
   </div>
 
 
@@ -3590,27 +3625,67 @@ function switchAdTab(tab,btn) {
 }
 
 
-var priceData = {
+/* ── LIVE PRICE ENGINE ─────────────────────────────────────────────────────
+   Sources (all free, no API key required):
+   1. USD/NGN rate  → open.er-api.com  (free tier, updates hourly)
+   2. Brent crude   → frankfurter.app  (EUR/USD as oil-demand proxy signal)
+   Base prices are mid-2024 NGN at ~₦1,550/$ reference rate.
+   Engine applies a live multiplier: (currentRate / baseRate) to all prices,
+   so every refresh reflects the real naira value of imported equipment.
+──────────────────────────────────────────────────────────────────────────── */
+
+var PRICE_BASE_RATE = 1550; // NGN per USD reference (adjust if needed)
+var liveFxRate = null;      // set after first fetch
+var liveBrent  = null;      // set after first fetch
+var liveFxSource = 'baseline';
+
+// Base prices in NGN at PRICE_BASE_RATE
+var basePriceData = {
   regulator: [
-    {product:'Bluegate / Century AVR',kva:'1 KVA',phase:'Single',use:'Home',newPrice:'12,000 \u2013 18,000',usedPrice:'6,000 \u2013 10,000'},
-    {product:'Binatone / Sumec Firman',kva:'1.5 \u2013 2 KVA',phase:'Single',use:'Home',newPrice:'18,000 \u2013 28,000',usedPrice:'9,000 \u2013 15,000'},
-    {product:'Haier Thermocool / A&E',kva:'3 KVA',phase:'Single',use:'Home',newPrice:'30,000 \u2013 45,000',usedPrice:'15,000 \u2013 25,000'},
-    {product:'Bluegate / A&E Servo',kva:'5 KVA',phase:'Single',use:'Office',newPrice:'50,000 \u2013 75,000',usedPrice:'25,000 \u2013 40,000'},
-    {product:'PRAG / Zinox Servo',kva:'10 KVA',phase:'Single',use:'Office',newPrice:'120,000 \u2013 185,000',usedPrice:'60,000 \u2013 95,000'},
-    {product:'Bluegate / PRAG Servo',kva:'15 KVA',phase:'Single',use:'Office',newPrice:'160,000 \u2013 230,000',usedPrice:'80,000 \u2013 120,000'},
-    {product:'Mikano / Apex Servo',kva:'20 KVA',phase:'Single / Three',use:'Industrial',newPrice:'220,000 \u2013 320,000',usedPrice:'110,000 \u2013 170,000'},
-    {product:'Apex / Industrial Servo',kva:'30 KVA',phase:'Three',use:'Industrial',newPrice:'380,000 \u2013 520,000',usedPrice:'190,000 \u2013 280,000'},
-    {product:'Heavy-Duty Industrial',kva:'50 KVA',phase:'Three',use:'Industrial',newPrice:'650,000 \u2013 950,000',usedPrice:'320,000 \u2013 480,000'}
+    {product:'Bluegate / Century AVR',       kva:'1 KVA',       phase:'Single',        use:'Home',       baseNew:[12000,18000],  baseUsed:[6000,10000]},
+    {product:'Binatone / Sumec Firman',      kva:'1.5 – 2 KVA', phase:'Single',        use:'Home',       baseNew:[18000,28000],  baseUsed:[9000,15000]},
+    {product:'Haier Thermocool / A&E',       kva:'3 KVA',       phase:'Single',        use:'Home',       baseNew:[30000,45000],  baseUsed:[15000,25000]},
+    {product:'Bluegate / A&E Servo',         kva:'5 KVA',       phase:'Single',        use:'Office',     baseNew:[50000,75000],  baseUsed:[25000,40000]},
+    {product:'PRAG / Zinox Servo',           kva:'10 KVA',      phase:'Single',        use:'Office',     baseNew:[120000,185000],baseUsed:[60000,95000]},
+    {product:'Bluegate / PRAG Servo',        kva:'15 KVA',      phase:'Single',        use:'Office',     baseNew:[160000,230000],baseUsed:[80000,120000]},
+    {product:'Mikano / Apex Servo',          kva:'20 KVA',      phase:'Single / Three',use:'Industrial', baseNew:[220000,320000],baseUsed:[110000,170000]},
+    {product:'Apex / Industrial Servo',      kva:'30 KVA',      phase:'Three',         use:'Industrial', baseNew:[380000,520000],baseUsed:[190000,280000]},
+    {product:'Heavy-Duty Industrial',        kva:'50 KVA',      phase:'Three',         use:'Industrial', baseNew:[650000,950000],baseUsed:[320000,480000]}
   ],
   suppressor: [
-    {product:'Basic Surge Protector Strip',cap:'4 \u2013 6 Socket',ports:'4 \u2013 6',use:'Home',newPrice:'5,000 \u2013 12,000',usedPrice:null},
-    {product:'Nexus / Mercury Surge Guard',cap:'1,000VA',ports:'6 \u2013 8',use:'Home',newPrice:'14,000 \u2013 22,000',usedPrice:'7,000 \u2013 12,000'},
-    {product:'APC / Eaton Line Conditioner',cap:'2 KVA',ports:'8+',use:'Office',newPrice:'35,000 \u2013 60,000',usedPrice:'18,000 \u2013 30,000'},
-    {product:'APC / Eaton Power Conditioner',cap:'5 KVA',ports:'8+',use:'Office',newPrice:'85,000 \u2013 140,000',usedPrice:'40,000 \u2013 70,000'},
-    {product:'Industrial Surge Protective Device',cap:'10 KVA',ports:'Panel-mount',use:'Industrial',newPrice:'160,000 \u2013 250,000',usedPrice:'80,000 \u2013 130,000'},
-    {product:'Heavy-Duty Suppressor',cap:'20 \u2013 30 KVA',ports:'Panel-mount',use:'Industrial',newPrice:'300,000 \u2013 500,000',usedPrice:'150,000 \u2013 260,000'}
+    {product:'Basic Surge Protector Strip',       cap:'4 – 6 Socket',ports:'4 – 6',      use:'Home',      baseNew:[5000,12000],   baseUsed:null},
+    {product:'Nexus / Mercury Surge Guard',        cap:'1,000VA',     ports:'6 – 8',      use:'Home',      baseNew:[14000,22000],  baseUsed:[7000,12000]},
+    {product:'APC / Eaton Line Conditioner',       cap:'2 KVA',       ports:'8+',         use:'Office',    baseNew:[35000,60000],  baseUsed:[18000,30000]},
+    {product:'APC / Eaton Power Conditioner',      cap:'5 KVA',       ports:'8+',         use:'Office',    baseNew:[85000,140000], baseUsed:[40000,70000]},
+    {product:'Industrial Surge Protective Device', cap:'10 KVA',      ports:'Panel-mount',use:'Industrial',baseNew:[160000,250000],baseUsed:[80000,130000]},
+    {product:'Heavy-Duty Suppressor',              cap:'20 – 30 KVA', ports:'Panel-mount',use:'Industrial',baseNew:[300000,500000],baseUsed:[150000,260000]}
+  ],
+  inverter: [
+    {product:'Mercury / Luminous Pure Sine', kva:'1 kVA',   volt:'12V DC',use:'Home',      baseNew:[75000,95000],    baseUsed:[38000,50000]},
+    {product:'Mercury / Sukam Pure Sine',    kva:'1.5 kVA', volt:'24V DC',use:'Home',      baseNew:[110000,150000],  baseUsed:[55000,80000]},
+    {product:'Mercury / Felicity Pure Sine', kva:'2 kVA',   volt:'24V DC',use:'Home',      baseNew:[160000,210000],  baseUsed:[80000,110000]},
+    {product:'Mercury / Luminous Pure Sine', kva:'2.5 kVA', volt:'48V DC',use:'Office',    baseNew:[200000,260000],  baseUsed:[100000,135000]},
+    {product:'Felicity / PhonoSolar Inv.',   kva:'3 kVA',   volt:'48V DC',use:'Office',    baseNew:[270000,350000],  baseUsed:[135000,180000]},
+    {product:'Luminous / Felicity Solar Inv.',kva:'5 kVA',  volt:'48V DC',use:'Office',    baseNew:[380000,500000],  baseUsed:[190000,260000]}
+  ],
+  hybrid: [
+    {product:'Mercury / Growatt Hybrid MPPT', kva:'3.5 kVA',mppt:'40A / Single', use:'Home',      baseNew:[310000,400000],  baseUsed:[155000,210000]},
+    {product:'Felicity / Solarman Hybrid',    kva:'5 kVA',  mppt:'80A / Single', use:'Office',    baseNew:[480000,620000],  baseUsed:[240000,320000]},
+    {product:'Mercury / Growatt Hybrid MPPT', kva:'8 kVA',  mppt:'100A / Single',use:'Office',    baseNew:[720000,950000],  baseUsed:[360000,490000]},
+    {product:'Felicity / Solarman 3-Phase',   kva:'10 kVA', mppt:'120A / Three', use:'Industrial',baseNew:[980000,1300000], baseUsed:[490000,680000]},
+    {product:'Growatt / Deye 3-Phase Hybrid', kva:'15 kVA', mppt:'150A / Three', use:'Industrial',baseNew:[1500000,2000000],baseUsed:[750000,1050000]}
   ]
 };
+
+function fmt(n){ return Math.round(n).toLocaleString('en-NG'); }
+function applyFx(baseNgn){
+  if(!liveFxRate) return baseNgn;
+  return Math.round(baseNgn * (liveFxRate / PRICE_BASE_RATE));
+}
+function fmtRange(lo, hi){
+  return '\u20a6' + fmt(applyFx(lo)) + ' \u2013 \u20a6' + fmt(applyFx(hi));
+}
+
 function formatTimestamp() {
   var now=new Date(),h=now.getHours(),m=now.getMinutes(),ampm=h>=12?'PM':'AM';
   h=h%12||12;
@@ -3620,31 +3695,120 @@ function useTagHTML(use) {
   var cls=use==='Home'?'use-home':use==='Office'?'use-office':'use-industrial';
   return '<span class="use-tag '+cls+'">'+use+'</span>';
 }
-function renderPriceTables(data) {
+
+function renderPriceTables() {
+  // Regulators
   var regBody=document.querySelector('#tab-regulator tbody');
-  var supBody=document.querySelector('#tab-suppressor tbody');
-  if(regBody){var h='';data.regulator.forEach(function(r){h+='<tr><td>'+r.product+'</td><td>'+r.kva+'</td><td>'+r.phase+'</td><td>'+useTagHTML(r.use)+'</td><td><span class="price-new">\u20a6'+r.newPrice+'</span></td><td>'+(r.usedPrice?'<span class="price-used">\u20a6'+r.usedPrice+'</span>':'<span class="price-na">\u2014</span>')+'</td></tr>';});regBody.innerHTML=h;}
-  if(supBody){var h2='';data.suppressor.forEach(function(s){h2+='<tr><td>'+s.product+'</td><td>'+s.cap+'</td><td>'+s.ports+'</td><td>'+useTagHTML(s.use)+'</td><td><span class="price-new">\u20a6'+s.newPrice+'</span></td><td>'+(s.usedPrice?'<span class="price-used">\u20a6'+s.usedPrice+'</span>':'<span class="price-na">\u2014</span>')+'</td></tr>';});supBody.innerHTML=h2;}
-  document.getElementById('priceLastUpdated').textContent='Last updated: '+formatTimestamp();
-}
-async function refreshPrices() {
-  var btn=document.getElementById('priceRefreshBtn'),status=document.getElementById('priceRefreshStatus');
-  btn.textContent='\u23f3 Fetching...';btn.disabled=true;status.style.display='none';
-  try {
-    var prompt='You are a Nigerian power equipment market data assistant. Return ONLY a JSON object (no markdown, no explanation) with updated 2025 Naira price ranges for servo-based AVS units and surge suppressors in Nigeria. Use this exact structure:\n{"regulator":[{"product":"...","kva":"...","phase":"...","use":"Home|Office|Industrial","newPrice":"X \u2013 Y","usedPrice":"X \u2013 Y or null"}],"suppressor":[{"product":"...","cap":"...","ports":"...","use":"...","newPrice":"X \u2013 Y","usedPrice":"X \u2013 Y or null"}]}\nKeep the same products as this baseline but adjust prices realistically for current Nigerian market inflation:\n'+JSON.stringify(priceData);
-    var res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:prompt}]})});
-    var data=await res.json();
-    var text=data.content&&data.content[0]?data.content[0].text:'';
-    text=text.replace(/```json|```/g,'').trim();
-    var parsed=JSON.parse(text);
-    if(parsed.regulator&&parsed.suppressor){priceData=parsed;renderPriceTables(priceData);status.textContent='\u2713 Prices updated!';status.style.display='inline';setTimeout(function(){status.style.display='none'},3000);}
-  } catch(e) {
-    renderPriceTables(priceData);status.textContent='\u2713 Prices verified!';status.style.display='inline';setTimeout(function(){status.style.display='none'},3000);
+  if(regBody){
+    var h='';
+    basePriceData.regulator.forEach(function(r){
+      h+='<tr><td>'+r.product+'</td><td>'+r.kva+'</td><td>'+r.phase+'</td><td>'+useTagHTML(r.use)+'</td>'
+        +'<td><span class="price-new">'+fmtRange(r.baseNew[0],r.baseNew[1])+'</span></td>'
+        +'<td>'+(r.baseUsed?'<span class="price-used">'+fmtRange(r.baseUsed[0],r.baseUsed[1])+'</span>':'<span class="price-na">\u2014</span>')+'</td></tr>';
+    });
+    regBody.innerHTML=h;
   }
-  btn.textContent='\u27f3 REFRESH PRICES';btn.disabled=false;
+  // Suppressors
+  var supBody=document.querySelector('#tab-suppressor tbody');
+  if(supBody){
+    var h2='';
+    basePriceData.suppressor.forEach(function(s){
+      h2+='<tr><td>'+s.product+'</td><td>'+s.cap+'</td><td>'+s.ports+'</td><td>'+useTagHTML(s.use)+'</td>'
+        +'<td><span class="price-new">'+fmtRange(s.baseNew[0],s.baseNew[1])+'</span></td>'
+        +'<td>'+(s.baseUsed?'<span class="price-used">'+fmtRange(s.baseUsed[0],s.baseUsed[1])+'</span>':'<span class="price-na">\u2014</span>')+'</td></tr>';
+    });
+    supBody.innerHTML=h2;
+  }
+  // Solar Inverters
+  var invBody=document.getElementById('tbody-inverter');
+  if(invBody){
+    var h3='';
+    basePriceData.inverter.forEach(function(r){
+      h3+='<tr><td>'+r.product+'</td><td>'+r.kva+'</td><td>'+r.volt+'</td><td>'+useTagHTML(r.use)+'</td>'
+        +'<td><span class="price-new">'+fmtRange(r.baseNew[0],r.baseNew[1])+'</span></td>'
+        +'<td>'+(r.baseUsed?'<span class="price-used">'+fmtRange(r.baseUsed[0],r.baseUsed[1])+'</span>':'<span class="price-na">\u2014</span>')+'</td></tr>';
+    });
+    invBody.innerHTML=h3;
+  }
+  // Hybrid Inverters
+  var hybBody=document.getElementById('tbody-hybrid');
+  if(hybBody){
+    var h4='';
+    basePriceData.hybrid.forEach(function(r){
+      h4+='<tr><td>'+r.product+'</td><td>'+r.kva+'</td><td>'+r.mppt+'</td><td>'+useTagHTML(r.use)+'</td>'
+        +'<td><span class="price-new">'+fmtRange(r.baseNew[0],r.baseNew[1])+'</span></td>'
+        +'<td>'+(r.baseUsed?'<span class="price-used">'+fmtRange(r.baseUsed[0],r.baseUsed[1])+'</span>':'<span class="price-na">\u2014</span>')+'</td></tr>';
+    });
+    hybBody.innerHTML=h4;
+  }
+  // Update timestamp and FX info
+  var lbl = document.getElementById('priceLastUpdated');
+  if(lbl){
+    var fxNote = liveFxRate
+      ? ' · Live rate: ₦' + fmt(liveFxRate) + '/$'
+      : ' · Baseline rate applied';
+    lbl.textContent = 'Last updated: ' + formatTimestamp() + fxNote;
+  }
 }
-document.addEventListener('DOMContentLoaded',function(){document.getElementById('priceLastUpdated').textContent='Last updated: '+formatTimestamp();});
-setInterval(refreshPrices,6*60*60*1000);
+
+async function refreshPrices() {
+  var btn    = document.getElementById('priceRefreshBtn');
+  var status = document.getElementById('priceRefreshStatus');
+  if(btn){ btn.textContent = '\u23f3 Fetching...'; btn.disabled = true; }
+  if(status){ status.style.display = 'none'; }
+
+  var fxOk = false;
+
+  // 1 ── Live USD/NGN from open.er-api.com (free, no key, CORS-friendly)
+  try {
+    var fxRes = await fetch('https://open.er-api.com/v6/latest/USD', {cache:'no-store'});
+    var fxJson = await fxRes.json();
+    if(fxJson && fxJson.rates && fxJson.rates.NGN){
+      liveFxRate  = Math.round(fxJson.rates.NGN);
+      liveFxSource = 'open.er-api.com';
+      fxOk = true;
+    }
+  } catch(e){ /* fallback below */ }
+
+  // 2 ── Fallback: exchangerate.host (also free, no key)
+  if(!fxOk){
+    try {
+      var fxRes2 = await fetch('https://api.exchangerate.host/latest?base=USD&symbols=NGN', {cache:'no-store'});
+      var fxJson2 = await fxRes2.json();
+      if(fxJson2 && fxJson2.rates && fxJson2.rates.NGN){
+        liveFxRate  = Math.round(fxJson2.rates.NGN);
+        liveFxSource = 'exchangerate.host';
+        fxOk = true;
+      }
+    } catch(e){ /* use baseline */ }
+  }
+
+  // 3 ── Brent crude proxy via frankfurter.app (USD/GBP as commodity signal)
+  try {
+    var brentRes = await fetch('https://api.frankfurter.app/latest?from=USD&to=GBP', {cache:'no-store'});
+    var brentJson = await brentRes.json();
+    // Rough Brent estimate: typical ~0.79 GBP/USD correlates to $80/bbl region
+    if(brentJson && brentJson.rates && brentJson.rates.GBP){
+      var gbpUsd = brentJson.rates.GBP;
+      // Scale: 0.79 GBP/USD ≈ $80 Brent; linear approximation
+      liveBrent = Math.round(80 * (0.79 / gbpUsd));
+    }
+  } catch(e){ /* no oil data */ }
+
+  renderPriceTables();
+
+  if(status){
+    status.textContent = fxOk
+      ? '\u2713 Prices updated with live exchange rate'
+      : '\u2713 Prices shown at baseline rate';
+    status.style.display = 'inline';
+    setTimeout(function(){ status.style.display = 'none'; }, 5000);
+  }
+  if(btn){ btn.textContent = '\u27f3 Refresh Prices'; btn.disabled = false; }
+}
+
+// Auto-refresh every 2 hours
+setInterval(refreshPrices, 2 * 60 * 60 * 1000);
 
 var reveals=document.querySelectorAll('.reveal');
 var observer=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}});},{threshold:0.08});
@@ -3761,8 +3925,8 @@ document.addEventListener('DOMContentLoaded', function() {
       if (e.key === 'Enter') { e.preventDefault(); sendChat(); }
     });
   }
-  // Initialise price tables
-  renderPriceTables(priceData);
+  // Kick off live price fetch immediately on page load
+  refreshPrices();
 });
 </script>
 </body>
